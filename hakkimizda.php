@@ -70,12 +70,11 @@
 		<div class="main-wrapper tr-page-top" style="transform: none;">
 			<div class="container-fluid" style="transform: none;">
 			<?php include("view/header.php"); ?>
-				<div style="background-image: url(images/logo_2.png); height: 300px;" class="page-breadcrumb2 tr-section text-center">
+				<div style="background-image: url(images/logo_2.png);" class="page-breadcrumb2 tr-section text-center">
 					<div class="breadcrumb-content">
-						<div class="page-title">
-							<h1>Yaklaşalım.</h1>
-						</div>
+						<h1>Yaklaşalım.</h1>
 						<p>En iyi haber okuma deneyimini ve Türkiye'de ki  bir çok haber kaynaklarını birleştirerek sonuç alıyoruz.</p>
+						<p>ulak.news açık kaynak kodlu bir projedir. Basının özgürlüğüne inanan, bireyin haber alma özgürlüğüne sahip çıkan bir ortam yaratmak amaçlı oluşturulan otomatik olarak haber yayınlayan sistemdir.</p>
 					</div>
 				</div>
 				<div class="tr-section tr-section-padding">
