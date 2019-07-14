@@ -65,6 +65,7 @@
 		<![endif]-->
 		<!-- Template Developed By ThemeRegion -->
 	<style id="theia-sticky-sidebar-stylesheet-TSS">.theiaStickySidebar:after {content: ""; display: table; clear: both;}</style></head>
+	<?php include("view/gtag.php"); ?>
 	<body class="about-page tr-page">
 		<div class="main-wrapper tr-page-top" style="transform: none;">
 			<div class="container-fluid" style="transform: none;">

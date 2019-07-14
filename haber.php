@@ -1,9 +1,17 @@
 <?php
 	include("funcs.php");
-	$get_new=get_new($_GET['agency'], $_GET['id']);
+	
 	$news_det=null;
+	$page_status=false;
+
+	$get_new=get_new($_GET['agency'], $_GET['id']);
+
+
 	if($get_new['status']){
 		$news_det=$get_new['result'];
+		if($news_det!==null){
+			$page_status=true;
+		}
 	}
 	$get_cats=get_categories();
 	if($get_cats['status']){
@@ -54,7 +62,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="author" content="ulak.news">
     	<meta itemprop="isFamilyFriendly" content="true"/>
-		
+		<?php
+			// haber yoksa veya görüntülemeye kapalı ise arama motorlarından silinmesini istiyoruz.
+			if(!$page_status || $news_det['visible']){echo '<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">';}
+		?>
 		<title><?php echo $news_det['title']; ?></title>
 		<meta itemprop="image" content="<?php echo $news_det['image']; ?>" />
 		<meta property="og:title" content="<?php echo $news_det['title']; ?>" />
@@ -112,6 +123,7 @@
 		}
 	</style>
 	<style id="theia-sticky-sidebar-stylesheet-TSS">.theiaStickySidebar:after {content: ""; display: table; clear: both;}</style></head>
+	<?php include("view/gtag.php"); ?>
 	<body class="detailspage" style="transform: none;">
 	  	<div class="main-wrapper tr-page-top" style="transform: none;">
 		  	<div class="container-fluid" style="transform: none;">
@@ -120,6 +132,10 @@
 					<div class="col-lg-9 tr-sticky" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
 						<div class="tr-content theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
 							<div class="tr-section">
+								<?php
+									// haber var mı yok mu ve bazı kontroller,
+									if($page_status || $news_det['visible']){
+								?>
 								<div class="tr-post">
 									<div class="entry-header">
 										<h2 class="entry-title">
@@ -156,7 +172,13 @@
 									<hr/>
 									Bu haber hiçbir şekilde değiştirilmeden <?php echo date('d.m.Y h:i:s', $news_det['saved_date']); ?> tarihinde <?php echo $news_det['agency_title']; ?> den alınmıştır.<br/>
 									<a href="<?php echo $news_det['url']; ?>" target="_blank">Haberin orjinaline ulaşmak için tıklayınız. <i class="fa fa-external-link" aria-hidden="true"></i></a>
-								</div><!-- /.tr-details -->										
+								</div><!-- /.tr-details -->
+								<?php
+									}else{ 
+									/// eğer haber ilgili ajansta yoksa yada görüntüleme kapalı ise;
+										include("view/404.php");
+									}
+								?>
 							</div><!-- /.tr-section -->
 
 							<div style="display: none;" class="tr-ad">

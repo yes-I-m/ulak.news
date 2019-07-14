@@ -1,25 +1,6 @@
 <?php
 	include("funcs.php");
-	$desc="";
-	$q="";
-	$all_news=[];
-	/// CACHE
-	if(isset($_GET['q'])){
-		$q=Sanitizer::alfanumerico($_GET['q'], true, true);
-		if(strlen($q)>=3){
-			$all_news=getSearchResult($q, 5);
-			if($all_news['status']){
-				$all_news=$all_news['result'];
-			}else{
-				$all_news=[];
-			}
-		}else{
-			$desc="Lütfen en az üç harflik bir kelime girin";
-		}
-	}else{
-		header("Location: /index.html");
-		exit();
-	}
+	//////
 	$get_cats=get_categories();
 	if($get_cats['status']){
 		$get_cats=$get_cats['result'];
@@ -47,11 +28,11 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="author" content="ulak.news">
-		<title><?php echo $q; ?> ile ilgili haberler | Ulak.news</title>
-        <meta property="og:title" content="<?php echo $q; ?> ile ilgili haberler, Haberleri" />
-        <meta name="keywords" content="<?php echo $q; ?> ile ilgili haberler, son dakika haberler" />
-        <meta property="og:description" content="<?php echo $q; ?> ile ilgili haberler, son dakika haberler" />
-        <meta name="description" content="<?php echo $q; ?> ile ilgili haberler, son dakika haberler" />
+			<title>Reddi Beyan | Ulak.news</title>
+			<meta property="og:title" content="Reddi Beyan | Ulak.news" />
+			<meta name="keywords" content="ulak news Reddi Beyan, ulak news nedir, ulak news bilgi" />
+			<meta property="og:description" content="Ulak news reddi beyan sayfası | Ulak.news" />
+			<meta name="description" content="Ulak news Reddi Beyan sayfası | Ulak.news" />
 
 		<!-- CSS -->
 		<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -85,58 +66,31 @@
 		<!-- Template Developed By ThemeRegion -->
 	<style id="theia-sticky-sidebar-stylesheet-TSS">.theiaStickySidebar:after {content: ""; display: table; clear: both;}</style></head>
 	<?php include("view/gtag.php"); ?>
-	<body class="homepage-2" style="transform: none;">
+	<body class="about-page tr-page">
 		<div class="main-wrapper tr-page-top" style="transform: none;">
 			<div class="container-fluid" style="transform: none;">
 			<?php include("view/header.php"); ?>
-
-				<div class="row tr-content" style="transform: none;">
-					<div class="col-md-12 col-lg-12 tr-sticky" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-						<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; top: 0px; left: 15px;">
-							<div class="tr-section">
-							<div class="row col-md-6" style="margin: 0 auto;">
-								<style>
-									/* Style the buttons */
-									.btn {
-									border: none;
-									outline: none;
-									padding: 12px 16px;
-									background-color: #f1f1f1;
-									cursor: pointer;
-									}
-
-									.btn:hover {
-									background-color: #ddd;
-									}
-
-									.btn.active {
-									background-color: #666;
-									color: white;
-									}
-								</style>
-								<button class="active btn" id="all">Tüm ajanslar</button>
-								<?php
-								foreach($get_agency as $key=>$raw){
-									echo '<button class="btn" id="'.$key.'">'.$raw['title'].'</button>';
-								}
-							?>
-							</div>
-								<h2 style="margin 0 auto;"><?php echo $q; ?> ile ilgili arama sonuçları</h2>
-								<div id="main_news" class="medium-post-content row">
-									<?php
-										if(strlen($desc)>=1){ 
-									?>
-											<h2 style="color: red; text-align:center;"><?php echo $desc; ?></h2>
-									<?php
-									 	}else{
-											include("view/main_news.php"); 
-										} 
-									?>
-								</div>				
-							</div>									
+				<div class="tr-section tr-section-padding">
+					<div class="tr-mission">
+						<div class="text-center">
+							<div class="mission-info">
+								<div class="section-title">
+									<h1>Reddi Beyan</h1>
+								</div><!-- /.section-title -->
 						</div>
-					</div>				
-				</div><!-- /.row -->
+							<p style="color: black;">
+								ulak.news yayınladığı haberleri ilgili haber sayfasının alt kısmında belirttiği kaynaktan alır. Kesinlikle kaynağı olmayan haber yayınlanmaz.<br>
+								Yayınladığımız haberlerin doğruluğunu, yeterliliğini veya eksiksizliğini açıkça reddediyoruz.<br>Bu tür verilerdeki hatalardan, eksikliklerden veya diğer kusurlardan, gecikmelerden ya da kesintilerden veya bu verilere itimat edilerek yapılan işlemlerden sorumlu değiliz.<br>
+								Haber kaynağının haberi güncelleştirmesi veya kaldırması durumunda yapılan işlemden haberimiz olamayacağından dolayı ilgili haber/yazı vb. şeyler sitemizde yayında kalabilir. Bu durumundan dolayı doğabilecek her türlü hukuki ve cezai sorumluluk sorumluluğu ulak.news sitesi olarak kabul etmemekteyiz.<br>
+								<u>Bir haberin doğrulundan şüphe ediyorsanız yada kaynağında ki güncellemeden dolayı sitemizde ki bir haberin güncelleşmesini istiyorsanız ilgili haber sayfasından bildirim gönderebilirsiniz.<br><br>Sitemizde ki bir içerik ile ilgili <i><strong>Hukuki</strong></i> bir durum söz konusu ise lütfen bizimle iletişime geçin. İlgili talebiniz ivediklikle yerine getirilecetir.<br></u><br>
+								ulak.news yukarıda belirtilen reddi beyan niteliğinde ki yazıyı dilediği her zaman değiştirebilir veya güncelleyebilir.
+                            </p>
+					</div><!-- /.tr-mission -->					
+				
+				</div><!-- /.tr-section -->
+
+
+
 			</div><!-- /.container-fluid -->	
 		</div><!-- main-wrapper -->
 
