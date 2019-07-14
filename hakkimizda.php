@@ -87,77 +87,60 @@
 								<p>Birinci görevimiz asla ve asla aldığımız haberlerin içeriklerini değiştirmeden daha okunaklı bir şekilde kullanıcıya REKLAMSIZ Sunmak.</p>
 								<p>Haber kaynaklarının emeklerine saygı duymak ve aldığımız bu haberlerin üzerinden maddi bir gelir elde etmemek.</p>
 								<p>Saydamlık bizim için çok önemli :) Topladığımız tüm haber verilerini nasıl işlediğimizi isteyen her kullanıcı görebilir.<br/><br/> 
-									%99.9 oranında kodlarımız halka açık olarak yayınlamaktayız, kalan %0.01 kısmı veritabanlarımızın şifrelerinin ve bazı doğrulama anahtarlarının bulunduğu environment(değişken kütüphanesi genellikle env.php) dosyamızdır.<br/><br/>
+									%99.9 oranında kodlarımız halka açık olarak yayınlamaktayız, kalan %0.01 kısmı veritabanlarımızın şifrelerinin, bazı doğrulama anahtarlarının ve haber kaynaklarını aldığımız servis linklerinin bulunduğu environment(değişken kütüphanesi genellikle env.php) dosyamızdır.<br/><br/>
 									Kodlarımıza aşağıda ki linklerden ulaşabilirsiniz ve geliştirmemize yardımcı olabilirsiniz.<br/>
-								</p>							
+									<a href="https://github.com/orhanayd/ulak.news" class="btn btn-primary" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> Ulak.news</a>
+									<a href="https://github.com/orhanayd/api.ulak.news" class="btn btn-primary" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> api.ulak.news</a>
+								</p>
+								<hr/>
+								<div class="section-title">
+									<h1>Topladığımız haberler ile ne yapacağız?</h1>
+								</div><!-- /.section-title -->
+								<p>Ülkemizin bir haber arşiv sistemi oluşturup geçmişe yönelik çeşitli aramalar yapılabilmesi ve bu sistemin tüm herkese açık olmasını planlıyoruz.</p>
+								<p>Bu sistemi geliştirmek ve burada ki haberler üzerinden çeşitli somut veriler oluşturmak. Örneğin;  Hangi aylarda en çok ne tür haberler okunmakta ? Bu yıl en çok hangi içerikli haberler okundu veya yazıldı ? Bu yıl en çok kim haber yayınladı ? Bu yıl ki yalan haber sayısı gibi veriler üretmek ve herkesin erişimine açık hale getirmek.</p>			
+								<p>Belki de dünyanın şu anda ki en büyük problemi olan yalan haberler için bir yapay zeka oluşturmak ve otomatik yalan haber tespiti yapabilmek ve oluşturulan bu sistem üzerinden belki de haber yayınlanır yayınlanmaz saniyesinde doğruluğu hakkında belli bir fikrimiz olabilmesi...</p>
+								<p>Ve aklımıza fikir geldikçe ekliyoruz :)</p>
+								<div class="section-title">
+									<h1>Hangi teknolojiler kullanıyoruz?</h1>
+								</div><!-- /.section-title -->
+								<div class="tr-contact-section tr-section">
+									<ul class="contact-content">
+										<li>
+											<div class="icon">
+												<img src="images/others/mongodb.png" alt="MongDB" class="img-fluid">
+											</div>
+											<span>Veritabanı olarak MongoDB.</span>
+										</li>
+										<li>
+											<div class="icon">
+												<img style="width: 80px; height: 80px;" src="images/others/php7.png" alt="php 7" class="img-fluid">
+											</div>
+											<span>Tüm kodlar PHP ile yazıldı.</span>
+										</li>
+										<li>
+											<div class="icon">
+												<img src="images/others/nginx.png" alt="nginx" class="img-fluid">
+											</div>
+											<span>Web sunucusu olarak Nginx</span>
+										</li>
+										<li>
+											<div class="icon">
+												<img src="images/others/ubuntu.png" alt="ubuntu" class="img-fluid">
+											</div>
+											<span>Ubuntu ile çalışıyoruz :)</span>
+										</li>
+										<li>
+											<div class="icon">
+												<img src="images/others/vestacp.png" alt="vestacp" class="img-fluid">
+											</div>
+											<span>Panel yazılımımız.</span>
+										</li>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div><!-- /.tr-mission -->					
-
-					<div class="tr-services">
-						<div class="container">
-							<div class="section-title">
-								<h1>tr-services</h1>
-							</div><!-- /.section-title -->
-							<div class="row">
-								<div class="col-md-4">
-									<div class="service">
-										<div class="service-icon">
-											<img src="images/service/1.png" alt="Image" class="img-fluid">
-										</div>
-										<h2>web design</h2>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="service">
-										<div class="service-icon">
-											<img src="images/service/2.png" alt="Image" class="img-fluid">
-										</div>
-										<h2>media & content</h2>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="service">
-										<div class="service-icon">
-											<img src="images/service/3.png" alt="Image" class="img-fluid">
-										</div>
-										<h2>vedeo prod.</h2>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="service">
-										<div class="service-icon">
-											<img src="images/service/4.png" alt="Image" class="img-fluid">
-										</div>
-										<h2>Adv. & PR</h2>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="service">
-										<div class="service-icon">
-											<img src="images/service/5.png" alt="Image" class="img-fluid">
-										</div>
-										<h2>development</h2>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="service">
-										<div class="service-icon">
-											<img src="images/service/6.png" alt="Image" class="img-fluid">
-										</div>
-										<h2>strategy</h2>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
-									</div>
-								</div>
-							</div><!-- /.row -->
-						</div><!-- /.container -->
-					</div><!-- /.tr-services -->
-					
+				
 				</div><!-- /.tr-section -->
 
 
