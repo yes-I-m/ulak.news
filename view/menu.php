@@ -14,7 +14,7 @@
 										foreach($get_agency as $raw){
 											echo '<li><a href="'.$raw['seo_link'].'"><img style="width: 25px" src="'.$raw['image'].'"> '.$raw['title'].'</a></li>';
 										}
-									echo '<li><a href="kaynak.html">Tüm Ajanslar</a></li>';
+									echo '<li><a href="kaynak.html"><i class="fa fa-globe"></i> Tüm Ajanslar</a></li>';
 									?>
 								</ul>
 							</li>
