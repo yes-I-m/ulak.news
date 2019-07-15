@@ -7,8 +7,8 @@
 		
 						<div class="collapse navbar-left navbar-collapse" id="navbarNav">
 							<ul class="nav navbar-nav">
-							<li><a style="font-weight: bold" href="#"><i class="fa fa-home" aria-hidden="true"></i> Ana Sayfa</a></li>
-							<li class="dropdown"><a style="font-weight: bold" href="#"><i class="fa fa-list" aria-hidden="true"></i> Ajanslar</a>
+							<li><a style="font-weight: bold; color: #ab1d1d" href="/index.html"><i class="fa fa-home" aria-hidden="true"></i> Ana Sayfa</a></li>
+							<li class="dropdown"><a style="font-weight: bold; color: #ab1d1d" href="#"><i class="fa fa-list" aria-hidden="true"></i> Ajanslar</a>
 								<ul class="sub-menu">
 									<?php 
 										foreach($get_agency as $raw){
@@ -26,11 +26,11 @@
 										}
 									}
 								?>
-								<li><a style="font-weight: bold" href="kategori.html">Tüm kategoriler</a></li>								
+								<li><a style="font-weight: bold; color: #ab1d1d" href="kategori.html">Tüm kategoriler</a></li>								
 							</ul>
 						</div>						
 						<ul class="feed pull-right">
-							<li><a href="https://fb.com/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+							<li><a href="https://fb.com/newsulak" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 							<li><a href="https://twitter.com/ulak_news" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 						</ul>						
 					</nav><!-- navbar -->	
