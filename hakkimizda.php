@@ -89,8 +89,8 @@
 								<p>Saydamlık bizim için çok önemli :) Topladığımız tüm haber verilerini nasıl işlediğimizi isteyen her kullanıcı görebilir.<br/><br/> 
 									%99.9 oranında kodlarımız açık kaynak olarak yayınlamaktayız, kalan %0.01 kısmı veritabanlarımızın şifrelerinin, bazı doğrulama anahtarlarının ve haber kaynaklarını aldığımız servis linklerinin bulunduğu environment(değişken kütüphanesi genellikle env.php) dosyamızdır.<br/><br/>
 									Kodlarımıza aşağıda ki linklerden ulaşabilirsiniz ve geliştirmemize yardımcı olabilirsiniz.<br/>
-									<a href="https://github.com/orhanayd/ulak.news" class="btn btn-primary" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> Ulak.news</a>
-									<a href="https://github.com/orhanayd/api.ulak.news" class="btn btn-primary" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> api.ulak.news</a>
+									<a href="https://github.com/orhanayd/ulak.news" class="btn btn-primary" target="_blank"><i class="fa fa-2x fa-github" aria-hidden="true"></i> Ulak.news</a>
+									<a href="https://github.com/orhanayd/api.ulak.news" class="btn btn-primary" target="_blank"><i class="fa fa-2x fa-github" aria-hidden="true"></i> api.ulak.news</a>
 								</p>
 								<hr/>
 								<div class="section-title">
