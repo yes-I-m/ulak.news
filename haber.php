@@ -320,7 +320,7 @@
 							<div style="display: none;" class="tr-section tr-widget tr-ad ad-before">
 								<a href="#"><img class="img-fluid" src="images/ai/2.jpg" alt="Image"></a>
 							</div><!-- /.tr-post -->								
-
+							<hr/>
 							<?php
 								include("view/most_read.php");
 							?>

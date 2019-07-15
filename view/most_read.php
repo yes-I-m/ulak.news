@@ -1,8 +1,8 @@
                             <div style="margin-left: auto; margin-right: auto" class="tr-widget tr-widget">
-								<div style="text-align: center" class="widget-title">
-									<span>En çok okunanlar</span>
+								<div class="widget-title">
+									<span style="text-align: center; font-size: 18px;">En çok okunanlar</span>
 								</div>
-								<ul style="" class="nav nav-tabs" role="tablist">
+								<ul class="nav nav-tabs" role="tablist">
 									<li role="presentation"><a class="active" href="#today" data-toggle="tab"><i class="fa fa-calendar"></i>Bugünün</a></li>
 									<li role="presentation"><a href="#week" data-toggle="tab"><i class="fa fa-calendar"></i>Haftanın</a></li>
 									<li role="presentation"><a href="#month" data-toggle="tab"><i class="fa fa-calendar"></i>Aylık</a></li>
