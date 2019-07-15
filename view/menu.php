@@ -8,6 +8,15 @@
 						<div class="collapse navbar-left navbar-collapse" id="navbarNav">
 							<ul class="nav navbar-nav">
 							<li><a style="font-weight: bold; color: #ab1d1d" href="/index.html"><i class="fa fa-home" aria-hidden="true"></i> Ana Sayfa</a></li>
+							<li class="dropdown"><a style="font-weight: bold; color: #ab1d1d" href="#"><i class="fa fa-folder" aria-hidden="true"></i> Sayfalar</a>
+								<ul class="sub-menu">
+									<li><a href="hakkimizda.html">Hakkımızda</a></li>
+									<li><a href="reddi_beyan.html">Reddi Beyan</a></li>
+									<li><a href="topluluk_sozlesmesi.html">Topluluk Sözleşmesi</a></li>
+									<li><a href="kullanim_sozlesmesi.html">Kullanım Sözleşmesi</a></li>
+									<li><a href="iletisim.html">İletişim</a></li>
+								</ul>
+							</li>
 							<li class="dropdown"><a style="font-weight: bold; color: #ab1d1d" href="#"><i class="fa fa-list" aria-hidden="true"></i> Ajanslar</a>
 								<ul class="sub-menu">
 									<?php 
