@@ -281,7 +281,7 @@
     opacity: .75;
     color: black;
 }
-
-.entertainment-slider button {
-    display: none !important;
+.slick-prev:before, .slick-next:before { 
+    color:red !important;
+    font-size: 25px;
 }

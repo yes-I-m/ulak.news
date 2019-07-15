@@ -125,6 +125,7 @@ jQuery(function ($) {
     (function() {
 
        $(".entertainment-slider").slick({
+        arrows: true,
         infinite: true,
         slidesToShow: 5,
         autoplay:true,
