@@ -60,9 +60,9 @@
 							<p>© 2019 
                                 Ulak.News | 
                                 <strong>Email:</strong>
-                                <SCRIPT TYPE="text/javascript">
+                                <script type="text/javascript">
                                     document.write('info@' + 'orhanaydogdu.com.tr')
-                                </SCRIPT>
+                                </script>
                                 <br>
                                 | Made with <i class="fa fa-heart-o" style="color: red" aria-hidden="true"></i> by <a href="https://orhanaydogdu.com.tr" target="_blank">O.A</a> |
                             </p>
