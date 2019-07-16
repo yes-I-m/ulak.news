@@ -134,6 +134,7 @@
 					<div class="col-md-12 col-lg-12 tr-sticky" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
 						<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; top: 0px; left: 15px;">
 							<div class="tr-section">
+								<span style="color:red; margin-left: 40%;" class="main_news_notif"></span>
 								<div id="main_news" class="medium-post-content row">
 									<?php include("view/main_news.php"); ?>
 								</div>				
@@ -165,9 +166,17 @@
 		<script src="https://www.andreaverlicchi.eu/lazyload/dist/lazyload.min.js"></script>
 		<script>
 			var $btns = $('.btn').click(function() {
+				$('.main_news_notif').text("");
 				if (this.id == 'all') {
 					$('#main_news > div').fadeIn(450);
 				} else {
+					var sum = 0;
+					$('.'+this.id).each(function(){
+						sum++;
+					});
+					if(sum===0){
+						$('.main_news_notif').text("İlgili kaynağın haberleri bulunamadı.");
+					}
 					var $el = $('.' + this.id).fadeIn(450);
 					$('#main_news > div').not($el).hide();
 				}

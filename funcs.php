@@ -129,7 +129,7 @@ function curl_funcs($url){
         curl_setopt($ch, CURLOPT_URL, $url); 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
         curl_setopt($ch, CURLOPT_NOSIGNAL, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT_MS, 5000);
+        curl_setopt($ch, CURLOPT_TIMEOUT_MS, 15000);
         // curl_setopt($ch,CURLOPT_HEADER, false); 
         $data=curl_exec($ch);
         $output=json_decode($data, true);

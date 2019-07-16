@@ -193,7 +193,7 @@
 							</div><!-- /.tr-section -->
 
 							<div style="display: none;" class="tr-ad">
-								<a href="#"><img class="img-fluid" src="images/ico/favicon.ico" alt="Image"></a>
+								<a href="#"><img class="img-fluid" src="" alt="Image"></a>
 							</div><!-- /.add -->								
 
 							<div style="display: none;" class="tr-comment">
@@ -203,7 +203,7 @@
 								<ul class="post-comment">
 								    <li class="media">
 								        <div class="commenter-avatar">
-								            <a href="#"><img class="img-fluid img-circle" src="images/others/author1.png" alt="Image"></a>
+								            <a href="#"><img class="img-fluid img-circle" src="" alt="Image"></a>
 								        </div>
 								        <div class="media-body">
 							                <h2>Axel Bouaziz <span>2 Jan 2017</span></h2>
@@ -213,7 +213,7 @@
 								    </li>
 								    <li class="media">
 								        <div class="commenter-avatar">
-								            <a href="#"><img class="img-fluid img-circle" src="images/others/author1.png" alt="Image"></a>
+								            <a href="#"><img class="img-fluid img-circle" src="" alt="Image"></a>
 								        </div>
 								        <div class="media-body">
 							                <h2>Adam Hianks<span>7 Jan 2017</span></h2>
@@ -223,7 +223,7 @@
 								    </li>
 								    <li class="media">
 								        <div class="commenter-avatar">
-								            <a href="#"><img class="img-fluid img-circle" src="images/others/author2.png" alt="Image"></a>
+								            <a href="#"><img class="img-fluid img-circle" src="" alt="Image"></a>
 								        </div>
 								        <div class="media-body">
 							                <h2>Matt Cloey <span>12 Jan 2017</span></h2>
@@ -277,7 +277,7 @@
 						<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; top: 0px; left: 963.75px;">
 
 							<div  style="display: none;" class="tr-section tr-widget tr-ad ad-before">
-								<a href="#"><img class="img-fluid" src="images/ai/2.jpg" alt="Image"></a>
+								<a href="#"><img class="img-fluid" src="" alt="Image"></a>
 							</div><!-- /.tr-post -->
 
 							<?php
@@ -289,7 +289,7 @@
 									<div class="row">
 										<div class="col-xs-6">
 											<div class="weather-image">
-												<img class="img-fluid" src="images/others/weather1.png" alt="Image">
+												<img class="img-fluid" src="" alt="Image">
 											</div>
 										</div>
 										<div class="col-xs-6">
@@ -299,8 +299,8 @@
 									</div>
 									<ul>
 										<li>London, UK</li>
-										<li><span><img class="img-fluid" src="images/others/weather2.png" alt="Image"></span>13%</li>
-										<li><span><img class="img-fluid" src="images/others/weather3.png" alt="Image"></span>6.44 MPH</li>
+										<li><span><img class="img-fluid" src="" alt="Image"></span>13%</li>
+										<li><span><img class="img-fluid" src="" alt="Image"></span>6.44 MPH</li>
 									</ul>
 								</div><!-- /.weather-top -->
 
@@ -308,7 +308,7 @@
 									<ul>
 										<li>
 											<div class="weather-icon">
-												<img class="img-fluid" src="images/others/weather4.png" alt="Image">
+												<img class="img-fluid" src="" alt="Image">
 											</div>
 											<div class="weather-info">
 												<span>23°</span>
@@ -317,7 +317,7 @@
 										</li>
 										<li>
 											<div class="weather-icon">
-												<img class="img-fluid" src="images/others/weather5.png" alt="Image">
+												<img class="img-fluid" src="" alt="Image">
 											</div>
 											<div class="weather-info">
 												<span>26°</span>
@@ -329,7 +329,7 @@
 							</div><!-- /.weather-widget -->
 
 							<div style="display: none;" class="tr-section tr-widget tr-ad ad-before">
-								<a href="#"><img class="img-fluid" src="images/ai/2.jpg" alt="Image"></a>
+								<a href="#"><img class="img-fluid" src="" alt="Image"></a>
 							</div><!-- /.tr-post -->								
 							<hr/>
 							<?php
@@ -350,7 +350,7 @@
 											<li>
 												<div class="entry-meta">
 													<div class="author-image">
-														<a href="#"><img class="img-fluid" src="images/others/author4.png" alt="Image"></a>
+														<a href="#"><img class="img-fluid" src="" alt="Image"></a>
 													</div>
 													<div class="author-info">
 														<h2><a href="#">Janet Jackson</a></h2>
@@ -360,7 +360,7 @@
 											<li>
 												<div class="entry-meta">
 													<div class="author-image">
-														<a href="#"><img class="img-fluid" src="images/others/author5.png" alt="Image"></a>
+														<a href="#"><img class="img-fluid" src="" alt="Image"></a>
 													</div>
 													<div class="author-info">
 														<h2><a href="#">Matt Cloey</a></h2>
@@ -370,7 +370,7 @@
 											<li>
 												<div class="entry-meta">
 													<div class="author-image">
-														<a href="#"><img class="img-fluid" src="images/others/author6.png" alt="Image"></a>
+														<a href="#"><img class="img-fluid" src="" alt="Image"></a>
 													</div>
 													<div class="author-info">
 														<h2><a href="#">Kolony Wispe</a></h2>
@@ -380,7 +380,7 @@
 											<li>
 												<div class="entry-meta">
 													<div class="author-image">
-														<a href="#"><img class="img-fluid" src="images/others/author7.png" alt="Image"></a>
+														<a href="#"><img class="img-fluid" src="" alt="Image"></a>
 													</div>
 													<div class="author-info">
 														<h2><a href="#">Matt Cloey</a></h2>
@@ -390,7 +390,7 @@
 											<li>
 												<div class="entry-meta">
 													<div class="author-image">
-														<a href="#"><img class="img-fluid" src="images/others/author8.png" alt="Image"></a>
+														<a href="#"><img class="img-fluid" src="" alt="Image"></a>
 													</div>
 													<div class="author-info">
 														<h2><a href="#">Jhon dun</a></h2>
@@ -460,7 +460,7 @@
 				</div><!-- /.row -->
 
 				<div style="display: none;" class="tr-ad ad-bottom ad-image text-center">
-					<a href="#"><img class="img-fluid" src="images/ai/5.jpg" alt="Image"></a>
+					<a href="#"><img class="img-fluid" src="" alt="Image"></a>
 				</div><!-- /.tr-ad -->
 
 		  	</div><!-- /.container-fulid -->  		
