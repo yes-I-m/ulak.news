@@ -180,7 +180,7 @@ function get_categories($limit=10){
             return $curl['result'];
         }
     }
-    return false;
+    return [];
 }
 
 function get_news($agency, $limit=60, $start=0){
@@ -200,7 +200,7 @@ function get_new($agency, $id){
             return $curl['result'];
         }
     }
-    return false;
+    return [];
 }
 
 function get_agency_list(){
@@ -210,7 +210,7 @@ function get_agency_list(){
             return $curl['result'];
         }
     }
-    return false;
+    return [];
 }
 
 function getSearchResult($arg){
@@ -220,7 +220,7 @@ function getSearchResult($arg){
             return $curl['result'];
         }
     }
-    return false;
+    return [];
 }
 
 function getMostReaded($filter="all", $limit=10){
@@ -231,7 +231,7 @@ function getMostReaded($filter="all", $limit=10){
             return $curl['result'];
         }
     }
-    return false;
+    return [];
 }
 
 function get_cat_news($arg, $limit=50){
@@ -242,7 +242,7 @@ function get_cat_news($arg, $limit=50){
             return $curl['result'];
         }
     }
-    return false;
+    return [];
 }
 
 function getStats(){
