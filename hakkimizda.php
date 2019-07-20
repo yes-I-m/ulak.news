@@ -21,6 +21,12 @@
 	}else{
 		$son_dakika=[];
 	}
+	//////
+	$stats=getStats();
+	if(!$stats['status']){
+		$stats=[];
+	}
+	$lastSearch=lastSearch();
 ?>
 <html lang="tr" style="transform: none;">
 <head>
@@ -100,8 +106,8 @@
 								<p>Saydamlık bizim için çok önemli :) Topladığımız tüm haber verilerini nasıl işlediğimizi isteyen her kullanıcı görebilir.<br/><br/> 
 									%99.9 oranında kodlarımız açık kaynak olarak yayınlamaktayız, kalan %0.01 kısmı veritabanlarımızın şifrelerinin, bazı doğrulama anahtarlarının ve haber kaynaklarını aldığımız servis linklerinin bulunduğu environment(değişken kütüphanesi genellikle env.php) dosyamızdır.<br/><br/>
 									Kodlarımıza aşağıda ki linklerden ulaşabilirsiniz ve geliştirmemize yardımcı olabilirsiniz.<br/>
-									<a href="https://github.com/orhanayd/ulak.news" class="btn btn-primary" target="_blank"><i class="fa fa-2x fa-github" aria-hidden="true"></i> Ulak.news</a>
-									<a href="https://github.com/orhanayd/api.ulak.news" class="btn btn-primary" target="_blank"><i class="fa fa-2x fa-github" aria-hidden="true"></i> api.ulak.news</a>
+									<a style="color: white;" href="https://github.com/orhanayd/ulak.news" class="btn btn-primary" target="_blank"><i class="fa fa-2x fa-github" aria-hidden="true"></i> Ulak.news</a>
+									<a style="color: white;" href="https://github.com/orhanayd/api.ulak.news" class="btn btn-primary" target="_blank"><i class="fa fa-2x fa-github" aria-hidden="true"></i> api.ulak.news</a>
 								</p>
 								<hr/>
 								<div class="section-title">
@@ -147,6 +153,43 @@
 											<span>Panel yazılımımız.</span>
 										</li>
 									</ul>
+								</div>
+								<div class="section-title">
+									<h1 style="margin: 0 0 0;">İstatistikler</h1>
+									<p style="color: black;">Gerçek zamanlı veri (<?php echo date('d.m.Y - H:s:i', $stats['cached_time']); ?>)</p>
+								</div><!-- /.section-title -->
+								<div class="tr-contact-section tr-section">
+									<?php
+									if(count($stats)>0){ ?>
+										<ul class="contact-content">
+											<li>
+												<div class="icon">
+													<i class="fa fa-circle fa-newspaper-o fa-4x" aria-hidden="true"></i>
+												</div>
+												<span>Toplam şu anda <?php echo number_format($stats['result']['db_stats']['news_count_total']); ?> adet haber</span>
+											</li>
+											<li>
+												<div class="icon">
+													<i style="color: black;" class="fa fa-eye fa-4x" aria-hidden="true"></i>
+												</div>
+												<span>Toplam <?php echo number_format($stats['result']['db_stats']['read_times_total']); ?> kere haberler okundu</span>
+											</li>
+											<li>
+												<div class="icon">
+													<?php if($stats['result']['db_status']){ ?>
+														<i style="color: green;" class="fa fa-circle fa-check-square fa-4x" aria-hidden="true"></i>
+												</div>
+														<span>Veritabanı durumu şu anda mükemmel çalışıyor.</span>
+													<?php }else{ ?>
+														<i style="color: red;" class="fa fa-times-circle-o fa-4x" aria-hidden="true"></i>
+												</div>
+														<span>Veritabanı bağlantısında sorun var</span>
+													<?php } ?>
+											</li>
+										</ul>
+									<?php }else{ ?>
+										<h1 style="color: black;">İstatistikler alınamadı.</h1>
+									<?php } ?>
 								</div>
 							</div>
 						</div>

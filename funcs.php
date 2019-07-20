@@ -1,10 +1,45 @@
 <?php
+date_default_timezone_set('Europe/Istanbul');
 	$new_status=false;
     $noindex=false;
     $cat_status=false;
     $agency_status=false;
     $search_status=false;
+    $is_local=false;
+    $host=Sanitizer::url($_SERVER['HTTP_HOST']);
+
 include("env.php");
+
+if($host===$_ENV['local1'] || $host===$_ENV['local2']){
+    $is_local=true;
+}
+
+function getUserIP(){
+    // Get real visitor IP behind CloudFlare network
+    if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+              $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+              $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+    }
+    $client  = @$_SERVER['HTTP_CLIENT_IP'];
+    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+    $remote  = $_SERVER['REMOTE_ADDR'];
+
+    if(filter_var($client, FILTER_VALIDATE_IP))
+    {
+        $ip = $client;
+    }
+    elseif(filter_var($forward, FILTER_VALIDATE_IP))
+    {
+        $ip = $forward;
+    }
+    else
+    {
+        $ip = $remote;
+    }
+
+    return $ip;
+}
+
 
 class Sanitizer {
     /**
@@ -104,12 +139,6 @@ class Sanitizer {
         $valor = strip_tags(str_replace(array('"', "'", '`', '´', '¨'), '', trim($valor)));
         return filter_var($valor, FILTER_SANITIZE_URL);
     }
-}
-
-$is_local=false;
-$host=Sanitizer::url($_SERVER['HTTP_HOST']);
-if($host===$_ENV['local1'] || $host===$_ENV['local2']){
-    $is_local=true;
 }
 
 function random_color(){
@@ -214,6 +243,59 @@ function get_cat_news($arg, $limit=50){
         }
     }
     return false;
+}
+
+function getStats(){
+    $curl=curl_funcs("https://api.ulak.news/?process=stats");
+    if($curl['status']){
+        if($curl['result']['status']){
+            return $curl['result'];
+        }
+    }
+    return [];
+}
+
+function lastSearch(){
+    $curl=curl_funcs("https://api.ulak.news/?process=lastSearch");
+    if($curl['status']){
+        if($curl['result']['status']){
+            return $curl['result']['result'];
+        }
+    }
+    return [];
+}
+
+function addComment($agency, $id, $name, $message){
+    $id=(int)$id;
+    $ip=getUserIP();
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,"https://api.ulak.news/?process=saveComment");
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'X-Site: '.$_ENV["curl-auth-web"],
+        'X-Site-Token: '.$_ENV["curl-auth-token"]
+    ));
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS,
+                "toAgency=$agency&toId=$id&text=$message&name=$name&ip=$ip");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $server_output = json_decode(curl_exec($ch), true);
+    curl_close ($ch);
+    if($server_output['status']){
+        return true;
+    }
+    return false;
+}
+
+function getComments($agency, $id){
+    $data=curl_funcs("https://api.ulak.news/?process=getComments&toAgency=$agency&toId=$id");
+    if($data['status']){
+        if(count($data['result']['result'])>=1){
+            return $data['result']['result'];
+        }else{
+            return [];
+        }
+    }
+    return [];
 }
 
 function seolinkCat($s){

@@ -17,7 +17,7 @@
 						<div class="col-md-4">
 							<div class="widget widget-menu-2">
 								<h2>Kategoriler</h2> 
-								<ul>
+								<ul style="list-style-type: circle;">
                                     <?php
                                         foreach($get_cats as $key=>$raw){
 											echo '<li><a href="'.$raw['seo_link'].'">'.$raw['cat'].'</a></li>';
@@ -30,7 +30,7 @@
 								</ul>
 							</div>
 						</div>
-						<div class="col-md-2">
+						<div class="col-md-3">
 							<div class="widget">
 								<h2>Ajanslar</h2> 
 								<ul>
@@ -40,6 +40,18 @@
 										}
                                     ?>
                                     <li><a style="font-weight: bold" href="kaynak.html">Tüm Ajanslar</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-5">
+							<div class="widget widget-menu-2">
+								<h2>Son aramalar</h2> 
+								<ul style="list-style-type: circle;">
+                                    <?php
+                                        foreach($lastSearch as $raw){
+											echo '<li><a href="arama.html?q='.$raw['keyword'].'">'.(strlen($raw['keyword'])>=15 ? mb_substr($raw['keyword'], 0, 15)."..." : $raw['keyword']).'</a></li>';
+										}
+                                    ?>
 								</ul>
 							</div>
 						</div>

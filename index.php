@@ -1,17 +1,19 @@
 <?php
-	///// CACHE //////////
-		require_once "sCache.php";
-		$options = array(
-			'time'   => 60, // 60 saniye
-			'dir'    => 'cache/', // sCache2 klasörü oluşturup buraya yazılsın.
-			'load'   => false,  // sayfamızın sonunda load değerimiz görünsün.
-			'extension' => ".html", // standart değer .html olarak ayarlanmıştır cache dosyalarınızın uzantısını temsil etmektedir.
-			);
-		
-		$sCache = new sCache($options); // ayarları sınıfımıza gönderip sınıfı çalıştıralım.
-	///// CACHE BITIS /////
-	
 	include("funcs.php");
+	if(!$is_local){
+		///// CACHE //////////
+			require_once "sCache.php";
+			$options = array(
+				'time'   => 60, // 60 saniye
+				'dir'    => 'cache/', // sCache2 klasörü oluşturup buraya yazılsın.
+				'load'   => false,  // sayfamızın sonunda load değerimiz görünsün.
+				'extension' => ".html", // standart değer .html olarak ayarlanmıştır cache dosyalarınızın uzantısını temsil etmektedir.
+				);
+			
+			$sCache = new sCache($options); // ayarları sınıfımıza gönderip sınıfı çalıştıralım.
+		///// CACHE BITIS /////
+	}
+	
 	$get_cats=get_categories();
 	if($get_cats['status']){
 		$get_cats=$get_cats['result'];
@@ -34,6 +36,8 @@
 	}
 	$son_dakika=array_splice($get_news, 0, 5);
 	$all_news=array_splice($get_news, 5, 60);
+	
+	$lastSearch=lastSearch();
 ?>
 <html lang="tr" style="transform: none;">
 <head>

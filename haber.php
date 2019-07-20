@@ -54,6 +54,7 @@
 	}else{
 		$mostRead_month=[];
 	}
+	$lastSearch=lastSearch();
 ?>
 <html lang="tr" style="transform: none;">
 <head>
@@ -158,12 +159,12 @@
 									</div>
 									<div class="post-content">
 										<div class="author">
-											<img class="img-fluid img-circle" src="https://api.ulak.news/images/web/<?php echo $news_det['agency']; ?>.png" alt="<?php echo $news_det['agency_title']; ?>">
+											<a href="kaynak_<?php echo $news_det['agency']; ?>.html"><img class="img-fluid img-circle" src="https://api.ulak.news/images/web/<?php echo $news_det['agency']; ?>.png" alt="<?php echo $news_det['agency_title']; ?>"></a>
 										</div>
 										<div style="float: right;" class="entry-meta">
 											<ul>
-												<li>Kaynak; <a href="#"><?php echo $news_det['agency_title']; ?></a></li>
-												<li><a href="#"> <?php echo $news_det['date']; ?></a></li>
+												<li><?php echo $news_det['date']; ?></li>
+												<li><i class="fa fa-eye" aria-hidden="true"></i> <?php echo $news_det['read_times']; ?> kere okundu</li>
 												<li>
 													<ul>
 														<li>Paylaş;</li>
@@ -196,79 +197,38 @@
 								<a href="#"><img class="img-fluid" src="" alt="Image"></a>
 							</div><!-- /.add -->								
 
-							<div style="display: none;" class="tr-comment">
+							<div class="tr-comment">
+							<a name="comments"></a>
 								<div class="section-title">
-									<h1><span>Yorumlar</span></h1>
-								</div>								
-								<ul class="post-comment">
-								    <li class="media">
-								        <div class="commenter-avatar">
-								            <a href="#"><img class="img-fluid img-circle" src="" alt="Image"></a>
-								        </div>
-								        <div class="media-body">
-							                <h2>Axel Bouaziz <span>2 Jan 2017</span></h2>
-							                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-							                <a href="#" class="reply">Reply</a>
-								        </div>
-								    </li>
-								    <li class="media">
-								        <div class="commenter-avatar">
-								            <a href="#"><img class="img-fluid img-circle" src="" alt="Image"></a>
-								        </div>
-								        <div class="media-body">
-							                <h2>Adam Hianks<span>7 Jan 2017</span></h2>
-							                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-							                <a href="#" class="reply">Reply</a>
-								        </div>
-								    </li>
-								    <li class="media">
-								        <div class="commenter-avatar">
-								            <a href="#"><img class="img-fluid img-circle" src="" alt="Image"></a>
-								        </div>
-								        <div class="media-body">
-							                <h2>Matt Cloey <span>12 Jan 2017</span></h2>
-							                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-							                <a href="#" class="reply">Reply</a>
-								        </div>
-								    </li>
+									<h1><span>Yorumlar <i onClick="getComments();" style="text-align: center; color: green;" class="fa fa-refresh" aria-hidden="true"></i></span></h1>
+								</div>
+								<ul class="post-comment ajax-comments">
+
 								</ul>									
 							</div><!-- /.comment-section -->
 
-							<div style="display: none;" class="tr-comment-box">
+							<div class="tr-comment-box">
 								<div class="section-title">
-									<h1><span>Leave a Comments</span></h1>
+									<h1><span>Yorum Ekle</span></h1>
 								</div>
-								<form class="contact-form" name="contact-form" method="post" action="#">
 								    <div class="row">
 								        <div class="col-md-4">
 								            <div class="form-group">
-								                <label for="one">Name</label>
-								                <input type="text" class="form-control" required="required" id="one">
+								                <label for="one"><strong>Adınız Soyadınız:</strong></label>
+								                <input name="name" type="text" autocomplete="off" class="form-control" required="required" id="one">
 								            </div>
-								        </div>
-								        <div class="col-md-4">
-								            <div class="form-group">
-								                <label for="two">Email</label>
-								                <input type="email" class="form-control" required="required" id="two">
-								            </div> 
-								        </div>
-								        <div class="col-md-4">
-								            <div class="form-group">
-								                <label for="three">Subject</label>
-								                <input type="text" class="form-control" required="required" id="three">
-								            </div> 
 								        </div>
 								        <div class="col-md-12">
 								            <div class="form-group">
-								                <label for="four">Your Text</label>
-								                <textarea name="message" required="required" class="form-control" rows="7" id="four"></textarea>
+								                <label for="four"><strong>Yorumunuz:</strong></label>
+								                <textarea name="message" required="required" class="form-control" id="four"></textarea>
 								            </div>             
 								        </div>     
 								    </div>
 								    <div class="form-group text-center">
-								        <button type="submit" class="btn btn-primary pull-right">Submit Your Text</button>
+										Yorumu gönderdiğinizde reddi beyan, topluluk sözleşmesi ve kullanım sözleşmesini kabul etmiş sayılırsınız.
+								        <button onclick="addComment();" type="submit" style="color: white;" class="btn btn-primary pull-right">Yorumu ekle</button>
 								    </div>
-								</form><!-- /.contact-form -->																		
 							</div><!-- /.tr-comment-box -->
 						</div><!-- /.tr-content -->
 					</div><!-- /.tr-sticky -->
@@ -486,6 +446,52 @@
 		<script src="js/carouFredSel.js"></script>
 		<script src="js/magnific-popup.min.js"></script>
 		<script src="js/main.js"></script>
-	
+		<script>
+		function getComments(){
+		    $.ajax({
+				type: 'GET', 
+				url: 'view/comments.php', 
+				data: { process: "getComments", agency: '<?php echo $news_det['agency']; ?>', id: <?php echo $news_det['id']; ?> }, 
+				dataType: 'html',
+				beforeSend: function(){
+					$(".ajax-comments").html('<i style="text-align: center" class="fa fa-spin fa-4x fa-spinner" aria-hidden="true"></i> Yorumlar Yükleniyor...');	
+				},
+				success: function (data) {
+					$(".ajax-comments").html(data);
+				},
+				error: function (data) {
+					alert("Yorumlar alınamadı.");
+				}
+			});
+		}
+		function addComment(){
+			if($("textarea[name=message]").val().length>4 && $("input[name=name]").val().length>=3){
+				var data={name: $("input[name=name]").val(), message: $("textarea[name=message]").val()};
+				$.ajax({
+					type: 'POST', 
+					url: 'view/comments.php?process=addComment&agency=<?php echo $news_det['agency']; ?>&id=<?php echo $news_det['id']; ?>', 
+					data: data, 
+					dataType: 'json',
+					success: function (data) {
+						if(data.status){
+							alert("Yorumunuz eklendi.");
+							$("input[name=name]").val('');
+							$("textarea[name=message]").val('');
+							getComments();
+							location.href = "#comments";
+						}else{
+							alert("Yorumunuz eklenemedi.")
+						}
+					},
+					error: function (data) {
+						alert("Tekrar deneyiniz.");
+					}
+				});
+			}else{
+				alert("Adınız veya yorumunuz kısa...")
+			}
+		}
+		getComments();
+		</script>
     </body>
     </html>

@@ -21,6 +21,7 @@
 	}else{
 		$son_dakika=[];
 	}
+	$lastSearch=lastSearch();
 ?>
 <html lang="tr" style="transform: none;">
 <head>

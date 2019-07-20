@@ -10,7 +10,7 @@
 											</div>
 											<div class="post-content">
 												<div class="author">
-													<a href="#"><img style="background-color: white;" class="img-fluid img-circle" lazyload="on" data-src="https://api.ulak.news/images/web/<?php echo $raw['agency']; ?>.png" alt="Image"></a>
+													<a href="kaynak_<?php echo $raw['agency']; ?>.html"><img style="background-color: white;" class="img-fluid img-circle" lazyload="on" data-src="https://api.ulak.news/images/web/<?php echo $raw['agency']; ?>.png" alt="Image"></a>
 												</div>
 												<div class="entry-meta">
 													<ul>
