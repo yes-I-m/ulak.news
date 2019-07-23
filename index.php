@@ -169,6 +169,23 @@
 		<script src="js/main.js"></script>
 		<script src="https://www.andreaverlicchi.eu/lazyload/dist/lazyload.min.js"></script>
 		<script>
+			new LazyLoad();
+			function getNews(agency="all"){
+				$.ajax({
+					type: 'GET', 
+					url: 'view/ajax_news.php',
+					data: { agency: agency }, 
+					dataType: 'html',
+					success: function (data) {
+						$("#main_news").append(data);
+						console.log(agency+" haberleri main_news e append edildi. getNews();")
+					},
+					error: function (data) {
+						console.log(agency+" => haberleri alınamadı. getNews();")
+					}
+				});
+			}
+			getNews("cumhuriyet");
 			var $btns = $('.btn').click(function() {
 				$('.main_news_notif').text("");
 				if (this.id == 'all') {
@@ -187,9 +204,6 @@
 				$btns.removeClass('active');
 				$(this).addClass('active');
 			});
-		</script>
-		<script>
-			new LazyLoad();
 		</script>
     </body>
     </html>

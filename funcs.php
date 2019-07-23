@@ -173,7 +173,7 @@ function curl_funcs($url){
         return array("status"=>true, "result"=>$output);
 }
 
-function get_categories($limit=10){
+function get_categories($limit=8){
     $curl=curl_funcs("https://api.ulak.news/?process=cats&limit=$limit");
     if($curl['status']){
         if($curl['result']['status']){
