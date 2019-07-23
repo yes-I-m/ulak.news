@@ -172,12 +172,13 @@
 			new LazyLoad();
 			function getNews(agency="all"){
 				$.ajax({
-					type: 'GET', 
+					type: 'GET',
 					url: 'view/ajax_news.php',
 					data: { agency: agency }, 
 					dataType: 'html',
 					success: function (data) {
 						$("#main_news").append(data);
+						$('.main_news_notif').html("");
 						console.log(agency+" haberleri main_news e append edildi. getNews();")
 					},
 					error: function (data) {
@@ -188,17 +189,19 @@
 			getNews("cumhuriyet");
 			var $btns = $('.btn').click(function() {
 				$('.main_news_notif').text("");
-				if (this.id == 'all') {
+				var agency = this.id;
+				if (agency === 'all') {
 					$('#main_news > div').fadeIn(450);
 				} else {
 					var sum = 0;
-					$('.'+this.id).each(function(){
+					$('.'+agency).each(function(){
 						sum++;
 					});
 					if(sum===0){
-						$('.main_news_notif').text("İlgili kaynağın haberleri bulunamadı.");
+						$('.main_news_notif').html("İlgili ajans haberleri tekrar yükleniyor...");
+						getNews(agency);
 					}
-					var $el = $('.' + this.id).fadeIn(450);
+					var $el = $('.' + agency).fadeIn(450);
 					$('#main_news > div').not($el).hide();
 				}
 				$btns.removeClass('active');
