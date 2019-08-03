@@ -72,6 +72,7 @@
 		<meta property="og:title" content="<?php echo $news_det['title']; ?>" />
 		<meta property="og:type" content="article" />
 		<meta property="og:image" content="<?php echo $news_det['image']; ?>" />
+		<meta property="og:url" content="https://ulak.news/<?php echo $news_det['seo_link']; ?>" />
 		<link rel="image_src" href="<?php echo $news_det['image']; ?>" />
 		<meta name="keywords" content="<?php echo $news_det['keywords']; ?>" />
 		<meta property="og:description" content="<?php echo $news_det['spot']; ?>" />
