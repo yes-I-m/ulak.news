@@ -1,5 +1,6 @@
 <?php
 date_default_timezone_set('Europe/Istanbul');
+
 	$new_status=false;
     $noindex=false;
     $cat_status=false;
