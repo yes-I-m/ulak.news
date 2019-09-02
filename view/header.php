@@ -62,11 +62,13 @@
 				<div class="tr-menu menu-responsive">
                     <?php include("menu.php"); ?>
 				</div><!-- /tr-menu -->
-				<div class="header-secondary">
+				<div class="header-secondary" style="height: auto;">
 				<div class="container">
 					<div class="market-data">
 						<?php
+							$time=1;
 							foreach(getCurrency() as $currency){
+								$time=$currency['time'];
 								if($currency["green"]){
 									$color="color: green;";
 									$currencyStatus='<i class="fa fa-thumbs-o-up"></i>';
@@ -84,5 +86,9 @@
 							}
 						?>
 					</div>
+					<hr style="background-color: white; height: 0.1px;"/>
+						<div style="float: right;">
+							<span style="color: white; font-size: 11px;">Son Güncelleme: <?php echo date('d.m.Y - H:i:s', $time); ?> (kaynak: investing.com)</span>
+						</div>
 				</div>
 				</div>
