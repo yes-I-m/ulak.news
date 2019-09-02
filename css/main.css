@@ -4223,3 +4223,32 @@ a, .navbar-default li a i,
 	color: #fff;
 	border-color: #fff;
 }
+.market-data{
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+}
+.header-secondary{
+background-color: #153966;
+width: 100%;
+height: 74px;
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-align: center;
+-ms-flex-align: center;
+align-items: center;
+}
+.items{
+width: 170px;
+height: 60px;
+color: #fff;
+position: relative;
+}
+.item-text{
+font-size: 18px;
+font-weight: 500;
+}

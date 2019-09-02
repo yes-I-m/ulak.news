@@ -61,4 +61,28 @@
 
 				<div class="tr-menu menu-responsive">
                     <?php include("menu.php"); ?>
-				</div><!-- /tr-menu -->	
+				</div><!-- /tr-menu -->
+				<div class="header-secondary">
+				<div class="container">
+					<div class="market-data">
+						<?php
+							foreach(getCurrency() as $currency){
+								if($currency["green"]){
+									$color="color: green;";
+									$currencyStatus='<i class="fa fa-thumbs-o-up"></i>';
+								}else{
+									$color="color: red;";
+									$currencyStatus='<i class="fa fa-thumbs-o-down"></i>';
+								}
+								?>
+								<div class="items item-text">
+										<span class="name" style="font-size: 14px;"><?php echo $currency['currency']; ?></span><br/>
+										<span class="value" style=""><?php echo $currency['value']; ?></span><br/>
+										<span style="font-size: 11px; position: relative; <?php echo $color; ?>" class="change">% <?php echo $currency['change_percent']; ?> <?php echo $currencyStatus; ?></span>
+								</div>
+								<?php
+							}
+						?>
+					</div>
+				</div>
+				</div>

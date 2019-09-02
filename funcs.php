@@ -299,6 +299,14 @@ function getComments($agency, $id){
     return [];
 }
 
+function getCurrency(){
+    $curl=curl_funcs("https://api.orhanaydogdu.com.tr/exchange/liveCurrency.php");
+    if($curl['status']){
+        return $curl['result'];
+    }
+    return [];
+}
+
 function seolinkCat($s){
     $s=Sanitizer::alfabetico($s, true, true);
     $s=base64_encode($s);
