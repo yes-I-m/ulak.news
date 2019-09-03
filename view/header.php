@@ -69,7 +69,10 @@
 							$time=1;
 							foreach(getCurrency() as $currency){
 								$time=$currency['time'];
-								if($currency["green"]){
+								if($currency["green"]===null){
+									$color="color: color;";
+									$currencyStatus='';
+								}elseif($currency['green']){
 									$color="color: green;";
 									$currencyStatus='<i class="fa fa-thumbs-o-up"></i>';
 								}else{
