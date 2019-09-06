@@ -42,7 +42,7 @@
 		<link rel="stylesheet" href="css/animate.css">
 		<link rel="stylesheet" href="css/slick.css">
 		<link rel="stylesheet" href="css/jplayer.css">
-		<link rel="stylesheet" href="css/main.css">  
+		<link rel="stylesheet" href="css/main.css?v=<?php echo $version; ?>">  
 		<link rel="stylesheet" href="css/responsive.css">
 
 		<!-- font -->
@@ -143,7 +143,7 @@
 		<script src="js/slick.min.js"></script>
 		<script src="js/carouFredSel.js"></script>
 		<script src="js/magnific-popup.min.js"></script>
-		<script src="js/main.js"></script>
+		<script src="js/main.js?v=<?php echo $version; ?>"></script>
 		<script src="https://www.andreaverlicchi.eu/lazyload/dist/lazyload.min.js"></script>
 		<script>
 			var $btns = $('.btn').click(function() {

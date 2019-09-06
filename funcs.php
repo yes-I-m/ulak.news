@@ -8,7 +8,7 @@ date_default_timezone_set('Europe/Istanbul');
     $search_status=false;
     $is_local=false;
     $host=Sanitizer::url($_SERVER['HTTP_HOST']);
-
+    $version="2.7.3";
 include("env.php");
 
 if($host===$_ENV['local1'] || $host===$_ENV['local2']){
