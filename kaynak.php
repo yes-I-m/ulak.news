@@ -20,7 +20,7 @@
 	$agency_status=false;
 	$page_status=false;
 	$agency_title="";
-	$agency_about=[];
+	$agency_about="";
 	//////
 	$get_cats=get_categories();
 	if($get_cats['status']){
@@ -38,14 +38,15 @@
 
 	//////
 	if(isset($_GET['agency'])){
-		$agency=$_GET['agency'];
-		if(array_key_exists($agency, $get_agency)){
-			$agency_about=$get_agency[$agency];
-			$agency_title=$agency_about['title'];
-			$all_news=get_news($agency);
-			$all_news=$all_news['result'];
-			$agency_status=true;
-			$page_status=true;
+		foreach($get_agency as $agency){
+			if($agency['id'] === $_GET['agency']){
+				$agency_about=$agency['about'];
+				$agency_title=$agency['title'];
+				$all_news=get_news($agency['id']);
+				$all_news=$all_news['result'];
+				$agency_status=true;
+				$page_status=true;
+			}
 		}
 	}else{
 		$page_status=true;
@@ -147,7 +148,7 @@
 									 */
 								?>
 									<h2 style="margin 0 auto;"><?php echo $agency_title; ?> - son dakika haberleri</h2><hr/>
-									<p><?php echo $agency_about['about']; ?></p>
+									<p><?php echo $agency_about; ?></p>
 									<div id="main_news" class="medium-post-content row">
 										<?php
 											if(strlen($desc)>=1){ 

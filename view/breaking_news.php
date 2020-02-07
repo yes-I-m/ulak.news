@@ -9,7 +9,7 @@
 										<li class="tr-post">
 											<div class="entry-header">
 												<div class="entry-thumbnail">
-													<a href="<?php echo $raw['seo_link']; ?>"><img class="img-fluid" src="<?php echo $raw['image']; ?>" alt="<?php echo $raw['title']; ?>"></a>
+													<a href="<?php echo $raw['seo_link']; ?>"><img class="img-fluid" data-src="<?php echo $raw['image']; ?>" src="images/loading.gif" alt="<?php echo $raw['title']; ?>"></a>
 												</div>
 											</div>
 											<div class="post-content">

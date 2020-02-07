@@ -8,7 +8,7 @@
 
 
 	if($get_new['status']){
-		$news_det=$get_new['result'];
+		$news_det=$get_new['result'][0];
 		if($news_det!==null){
 			$page_status=true;
 		}
@@ -36,24 +36,6 @@
 	$mostRead_today=getMostReaded("today", 5);
 	$mostRead_week=getMostReaded("week", 5);
 	$mostRead_month=getMostReaded("month", 5);
-
-	if($mostRead_today['status']){
-		$mostRead_today=$mostRead_today['result'];
-	}else{
-		$mostRead_today=[];
-	}
-
-	if($mostRead_week['status']){
-		$mostRead_week=$mostRead_week['result'];
-	}else{
-		$mostRead_week=[];
-	}
-
-	if($mostRead_month['status']){
-		$mostRead_month=$mostRead_month['result'];
-	}else{
-		$mostRead_month=[];
-	}
 	$lastSearch=lastSearch();
 ?>
 <html lang="tr" style="transform: none;">
@@ -74,12 +56,12 @@
 		<meta property="og:image" content="<?php echo $news_det['image']; ?>" />
 		<meta property="og:url" content="https://ulak.news/<?php echo $news_det['seo_link']; ?>" />
 		<link rel="image_src" href="<?php echo $news_det['image']; ?>" />
-		<meta name="keywords" content="<?php echo $news_det['keywords']; ?>" />
+		<meta name="keywords" content="<?php echo str_replace(' ', ',', $news_det['spot']); ?>" />
 		<meta property="og:description" content="<?php echo $news_det['spot']; ?>" />
 		<meta name="description" content="<?php echo $news_det['spot']; ?>" />
 		<meta itemprop="dateCreated" content="<?php echo $news_det['date']; ?>">
 		<meta itemprop="dateModified" content="<?php echo $news_det['saved_date']; ?>">
-		<meta name="news_keywords" content="<?php echo $news_det['keywords']; ?>"/>
+		<meta name="news_keywords" content="<?php echo str_replace(' ', ',', $news_det['spot']); ?>"/>
 
 		<!-- CSS -->
 		<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -134,6 +116,9 @@
 			height: 300px;
 			padding-top: 15px;
 		}
+		.highlight {
+			background-color: yellow;
+		}
 	</style>
 	<style id="theia-sticky-sidebar-stylesheet-TSS">.theiaStickySidebar:after {content: ""; display: table; clear: both;}</style></head>
 	<?php include("view/gtag.php"); ?>
@@ -143,7 +128,7 @@
 			  <?php include("view/header.php"); ?>
 				<div class="row" style="transform: none;">
 					<div class="col-lg-9 tr-sticky" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-						<div class="tr-content theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
+						<div id="inputText" class="tr-content theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
 							<div class="tr-section">
 								<?php
 									// haber var mı yok mu ve bazı kontroller,
@@ -160,7 +145,7 @@
 									</div>
 									<div class="post-content">
 										<div class="author">
-											<a href="kaynak_<?php echo $news_det['agency']; ?>.html"><img class="img-fluid img-circle" src="https://api.ulak.news/images/web/<?php echo $news_det['agency']; ?>.png" alt="<?php echo $news_det['agency_title']; ?>"></a>
+											<a href="kaynak_<?php echo $news_det['agency']; ?>.html"><img class="img-fluid img-circle" src="https://images.ulak.news/images/web/<?php echo $news_det['agency']; ?>.png" alt="<?php echo $news_det['agency_title']; ?>"></a>
 										</div>
 										<div style="float: right;" class="entry-meta">
 											<ul>
@@ -436,6 +421,7 @@
 
 		<!-- JS -->
 		<script src="js/jquery.min.js"></script>
+		<script src="js/lazyload.min.js"></script>
 		<script src="js/popper.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/marquee.js"></script>
@@ -447,7 +433,29 @@
 		<script src="js/carouFredSel.js"></script>
 		<script src="js/magnific-popup.min.js"></script>
 		<script src="js/main.js?v=<?php echo $version; ?>"></script>
+		<script type="text/javascript" src="js/hilitor.js"></script>
 		<script>
+		function highlight(text) {
+			var myHilitor = new Hilitor("inputText"); // id of the element to parse
+			myHilitor.apply(text);
+		}
+		function findGetParameter(parameterName) {
+			var result = null,
+				tmp = [];
+			var items = location.search.substr(1).split("&");
+			for (var index = 0; index < items.length; index++) {
+				tmp = items[index].split("=");
+				if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+			}
+			return result;
+		}
+		var ref = findGetParameter('ref');
+		if( ref !== null ){
+			if(ref==="search"){
+				highlight(findGetParameter('value'));
+			}
+		}
+		new LazyLoad();
 		function getComments(){
 		    $.ajax({
 				type: 'GET', 

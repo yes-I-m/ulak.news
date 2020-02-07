@@ -8,7 +8,8 @@ date_default_timezone_set('Europe/Istanbul');
     $search_status=false;
     $is_local=false;
     $host=Sanitizer::url($_SERVER['HTTP_HOST']);
-    $version="2.7.3";
+    $version="2.7.4";
+    $search = false;
 include("env.php");
 
 if($host===$_ENV['local1'] || $host===$_ENV['local2']){
@@ -147,12 +148,11 @@ function random_color(){
    return '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
 }
 
-function curl_funcs($url, $timeout=15000){
+function curl_funcs($url, $timeout=4000){
         $error=null;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'X-Site: '.$_ENV["curl-auth-web"],
-            'X-Site-Token: '.$_ENV["curl-auth-token"]
+            'Authorization:'.$_ENV["curl-auth-token"]
         ));
         curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -174,8 +174,8 @@ function curl_funcs($url, $timeout=15000){
         return array("status"=>true, "result"=>$output);
 }
 
-function get_categories($limit=8){
-    $curl=curl_funcs("https://api.ulak.news/?process=cats&limit=$limit");
+function get_categories($limit=6){
+    $curl=curl_funcs("https://nodejs-api.ulak.news/categories?limit=$limit");
     if($curl['status']){
         if($curl['result']['status']){
             return $curl['result'];
@@ -185,7 +185,10 @@ function get_categories($limit=8){
 }
 
 function get_news($agency, $limit=60, $start=0){
-    $curl=curl_funcs("https://api.ulak.news/?agency=$agency&limit=$limit&start=$start");
+    $curl=curl_funcs("https://nodejs-api.ulak.news/news/$agency?limit=$limit");
+    if($agency==="all"){
+        $curl=curl_funcs("https://nodejs-api.ulak.news/news?limit=$limit");
+    }
     if($curl['status']){
         if($curl['result']['status']){
             return $curl['result'];
@@ -195,7 +198,7 @@ function get_news($agency, $limit=60, $start=0){
 }
 
 function get_new($agency, $id){
-    $curl=curl_funcs("https://api.ulak.news/?agency=$agency&id=$id");
+    $curl=curl_funcs("https://nodejs-api.ulak.news/news/$agency/$id");
     if($curl['status']){
         if($curl['result']['status']){
             return $curl['result'];
@@ -205,7 +208,7 @@ function get_new($agency, $id){
 }
 
 function get_agency_list(){
-    $curl=curl_funcs("https://api.ulak.news/?agency=list");
+    $curl=curl_funcs("https://nodejs-api.ulak.news/agencies");
     if($curl['status']){
         if($curl['result']['status']){
             return $curl['result'];
@@ -215,7 +218,8 @@ function get_agency_list(){
 }
 
 function getSearchResult($arg){
-    $curl=curl_funcs("https://api.ulak.news/?process=search&filter=$arg");
+    $arg = urlencode($arg);
+    $curl=curl_funcs("https://nodejs-api.ulak.news/search?q=$arg");
     if($curl['status']){
         if($curl['result']['status']){
             return $curl['result'];
@@ -224,20 +228,42 @@ function getSearchResult($arg){
     return [];
 }
 
-function getMostReaded($filter="all", $limit=10){
+function getMostReaded($filter="all", $limit=5, $agency="all"){
     $filter=Sanitizer::alfabetico($filter);
-    $curl=curl_funcs("https://api.ulak.news/?process=mostRead&filter=$filter&limit=$limit");
-    if($curl['status']){
-        if($curl['result']['status']){
-            return $curl['result'];
-        }
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,"https://nodejs-api.ulak.news/most_read?limit=$limit");
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Authorization:'.$_ENV["curl-auth-token"],
+        "content-type: application/json"
+    ));
+    if($filter==="month"){
+        $gte = mktime(0, 0, 0, date("n"), 1);
+        $lte = mktime(23, 59, 59, date("n"), date("t"));
+    }elseif($filter==="week"){
+        $strtotime = date("o-\WW");
+        $gte = strtotime($strtotime);
+        $lte = strtotime("+6 days 23:59:59", $gte);
+    }else{
+        $gte = strtotime("today", time());
+        $lte   = strtotime("tomorrow", $gte) - 1;
+    }
+
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n\t\"gte\": $gte,\n\t\"lte\": $lte,\n\t\"agency\": \"$agency\"\n}");
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $server_output = json_decode(curl_exec($ch), true);
+    curl_close ($ch);
+    if($server_output['status']){
+            return $server_output['result'];
     }
     return [];
 }
 
 function get_cat_news($arg, $limit=50){
     $arg=Sanitizer::alfabetico($arg, true, true);
-    $curl=curl_funcs("https://api.ulak.news/?process=catNews&filter=$arg&limit=$limit");
+    $arg=base64_encode($arg);
+    $curl=curl_funcs("https://nodejs-api.ulak.news/category/$arg?limit=$limit");
     if($curl['status']){
         if($curl['result']['status']){
             return $curl['result'];
@@ -256,8 +282,8 @@ function getStats(){
     return [];
 }
 
-function lastSearch(){
-    $curl=curl_funcs("https://api.ulak.news/?process=lastSearch");
+function lastSearch($limit=5){
+    $curl=curl_funcs("https://nodejs-api.ulak.news/last_searches?limit=$limit");
     if($curl['status']){
         if($curl['result']['status']){
             return $curl['result']['result'];
@@ -288,7 +314,7 @@ function addComment($agency, $id, $name, $message){
 }
 
 function getComments($agency, $id){
-    $data=curl_funcs("https://api.ulak.news/?process=getComments&toAgency=$agency&toId=$id");
+    $data=curl_funcs("http://127.0.0.1:5001/comments/$agency/$id/get");
     if($data['status']){
         if(count($data['result']['result'])>=1){
             return $data['result']['result'];

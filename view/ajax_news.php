@@ -6,12 +6,12 @@ if(isset($_GET['agency'])){
     if($all_news['status']){
         $all_news=$all_news['result'];
     }else{
-        echo "No News";
+        echo "Şimdilik Haber yok :)";
         $all_news=[];
     }
     include("main_news.php");
 }else{
-    echo "No News";
+    echo "Şimdilik Haber yok :)";
 }
 
 ?>

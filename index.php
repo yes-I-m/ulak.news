@@ -28,14 +28,14 @@
 		$get_agency=[];
 	}
 	//////
-	$get_news=get_news("all", 60, 0);
+	$get_news=get_news("all", 30, 0);
 	if($get_news['status']){
 		$get_news=$get_news['result'];
 	}else{
 		$get_news=[];
 	}
 	$son_dakika=array_splice($get_news, 0, 5);
-	$all_news=array_splice($get_news, 5, 60);
+	$all_news=$get_news;
 	
 	$lastSearch=lastSearch();
 ?>
@@ -50,20 +50,6 @@
 		<meta name="keywords" content="ulak.news, ulak haber, ulak news, ulak, haber, haberler, son dakika, son dakika haber, haber oku, gazete haberleri,gazeteler" />
 		<meta property="og:description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
 		<meta name="description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
-
-		<!-- CSS -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/magnific-popup.css">
-		<link rel="stylesheet" href="css/animate.css">
-		<link rel="stylesheet" href="css/slick.css">
-		<link rel="stylesheet" href="css/jplayer.css">
-		<link rel="stylesheet" href="css/main.css?v=<?php echo $version; ?>">  
-		<link rel="stylesheet" href="css/responsive.css">
-
-		<!-- font -->
-		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Signika+Negative" rel="stylesheet">
 
 
 		<!-- icons -->
@@ -92,7 +78,9 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<!-- Template Developed By ThemeRegion -->
-	<style id="theia-sticky-sidebar-stylesheet-TSS">.theiaStickySidebar:after {content: ""; display: table; clear: both;}</style></head>
+	<style id="theia-sticky-sidebar-stylesheet-TSS">.theiaStickySidebar:after {content: ""; display: table; clear: both;}</style>
+	<link rel="stylesheet" href="css/main.css?v=<?php echo $version; ?>">
+	</head>
 	<?php include("view/gtag.php"); ?>
 	<body class="homepage-2" style="transform: none;">
 		<div class="main-wrapper tr-page-top" style="transform: none;">
@@ -129,7 +117,7 @@
 					<button class="active btn" id="all">Tüm ajanslar</button>
 					<?php
                         foreach($get_agency as $key=>$raw){
-							echo '<button class="btn" id="'.$key.'">'.$raw['title'].'</button>';
+							echo '<button class="btn" id="'.$raw['id'].'">'.$raw['title'].'</button>';
 						}
                     ?>
 				</div>
@@ -153,21 +141,33 @@
 			<?php
 				include("view/footer.php");
 			?>
-		</footer><!-- /#foot  er -->  	
+		</footer><!-- /#footer -->
+				<!-- CSS -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/magnific-popup.css">
+		<link rel="stylesheet" href="css/animate.css">
+		<link rel="stylesheet" href="css/slick.css">
+		<link rel="stylesheet" href="css/jplayer.css">
+		<link rel="stylesheet" href="css/responsive.css">
+
+		<!-- font -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Signika+Negative&display=swap" rel="stylesheet">
 		<!-- JS -->
 		<script src="js/jquery.min.js"></script>
-		<script src="js/popper.min.js"></script>
+		<script src="js/lazyload.min.js"></script>
+		<script src="js/popper.min.js" async></script>
 		<script src="js/bootstrap.min.js"></script>
-		<script src="js/marquee.js"></script>
-		<script src="js/moment.min.js"></script>
-		<script src="js/theia-sticky-sidebar.min.js"></script>
-		<script src="js/jquery.jplayer.min.js"></script>
+		<script src="js/marquee.js" async></script>
+		<script src="js/moment.min.js" async></script>
+		<script src="js/theia-sticky-sidebar.min.js" async></script>
+		<script src="js/jquery.jplayer.min.js" async></script>
 		<script src="js/jplayer.playlist.min.js"></script>
-		<script src="js/slick.min.js"></script>
+		<script src="js/slick.min.js" async></script>
 		<script src="js/carouFredSel.js"></script>
 		<script src="js/magnific-popup.min.js"></script>
-		<script src="js/main.js?v=<?php echo $version; ?>"></script>
-		<script src="https://www.andreaverlicchi.eu/lazyload/dist/lazyload.min.js"></script>
+		<script src="js/main.js?v=<?php echo $version; ?>" async></script>
 		<script>
 			new LazyLoad();
 			function getNews(agency="all"){
@@ -186,7 +186,7 @@
 					}
 				});
 			}
-			getNews("cumhuriyet");
+			// getNews("cumhuriyet");
 			var $btns = $('.btn').click(function() {
 				$('.main_news_notif').text("");
 				var agency = this.id;

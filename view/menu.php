@@ -30,7 +30,7 @@
 								<?php
 									foreach($get_cats as $key=>$raw){
 										echo '<li><a href="'.$raw['seo_link'].'">'.$raw['cat'].'</a></li>';
-										if($key===8){
+										if($key===5){
 											break;
 										}
 									}

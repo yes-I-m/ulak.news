@@ -35,7 +35,7 @@ fix for news image
 									<div class="item-image-content" data-animation="animated slideInLeft">
 										<div class="item-image">
                                             <a href="/<?php echo $raw['seo_link']; ?>">
-                                                <img style="width: 100%;" src="<?php echo $raw['image']; ?>" />
+                                                <img style="width: 100%;" data-src="<?php echo $raw['image']; ?>" src="images/loading.gif" />
                                             </a>
                                         </div>
 									</div>

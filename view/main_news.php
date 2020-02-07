@@ -5,12 +5,12 @@
 										<div class="tr-post">
 											<div class="entry-header">
 												<div class="entry-thumbnail">
-													<a href="/<?php echo $raw['seo_link']; ?>"><img class="img-fluid" src="<?php echo $raw['image']; ?>" alt="Image"></a>
+													<a href="/<?php echo $raw['seo_link']; ?><?php echo ($search===true ? '?ref=search&value='.$q : ''); ?>"><img class="img-fluid" data-src="<?php echo $raw['image']; ?>" src="images/loading.gif" alt="Image"></a>
 												</div>
 											</div>
 											<div class="post-content">
 												<div class="author">
-													<a href="kaynak_<?php echo $raw['agency']; ?>.html"><img style="background-color: white;" class="img-fluid img-circle" lazyload="on" src="https://api.ulak.news/images/web/<?php echo $raw['agency']; ?>.png" alt="Image"></a>
+													<a href="kaynak_<?php echo $raw['agency']; ?>.html"><img style="background-color: white;" class="img-fluid img-circle" lazyload="on" src="images/loading.gif" data-src="https://images.ulak.news/images/web/<?php echo $raw['agency']; ?>.png" alt="Image"></a>
 												</div>
 												<div class="entry-meta">
 													<ul>
@@ -19,12 +19,12 @@
 													</ul>
 												</div><!-- /.entry-meta -->
 												<h2 class="entry-title">
-													<a href="/<?php echo $raw['seo_link']; ?>"><?php echo $raw['title']; ?></a>
+													<a href="/<?php echo $raw['seo_link']; ?><?php echo ($search===true ? '?ref=search&value='.$q : ''); ?>"><?php echo $raw['title']; ?></a>
 												</h2>
 												<p style="color: black"><?php echo mb_substr($raw['spot'], 0, 170); ?>...</p>
 												<div class="read-more">
 													<div class="continue-reading pull-left">
-														<a style="color: black; font-weight: bold" href="/<?php echo $raw['seo_link']; ?>">Devamını oku. <i class="fa fa-angle-right"></i></a>
+														<a style="color: black; font-weight: bold" href="/<?php echo $raw['seo_link']; ?><?php echo ($search===true ? '?ref=search&value='.$q : ''); ?>">Devamını oku. <i class="fa fa-angle-right"></i></a>
 													</div>
 													<div class="feed pull-right">
 														<ul>

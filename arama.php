@@ -55,6 +55,7 @@
 		$son_dakika=[];
 	}
 	$lastSearch=lastSearch();
+	$search = true;
 ?>
 <html lang="tr" style="transform: none;">
 <head>
