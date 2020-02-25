@@ -145,7 +145,7 @@
 									</div>
 									<div class="post-content">
 										<div class="author">
-											<a href="kaynak_<?php echo $news_det['agency']; ?>.html"><img class="img-fluid img-circle" src="https://images.ulak.news/images/web/<?php echo $news_det['agency']; ?>.png" alt="<?php echo $news_det['agency_title']; ?>"></a>
+											<a href="kaynak_<?php echo $news_det['agency']; ?>.html"><img class="img-fluid img-circle" src="https://images.ulak.news/images/web/<?php echo $news_det['agency']; ?>.webp" alt="<?php echo $news_det['agency_title']; ?>"></a>
 										</div>
 										<div style="float: right;" class="entry-meta">
 											<ul>
