@@ -50,7 +50,7 @@
 									</ul>
 									<div class="search">
 										<form action="arama.html" id="searchform" method="get" role="form">
-											<input type="text" name="q" class="search-form" autocomplete="off" placeholder="Haber içeriklerinde ara">
+											<input type="text" name="q" value="<?php if(isset($_GET['q'])){ echo @$q; } ?>" class="search-form" autocomplete="off" placeholder="Haber içeriklerinde ara">
 										</form>
 									</div> <!--/.search--> 								
 								</div>										

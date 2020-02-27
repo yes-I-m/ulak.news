@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: 
+Disallow: /cache/
+Sitemap: https://ulak.news/sitemap.php?page=1
+Sitemap: https://ulak.news/sitemap.php?page=2

@@ -47,7 +47,7 @@
     	<meta itemprop="isFamilyFriendly" content="true"/>
 		<?php
 			// haber yoksa veya görüntülemeye kapalı ise arama motorlarından silinmesini istiyoruz.
-			if(!$page_status || $news_det['visible']){echo '<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">';}
+			if(!$page_status || $news_det['visible']===false){echo '<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">';}
 		?>
 		<title><?php echo $news_det['title']; ?></title>
 		<meta itemprop="image" content="<?php echo $news_det['image']; ?>" />
