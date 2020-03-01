@@ -1,14 +1,60 @@
-                <div class="error-page text-center">
-					<div class="tr-section tr-section-padding">
-						<div class="error-page-content">
-							<div class="not-found">
-								<h1>404</h1>
-								<p>Şu anda istediğiniz sayfaya/habere ulaşamadık yada bir şeyler ters gitti.<br/> AMA <br/> Merak etmeyin herşey kontrol altında bu hatayı not aldık. :)</p>
-								<a style="margin-top: 10px; color: white;" href="index.html" class="btn btn-primary">Ana Sayfaya Dön</a>
-                            </div>
-                            <div class="logo text-center">
-								<a class="navbar-brand" href="index.html"><img class="img-fluid" src="images/logo_2.png" alt="Logo"></a>
+					<article class="article-wrapper">
+						<div class="article-header">
+							<div class="breadcrumb">
+								<ul>
+								</ul>
 							</div>
-						</div><!-- /.page-content -->
-					</div><!-- /.tr-section -->
-				</div>
+
+							<div class="article-header-title">
+							</div>
+
+							<div class="article-meta-info">
+							</div>
+							<figure>
+							</figure>
+							
+						</div>
+						<div class="article-content">
+							<div class="article-left-box" style="height: 2641.03px;">
+								<div class="article-left-box-inner" style="position: absolute; top: 0px; bottom: auto;">
+									<div class="article-share">
+									</div>									
+								</div>
+							</div>
+							<div class="article-inner">
+                            <div class="error-container">
+                                <div class="error-code">
+                                    404
+                                </div>
+                                <h1>Aradığınız sayfaya <i>Ulak</i> yetişemedi.<br/>Silinmiş veya böyle bir sayfa olmayabilir.</h1>
+                                <p>Ana sayfaya gitmeye ne dersin? <a class="go-home-link" href="index.php">Ana Sayfa</a>.</p>
+                            </div>
+							</div>
+
+							<div id="endOfTheArticle"></div>
+
+							<div class="more-article">
+								<div class="w-header">
+									<div class="w-seperator"></div>
+								</div>
+								<div class="more-posts">
+								</div>
+							</div>
+
+							<!-- article comment area start -->
+							<div class="article-comments">
+								<div class="w-header">
+								</div>
+								<div class="comment-form">
+								</div>
+
+								<div class="w-header">
+								</div>
+
+								<div class="all-comments">
+								</div>
+									
+								</div>
+							</div>
+						</div>
+					</article>

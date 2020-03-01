@@ -1,212 +1,209 @@
 <?php
-	include("funcs.php");
-	if(!$is_local){
-		///// CACHE //////////
-			require_once "sCache.php";
-			$options = array(
-				'time'   => 60, // 60 saniye
-				'dir'    => 'cache/', // sCache2 klasörü oluşturup buraya yazılsın.
-				'load'   => false,  // sayfamızın sonunda load değerimiz görünsün.
-				'extension' => ".html", // standart değer .html olarak ayarlanmıştır cache dosyalarınızın uzantısını temsil etmektedir.
-				);
-			
-			$sCache = new sCache($options); // ayarları sınıfımıza gönderip sınıfı çalıştıralım.
-		///// CACHE BITIS /////
-	}
-	
-	$get_cats=get_categories();
-	if($get_cats['status']){
-		$get_cats=$get_cats['result'];
-	}else{
-		$get_cats=[];
-	}
-	//////
-	$get_agency=get_agency_list();
-	if($get_agency['status']){
-		$get_agency=$get_agency['result'];
-	}else{
-		$get_agency=[];
-	}
-	//////
-	$get_news=get_news("all", 30, 0);
-	if($get_news['status']){
-		$get_news=$get_news['result'];
-	}else{
-		$get_news=[];
-	}
-	$son_dakika=array_splice($get_news, 0, 5);
-	$all_news=$get_news;
-	
-	$lastSearch=lastSearch();
+	include("config.php");
+	$ulak_api_class = new UlakNews();
+	$ulak_class = new UlakClass();
+
+	$all_news = $ulak_api_class->get_news("all");
+	$agencies = $ulak_api_class->get_agencies();
+	$all_cats = $ulak_api_class->get_cats();
+	$most_read = $ulak_api_class->get_most_readed("today", 4);
 ?>
-<html lang="tr" style="transform: none;">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="author" content="ulak.news">
-		<title>Ulak News | Haberler, Son Dakika Haberleri ve Güncel Haber</title>
-		<meta property="og:title" content="Ulak News | Haberler, Son Dakika Haberleri ve Güncel Haber" />
-		<meta name="keywords" content="ulak.news, ulak haber, ulak news, ulak, haber, haberler, son dakika, son dakika haber, haber oku, gazete haberleri,gazeteler" />
-		<meta property="og:description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
-		<meta name="description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="ulak.news">
+	<title>Ulak News | Haberler, Son Dakika Haberleri ve Güncel Haber</title>
+	<meta property="og:title" content="Ulak News | Haberler, Son Dakika Haberleri ve Güncel Haber" />
+
+	<meta name="keywords" content="ulak.news, ulak haber, ulak news, ulak, haber, haberler, son dakika, son dakika haber, haber oku, gazete haberleri,gazeteler" />
+	<meta property="og:description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
+	<meta name="description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
+	<meta itemprop="isFamilyFriendly" content="true"/>
+	<meta name="robots" content="index, follow">
+
+	<!-- icons -->
+	<link rel="apple-touch-icon" sizes="57x57" href="img/icon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="img/icon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/icon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/icon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/icon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="img/icon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="img/icon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="img/icon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="img/icon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="img/icon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="img/icon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,900&amp;subset=latin-ext" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Tooltip plugin (zebra) css file -->
+	<link rel="stylesheet" type="text/css" href="plugins/zebra-tooltip/zebra_tooltips.min.css">
+
+	<!-- Owl Carousel plugin css file. only used pages -->
+	<link rel="stylesheet" type="text/css" href="plugins/owl-carousel/assets/owl.carousel.min.css">
+
+	<!-- Ideabox main theme css file. you have to add all pages -->
+	<link rel="stylesheet" type="text/css" href="css/main-style.css">
+
+	<!-- Ideabox responsive css file -->
+	<link rel="stylesheet" type="text/css" href="css/responsive-style.css">
+</head>
+
+<body>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43122854-40"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-43122854-40');
+	</script>
+	<!-- header start -->
+	<header class="header">
+		<?php include("./view/header.php"); ?>
+	</header>
+	<!-- header end -->
 
 
-		<!-- icons -->
-		<link rel="apple-touch-icon" sizes="57x57" href="images/icon/apple-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="images/icon/apple-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="images/icon/apple-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="images/icon/apple-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="images/icon/apple-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="images/icon/apple-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="images/icon/apple-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="images/icon/apple-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="images/icon/apple-icon-180x180.png">
-		<link rel="icon" type="image/png" sizes="192x192"  href="images/icon/android-icon-192x192.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="images/icon/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="images/icon/favicon-96x96.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="images/icon/favicon-16x16.png">
-		<link rel="manifest" href="manifest.json">
-		<meta name="msapplication-TileColor" content="#ffffff">
-		<meta name="msapplication-TileImage" content="images/icon/ms-icon-144x144.png">
-		<!-- icons -->
+	<!-- Left sidebar menu start -->
+	<div class="sidebar">
+		<?php include("./view/sidebar.php"); ?>
+	</div>
+	<!-- Left sidebar menu end -->
 
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-		<!-- Template Developed By ThemeRegion -->
-	<style id="theia-sticky-sidebar-stylesheet-TSS">.theiaStickySidebar:after {content: ""; display: table; clear: both;}</style>
-	<link rel="stylesheet" href="css/main.css?v=<?php echo $version; ?>">
-	</head>
-	<?php include("view/gtag.php"); ?>
-	<body class="homepage-2" style="transform: none;">
-		<div class="main-wrapper tr-page-top" style="transform: none;">
-			<div class="container-fluid" style="transform: none;">
-			<?php include("view/header.php"); ?>
-				<div class="tr-home-slider slider-style-two">
-						<?php
-							include("view/main_slider.php");
-						?>
-						</div><!-- /.carousel-inner -->
-					</div><!-- /#home-carousel -->					
-				</div><!-- /.tr-home-slider -->
-
-				<div class="row col-md-6" style="margin: 0 auto;">
-					<style>
-						/* Style the buttons */
-						.btn {
-						border: none;
-						outline: none;
-						padding: 12px 16px;
-						background-color: #f1f1f1;
-						cursor: pointer;
-						}
-
-						.btn:hover {
-						background-color: #ddd;
-						}
-
-						.btn.active {
-						background-color: #666;
-						color: white;
-						}
-					</style>
-					<button class="active btn" id="all">Tüm ajanslar</button>
-					<?php
-                        foreach($get_agency as $key=>$raw){
-							echo '<button class="btn" id="'.$raw['id'].'">'.$raw['title'].'</button>';
-						}
-                    ?>
-				</div>
-
-				<div class="row tr-content" style="transform: none;">
-					<div class="col-md-12 col-lg-12 tr-sticky" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-						<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; top: 0px; left: 15px;">
-							<div class="tr-section">
-								<span style="color:red; margin-left: 40%;" class="main_news_notif"></span>
-								<div id="main_news" class="medium-post-content row">
-									<?php include("view/main_news.php"); ?>
-								</div>				
-							</div>									
+	<!--Main container start -->
+	<main class="main-container">
+		<section class="main-highlight">
+			<div class="highlight-carousel slider-carousel">
+				<?php include("./view/slider.php"); ?>
+			</div>
+		</section>
+		<section class="main-content">
+			<div class="main-content-wrapper">
+				<div class="content-body">
+					<div class="content-timeline">
+						<!--Timeline header area start -->
+						<div class="post-list-header">
+							<span class="post-list-title">Ulak ile getirilen</span>
+							<select id="agency_filter" class="frm-input">
+								<option value="all">Tümü</option>
+								<?php
+									foreach($agencies as $agency){
+								?>
+									<option value="<?php echo $agency['id']; ?>"><?php echo $agency['title']; ?></option>
+								<?php
+									}
+									unset($agency);
+								?>
+							</select>
 						</div>
-					</div>				
-				</div><!-- /.row -->
-			</div><!-- /.container-fluid -->	
-		</div><!-- main-wrapper -->
+						<!--Timeline header area end -->
 
-		<footer id="footer">
-			<?php
-				include("view/footer.php");
-			?>
-		</footer><!-- /#footer -->
-				<!-- CSS -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<!-- <link rel="stylesheet" href="css/magnific-popup.css"> -->
-		<link rel="stylesheet" href="css/animate.css">
-		<link rel="stylesheet" href="css/slick.css">
-		<link rel="stylesheet" href="css/jplayer.css">
-		<link rel="stylesheet" href="css/responsive.css">
 
-		<!-- font -->
-		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700&display=swap" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Signika+Negative&display=swap" rel="stylesheet">
-		<!-- JS -->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/lazyload.min.js"></script>
-		<script src="js/popper.min.js" async></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/marquee.js" async></script>
-		<script src="js/moment.min.js" async></script>
-		<script src="js/theia-sticky-sidebar.min.js" async></script>
-		<script src="js/jquery.jplayer.min.js" async></script>
-		<script src="js/jplayer.playlist.min.js"></script>
-		<script src="js/slick.min.js" async></script>
-		<script src="js/carouFredSel.js"></script>
-		<script src="js/magnific-popup.min.js"></script>
-		<script src="js/main.js?v=<?php echo $version; ?>" async></script>
-		<script>
-			new LazyLoad();
-			function getNews(agency="all"){
-				$.ajax({
-					type: 'GET',
-					url: 'view/ajax_news.php',
-					data: { agency: agency }, 
-					dataType: 'html',
-					success: function (data) {
-						$("#main_news").append(data);
-						$('.main_news_notif').html("");
-						console.log(agency+" haberleri main_news e append edildi. getNews();")
-					},
-					error: function (data) {
-						console.log(agency+" => haberleri alınamadı. getNews();")
-					}
-				});
-			}
-			// getNews("cumhuriyet");
-			var $btns = $('.btn').click(function() {
-				$('.main_news_notif').text("");
-				var agency = this.id;
+						<!--Timeline items start -->
+						<div class="timeline-items">
+							<span class="timeline-items-desc"></span>
+							<?php include("./view/timeline.php"); ?>
+						</div>
+						<!--Timeline items end -->
+
+						<!--Data load more button start  -->
+						<!-- <div class="load-more">
+							<button class="load-more-button material-button" type="button">
+								<i class="material-icons">&#xE5D5;</i>
+								<span>Load More</span>
+							</button>
+						</div> -->
+						<!--Data load more button start  -->
+					</div>
+
+				</div>
+				<div class="content-sidebar">
+					<div class="sidebar_inner">
+						<?php include("./view/most-read.php"); ?>
+						<div class="seperator"></div>
+						<!-- 
+						<a href="#" class="widget-ad-box">
+							<img src="img/adbox300x250.png" width="300" height="250">
+						</a> -->
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<?php include("./view/footer.php"); ?>
+	</footer>
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+
+	<!-- Tooltip plugin (zebra) js file -->
+	<script src="plugins/zebra-tooltip/zebra_tooltips.min.js"></script>
+
+	<!-- Owl Carousel plugin js file -->
+	<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
+
+	<!-- Ideabox theme js file. you have to add all pages. -->
+	<script src="js/main-script.js"></script>
+
+	<style>
+		.no_display_news{
+			display: none;
+		}
+	</style>
+	<script type="text/javascript">
+
+			var $btns = $('#agency_filter').change(function() {
+				$('.timeline-items-desc').text("");
+
+				$('.timeline-items > div').hide();
+
+				var agency = $('#agency_filter').val();
 				if (agency === 'all') {
-					$('#main_news > div').fadeIn(450);
+					$('.timeline-items > div').fadeIn(450);
 				} else {
 					var sum = 0;
 					$('.'+agency).each(function(){
 						sum++;
 					});
 					if(sum===0){
-						$('.main_news_notif').html("İlgili ajans haberleri tekrar yükleniyor...");
-						getNews(agency);
+						$('.timeline-items-desc').html("Ulak bu ajanstan bir haber getiremedi. Başka bir ajans denemeye ne dersin?");
 					}
 					var $el = $('.' + agency).fadeIn(450);
-					$('#main_news > div').not($el).hide();
+					$('.timeline-items > div').not($el).hide();
 				}
 				$btns.removeClass('active');
 				$(this).addClass('active');
-			});
-		</script>
-    </body>
-    </html>
+				$('.timeline-items').fadeIn(450);
+			}); 
+
+		//Owl carousel initializing
+		$('#postCarousel').owlCarousel({
+		    loop:true,
+		    dots:true,
+		    nav:true,
+		    navText: ['<span><i class="material-icons">&#xE314;</i></span>','<span><i class="material-icons">&#xE315;</i></span>'],
+		    items:1,
+		    margin:20
+		});
+
+		//widget carousel initialize
+		$('#widgetCarousel').owlCarousel({
+		    dots:true,
+		    nav:false,
+		    items:1
+		});
+
+
+
+	</script>
+
+</body>
+
+</html>

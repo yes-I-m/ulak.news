@@ -1,506 +1,437 @@
 <?php
-	include("funcs.php");
+	include("config.php");
+	$ulak_news_class = new UlakNews();
+	$ulak_class = new UlakClass();
+
+	$all_news = $ulak_news_class->get_news("all", 3);
+	$agencies = $ulak_news_class->get_agencies();
+	$all_cats = $ulak_news_class->get_cats();
+	$most_read = $ulak_news_class->get_most_readed("today", 4);
+
+	$get_id = preg_replace('/\D/', '', $_GET['id']);
+	$get_agency = $_GET['agency'];
+
+	$news_data = $ulak_news_class->get_new($get_agency, $get_id);
+
+	$news_status = false;
+
+	if($news_data){
+		$news_status = true;
+	}
 	
-	$news_det=null;
-	$page_status=false;
 
-	$get_new=get_new($_GET['agency'], $_GET['id']);
-
-
-	if($get_new['status']){
-		$news_det=$get_new['result'][0];
-		if($news_det!==null){
-			$page_status=true;
-		}
-	}
-	$get_cats=get_categories();
-	if($get_cats['status']){
-		$get_cats=$get_cats['result'];
-	}else{
-		$get_cats=[];
-	}
-	//////
-	$get_agency=get_agency_list();
-	if($get_agency['status']){
-		$get_agency=$get_agency['result'];
-	}else{
-		$get_agency=[];
-	}
-	//////
-	$son_dakika=get_news("all", 3, 0);
-	if($son_dakika['status']){
-		$son_dakika=$son_dakika['result'];
-	}else{
-		$son_dakika=[];
-	}
-	$mostRead_today=getMostReaded("today", 5);
-	$mostRead_week=getMostReaded("week", 5);
-	$mostRead_month=getMostReaded("month", 5);
-	$lastSearch=lastSearch();
 ?>
-<html lang="tr" style="transform: none;">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="author" content="ulak.news">
-    	<meta itemprop="isFamilyFriendly" content="true"/>
-		<?php
-			// haber yoksa veya görüntülemeye kapalı ise arama motorlarından silinmesini istiyoruz.
-			if(!$page_status || $news_det['visible']===false){echo '<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">';}
-		?>
-		<title><?php echo $news_det['title']; ?></title>
-		<meta itemprop="image" content="<?php echo $news_det['image']; ?>" />
-		<meta property="og:title" content="<?php echo $news_det['title']; ?>" />
-		<meta property="og:type" content="article" />
-		<meta property="og:image" content="<?php echo $news_det['image']; ?>" />
-		<meta property="og:url" content="https://ulak.news/<?php echo $news_det['seo_link']; ?>" />
-		<link rel="image_src" href="<?php echo $news_det['image']; ?>" />
-		<meta name="keywords" content="<?php echo str_replace(' ', ',', $news_det['spot']); ?>" />
-		<meta property="og:description" content="<?php echo $news_det['spot']; ?>" />
-		<meta name="description" content="<?php echo $news_det['spot']; ?>" />
-		<meta itemprop="dateCreated" content="<?php echo $news_det['date']; ?>">
-		<meta itemprop="dateModified" content="<?php echo $news_det['saved_date']; ?>">
-		<meta name="news_keywords" content="<?php echo str_replace(' ', ',', $news_det['spot']); ?>"/>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="ulak.news">
 
-		<!-- CSS -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/magnific-popup.css">
-		<link rel="stylesheet" href="css/animate.css">
-		<link rel="stylesheet" href="css/slick.css">
-		<link rel="stylesheet" href="css/jplayer.css">
-		<link rel="stylesheet" href="css/main.css?v=<?php echo $version; ?>">  
-		<link rel="stylesheet" href="css/responsive.css">
+	<?php
+		if($news_status){
+		/**
+		 * if news is okey
+		 */
+	?>
 
-		<!-- font -->
-		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Signika+Negative" rel="stylesheet">
+	<title><?php echo $news_data['title']; ?></title>
+	<meta itemprop="image" content="<?php echo $news_data['image']; ?>" />
+	<meta property="og:title" content="<?php echo $news_data['title']; ?>" />
+	<meta property="og:type" content="article" />
+	<meta property="og:image" content="<?php echo $news_data['image']; ?>" />
+	<meta property="og:url" content="https://ulak.news/<?php echo $news_data['seo_link']; ?>" />
+	<link rel="image_src" href="<?php echo $news_data['image']; ?>" />
+	<meta name="keywords" content="<?php echo str_replace(' ', ', ', $news_data['spot']); ?>" />
+	<meta property="og:description" content="<?php echo $news_data['spot']; ?>" />
+	<meta name="description" content="<?php echo $news_data['spot']; ?>" />
+	<meta itemprop="dateCreated" content="<?php echo $news_data['date']; ?>">
+	<meta itemprop="dateModified" content="<?php echo $news_data['saved_date']; ?>">
+	<meta name="news_keywords" content="<?php echo str_replace(' ', ', ', $news_data['spot']); ?>"/>
+	<meta name="robots" content="index, follow">
+	<?php
+		}else{
+		/**
+		 * if news not okey
+		 */
+	?>
 
-
-		<!-- icons -->
-		<link rel="apple-touch-icon" sizes="57x57" href="images/icon/apple-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="images/icon/apple-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="images/icon/apple-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="images/icon/apple-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="images/icon/apple-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="images/icon/apple-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="images/icon/apple-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="images/icon/apple-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="images/icon/apple-icon-180x180.png">
-		<link rel="icon" type="image/png" sizes="192x192"  href="images/icon/android-icon-192x192.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="images/icon/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="images/icon/favicon-96x96.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="images/icon/favicon-16x16.png">
-		<link rel="manifest" href="manifest.json">
-		<meta name="msapplication-TileColor" content="#ffffff">
-		<meta name="msapplication-TileImage" content="images/icon/ms-icon-144x144.png">
-		<!-- icons -->
-
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-		<!-- Template Developed By ThemeRegion -->
-	<style type="text/css">
-		/* 
-		 bazı haber ajanslarından gelen ilgili haberleri yada gereksiz divleri gizliyoruz yada şekil veriyoruz bu style da!
-		*/
-		.related-news-box{
-			display:none;
+	<title>Ulak News | Haberler, Son Dakika Haberleri ve Güncel Haber</title>
+	<meta property="og:title" content="Ulak News | Haberler, Son Dakika Haberleri ve Güncel Haber" />
+	<meta name="keywords" content="ulak.news, ulak haber, ulak news, ulak, haber, haberler, son dakika, son dakika haber, haber oku, gazete haberleri,gazeteler" />
+	<meta property="og:description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
+	<meta name="description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
+	<meta itemprop="isFamilyFriendly" content="true"/>
+	<meta name="robots" content="noindex, nofollow">
+	<?php
 		}
-		.tr-details img{
-			width: 300px;
-			height: 300px;
-			padding-top: 15px;
-		}
-		.highlight {
-			background-color: yellow;
-		}
-	</style>
-	<style id="theia-sticky-sidebar-stylesheet-TSS">.theiaStickySidebar:after {content: ""; display: table; clear: both;}</style></head>
-	<?php include("view/gtag.php"); ?>
-	<body class="detailspage" style="transform: none;">
-	  	<div class="main-wrapper tr-page-top" style="transform: none;">
-		  	<div class="container-fluid" style="transform: none;">
-			  <?php include("view/header.php"); ?>
-				<div class="row" style="transform: none;">
-					<div class="col-lg-9 tr-sticky" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-						<div id="inputText" class="tr-content theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
-							<div class="tr-section">
-								<?php
-									// haber var mı yok mu ve bazı kontroller,
-									if($page_status || $news_det['visible']){
-								?>
-								<div class="tr-post">
-									<div class="entry-header">
-										<h2 class="entry-title">
-											<?php echo $news_det['title']; ?>
-										</h2>
-										<div class="entry-thumbnail d-flex justify-content-center">
-											<img class="img-fluid w-75" src="<?php echo $news_det['image'] ?>" alt="<?php echo $news_det['title']; ?>">
-										</div>
-									</div>
-									<div class="post-content">
-										<div class="author">
-											<a href="kaynak_<?php echo $news_det['agency']; ?>.html"><img class="img-fluid img-circle" src="https://images.ulak.news/images/web/<?php echo $news_det['agency']; ?>.webp" alt="<?php echo $news_det['agency_title']; ?>"></a>
-										</div>
-										<div style="float: right;" class="entry-meta">
-											<ul>
-												<li><?php echo $news_det['date']; ?></li>
-												<li><i class="fa fa-eye" aria-hidden="true"></i> <?php echo $news_det['read_times']; ?> kere okundu</li>
-												<li>
-													<ul>
-														<li>Paylaş;</li>
-														<li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://ulak.news/<?php echo $news_det['seo_link']; ?>&t=<?php echo $news_det['title']; ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-														<li><a target="_blank" href="https://twitter.com/share?url=https://ulak.news/<?php echo $news_det['seo_link']; ?>&via=ulak_news&text=<?php echo $news_det['title']; ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-													</ul>
-												</li>
-											</ul>
-										</div><!-- /.entry-meta -->
-										
-									</div><!-- /.post-content -->									
-								</div><!-- /.tr-post -->
+	?>
 
-								<div style="color: black; font-size: 16px;" class="tr-details">
-									<?php echo $news_det['text']; ?>
-									<br/>
-									<hr/>
-									Bu haber hiçbir şekilde değiştirilmeden <?php echo date('d.m.Y h:i:s', $news_det['saved_date']); ?> tarihinde <?php echo $news_det['agency_title']; ?> den alınmıştır.<br/>
-									<a href="<?php echo $news_det['url']; ?>" target="_blank">Haberin orjinaline ulaşmak için tıklayınız. <i class="fa fa-external-link" aria-hidden="true"></i></a>
-								</div><!-- /.tr-details -->
-								<?php
-									}else{ 
-									/// eğer haber ilgili ajansta yoksa yada görüntüleme kapalı ise;
-										include("view/404.php");
-									}
-								?>
-							</div><!-- /.tr-section -->
 
-							<div style="display: none;" class="tr-ad">
-								<a href="#"><img class="img-fluid" src="" alt="Image"></a>
-							</div><!-- /.add -->								
+	<!-- icons -->
+	<link rel="apple-touch-icon" sizes="57x57" href="img/icon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="img/icon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/icon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/icon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/icon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="img/icon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="img/icon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="img/icon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="img/icon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="img/icon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="img/icon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
 
-							<div class="tr-comment">
-							<a name="comments"></a>
-								<div class="section-title">
-									<h1><span>Yorumlar <i onClick="getComments();" style="text-align: center; color: green;" class="fa fa-refresh" aria-hidden="true"></i></span></h1>
-								</div>
-								<ul class="post-comment ajax-comments">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,900&amp;subset=latin-ext" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-								</ul>									
-							</div><!-- /.comment-section -->
+	<!-- Tooltip plugin (zebra) css file -->
+	<link rel="stylesheet" type="text/css" href="plugins/zebra-tooltip/zebra_tooltips.min.css">
 
-							<div class="tr-comment-box">
-								<div class="section-title">
-									<h1><span>Yorum Ekle</span></h1>
-								</div>
-								    <div class="row">
-								        <div class="col-md-4">
-								            <div class="form-group">
-								                <label for="one"><strong>Adınız Soyadınız:</strong></label>
-								                <input name="name" type="text" autocomplete="off" class="form-control" required="required" id="one">
-								            </div>
-								        </div>
-								        <div class="col-md-12">
-								            <div class="form-group">
-								                <label for="four"><strong>Yorumunuz:</strong></label>
-								                <textarea name="message" required="required" class="form-control" id="four"></textarea>
-								            </div>             
-								        </div>     
-								    </div>
-								    <div class="form-group text-center">
-										Yorumu gönderdiğinizde reddi beyan, topluluk sözleşmesi ve kullanım sözleşmesini kabul etmiş sayılırsınız.
-								        <button onclick="addComment();" type="submit" style="color: white;" class="btn btn-primary pull-right">Yorumu ekle</button>
-								    </div>
-							</div><!-- /.tr-comment-box -->
-						</div><!-- /.tr-content -->
-					</div><!-- /.tr-sticky -->
+	<!-- Owl Carousel plugin css file. only used pages -->
+	<link rel="stylesheet" type="text/css" href="plugins/owl-carousel/assets/owl.carousel.min.css">
 
-					<div class="col-lg-3 tr-sidebar tr-sticky" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-						<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; top: 0px; left: 963.75px;">
+	<!-- Ideabox main theme css file. you have to add all pages -->
+	<link rel="stylesheet" type="text/css" href="css/main-style.css">
 
-							<div  style="display: none;" class="tr-section tr-widget tr-ad ad-before">
-								<a href="#"><img class="img-fluid" src="" alt="Image"></a>
-							</div><!-- /.tr-post -->
+	<!-- Ideabox responsive css file -->
+	<link rel="stylesheet" type="text/css" href="css/responsive-style.css">
+</head>
 
-							<?php
-								include("view/breaking_news.php");
-							?>
+<body>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43122854-40"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
 
-							<div style="display: none;" class="tr-weather tr-widget">
-								<div class="weather-top">
-									<div class="row">
-										<div class="col-xs-6">
-											<div class="weather-image">
-												<img class="img-fluid" src="" alt="Image">
-											</div>
-										</div>
-										<div class="col-xs-6">
-											<span class="weather-temp">21 <sup><span>°</span>C</sup></span>
-											<span class="weather-type">Mostly Cloudy</span>
-										</div>
-									</div>
-									<ul>
-										<li>London, UK</li>
-										<li><span><img class="img-fluid" src="" alt="Image"></span>13%</li>
-										<li><span><img class="img-fluid" src="" alt="Image"></span>6.44 MPH</li>
-									</ul>
-								</div><!-- /.weather-top -->
+		gtag('config', 'UA-43122854-40');
+	</script>	
+	<!-- header start -->
+	<header class="header">
+		<?php include("./view/header.php"); ?>
+	</header>
+	<!-- header end -->
 
-								<div class="weather-bottom">
-									<ul>
-										<li>
-											<div class="weather-icon">
-												<img class="img-fluid" src="" alt="Image">
-											</div>
-											<div class="weather-info">
-												<span>23°</span>
-												<span class="date">Sun, 3 Jan</span>
-											</div>
-										</li>
-										<li>
-											<div class="weather-icon">
-												<img class="img-fluid" src="" alt="Image">
-											</div>
-											<div class="weather-info">
-												<span>26°</span>
-												<span class="date">Sun, 3 Jan</span>
-											</div>
-										</li>
-									</ul>
-								</div><!-- /.weather-bottom -->
-							</div><!-- /.weather-widget -->
 
-							<div style="display: none;" class="tr-section tr-widget tr-ad ad-before">
-								<a href="#"><img class="img-fluid" src="" alt="Image"></a>
-							</div><!-- /.tr-post -->								
-							<hr/>
-							<?php
-								include("view/most_read.php");
-							?>
+	<!-- Left sidebar menu start -->
+	<div class="sidebar">
+		<?php include("./view/sidebar.php"); ?>
+	</div>
+	<!-- Left sidebar menu end -->
+	<!--Main container start -->
+	<main class="main-container">
 
-							<div style="display: none;" class="tr-widget meta-widget">
-								<div class="widget-title">
-									<span>TEST</span>
-								</div>
-								<ul class="nav nav-tabs" role="tablist">
-									<li role="presentation"><a class="active" href="#author" data-toggle="tab"><i class="fa fa-user"></i>Authors</a></li>
-									<li role="presentation"><a href="#comment" data-toggle="tab"><i class="fa fa-comment-o"></i>Comments</a></li>
+		<!-- Detail extra post start -->
+		<div class="extra-posts">
+			<?php include("./view/extra-posts.php"); ?>
+		</div>
+		<!-- Detail extra post start -->
+
+		<section class="main-content">
+			<div class="main-content-wrapper">
+				<div class="content-body">
+				<?php
+					if($news_status){
+				?>
+					<!-- article body start -->
+					<article class="article-wrapper">
+						<div class="article-header">
+							<div class="breadcrumb">
+								<ul>
+									<li><a href="/index.php"><span>Ana sayfa</span></a> <i class="material-icons"></i></li>
+									<li><a href="/kaynak_<?php echo $news_data['agency']; ?>.html"><span><?php echo $news_data['agency_title']; ?><i class="material-icons"></i></span></a></li>
 								</ul>
-								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane active fade in show" id="author">
-										<ul class="authors-post">
-											<li>
-												<div class="entry-meta">
-													<div class="author-image">
-														<a href="#"><img class="img-fluid" src="" alt="Image"></a>
-													</div>
-													<div class="author-info">
-														<h2><a href="#">Janet Jackson</a></h2>
-													</div>						
-												</div>
-											</li>
-											<li>
-												<div class="entry-meta">
-													<div class="author-image">
-														<a href="#"><img class="img-fluid" src="" alt="Image"></a>
-													</div>
-													<div class="author-info">
-														<h2><a href="#">Matt Cloey</a></h2>
-													</div>						
-												</div>
-											</li>
-											<li>
-												<div class="entry-meta">
-													<div class="author-image">
-														<a href="#"><img class="img-fluid" src="" alt="Image"></a>
-													</div>
-													<div class="author-info">
-														<h2><a href="#">Kolony Wispe</a></h2>
-													</div>						
-												</div>
-											</li>
-											<li>
-												<div class="entry-meta">
-													<div class="author-image">
-														<a href="#"><img class="img-fluid" src="" alt="Image"></a>
-													</div>
-													<div class="author-info">
-														<h2><a href="#">Matt Cloey</a></h2>
-													</div>						
-												</div>
-											</li>
-											<li>
-												<div class="entry-meta">
-													<div class="author-image">
-														<a href="#"><img class="img-fluid" src="" alt="Image"></a>
-													</div>
-													<div class="author-info">
-														<h2><a href="#">Jhon dun</a></h2>
-													</div>						
-												</div>
-											</li>			
-										</ul>
+							</div>
+
+							<div class="article-header-title">
+								<h1 class="article-title"><?php echo $news_data['title']; ?></h1>
+							</div>
+
+							<div class="article-meta-info">
+								<a href="#" class="author-name"><?php echo $news_data['agency_title']; ?></a> —
+								<span class="article-post-date"><?php echo $ulak_class->time_since($news_data['date_u']===null ? 0 : $news_data['date_u']); ?></span>
+								<span class="article-reading-time"><?php echo $ulak_class->reading_time($news_data['text']===null ? "" : $news_data['text']); ?> okuma süresi</span>
+							</div>
+							<figure>
+								<img style="width: 100%;" alt="<?php echo $news_data['title']; ?>" src="<?php echo $news_data['image']; ?>">	
+							</figure>
+							
+						</div>
+						<div class="article-content"> <!-- adbox120 or adbox160 -->
+							<div class="article-left-box" style="height: 2641.03px;">
+								<div class="article-left-box-inner" style="position: absolute; top: 0px; bottom: auto;">
+									<div class="article-share">
+										<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://ulak.news/<?php echo $news_data['seo_link']; ?>&t=<?php echo $news_data['title']; ?>" class="facebook"></a>
+										<a target="_blank" href="https://twitter.com/share?url=https://ulak.news/<?php echo $news_data['seo_link']; ?>&via=ulak_news&text=<?php echo $news_data['title']; ?>" class="twitter"></a>
 									</div>
-									<div role="tabpanel" class="tab-pane fade in" id="comment">
-										<ul class="comment-list">
-											<li>
-												<div class="post-content">	
-													<div class="entry-meta">
-														<span><a href="#">Jhon dun</a></span>
-													</div>
-													<h2 class="entry-title">
-														<a href="#">3 students arrested after body-slamming principal</a>
-													</h2>
-												</div>
-											</li>
-											<li>
-												<div class="post-content">	
-													<div class="entry-meta">
-														<span><a href="#">Matt Cloey</a></span>
-													</div>
-													<h2 class="entry-title">
-														<a href="#">4 students arrested after body-slamming principal</a>
-													</h2>
-												</div>
-											</li>
-											<li>
-												<div class="post-content">	
-													<div class="entry-meta">
-														<span><a href="#">Kolony Wispe</a></span>
-													</div>
-													<h2 class="entry-title">
-														<a href="#">3 students arrested after body-slamming principal</a>
-													</h2>
-												</div>
-											</li>
-											<li>
-												<div class="post-content">	
-													<div class="entry-meta">
-														<span><a href="#">Janet Jackson</a></span>
-													</div>
-													<h2 class="entry-title">
-														<a href="#">4 students arrested after body-slamming principal</a>
-													</h2>
-												</div>
-											</li>
-											<li>
-												<div class="post-content">	
-													<div class="entry-meta">
-														<span><a href="#">Matt Cloey</a></span>
-													</div>
-													<h2 class="entry-title">
-														<a href="#">2 students arrested after body-slamming principal</a>
-													</h2>
-												</div>
-											</li>	
-										</ul>
+									<!-- <span class="add-to-favorite" data-zebra-tooltip="" title="Ad to favorite">
+										<i class="material-icons"></i>
+									</span> -->
+									<!-- <ul class="article-emoticons">
+										<li>
+											<a href="#" class="popular happy"></a><span>13</span>
+											<ul>
+												<li><a href="#" class="love"></a><span>7</span></li>
+												<li><a href="#" class="shocked"></a><span>5</span></li>
+												<li><a href="#" class="angry"></a><span>4</span></li>
+												<li><a href="#" class="crying"></a><span>1</span></li>
+												<li><a href="#" class="sleepy"></a><span>0</span></li>
+											</ul>
+										</li>										
+									</ul> -->
+								</div>
+							</div>
+							<div class="article-inner">
+								<?php echo $news_data['text']; ?>
+								<!-- article sources area start -->
+								<div class="article-source-box">
+									<div class="source-item">
+										<span class="source-subtitle">Kaynak : </span>
+										<span class="source-url"><a href="<?php echo $news_data['url']; ?>" target="_blank"><?php echo $news_data['url']; ?></a></span>
 									</div>
 								</div>
-							</div><!-- meta-tab -->	
-						</div><!-- /.theiaStickySidebar -->						
-					</div>			
-				</div><!-- /.row -->
+								<!-- article sources area end -->
 
-				<div style="display: none;" class="tr-ad ad-bottom ad-image text-center">
-					<a href="#"><img class="img-fluid" src="" alt="Image"></a>
-				</div><!-- /.tr-ad -->
+								<!-- article tags area start -->
+								<!-- <div class="article-tags">
+									<span class="tag-subtitle">Tags : </span>
+									<a href="#">theme</a><span class="tag-dot"></span>
+									<a href="#">template</a><span class="tag-dot"></span>
+									<a href="#">mobile ui</a>
+								</div> -->
+								<!-- article tags area end -->
+							</div>
 
-		  	</div><!-- /.container-fulid -->  		
-	  	</div><!-- /.main-wrapper -->
+							<!--this is important for the left ad box or share box fixer -->
+							<div id="endOfTheArticle"></div>
 
-		<footer id="footer">
-			<?php
-				include("view/footer.php");
-			?>	
-		</footer><!-- /#footer -->  	
+							<!-- More article unit start -->
+							<div class="more-article">
+								<div class="w-header">
+									<div class="w-title">Bu haber ile ilgili</div>
+									<div class="w-seperator"></div>
+								</div>
+								<div class="more-posts">
+									<?php include("./view/related-news.php"); ?>
+								</div>
+							</div>
+							<!-- More article unit end -->
 
+							<!-- article comment area start -->
+							<div class="article-comments">
+								<div class="w-header">
+									<div class="w-title">Bu haberi yorumla</div>
+									<div class="w-seperator"></div>
+								</div>
+								<div class="comment-form">
+									<form id="comment-form">
+										<div class="comment-columns">
+											<div class="frm-row columns column-2">
+												<input require type="text" autocomplete="off" name="name" placeholder="Adınız" class="frm-input">
+											</div>
+										</div>
+										<div class="frm-row">
+											<textarea require class="frm-input" name="text" autocomplete="off" rows="4" placeholder="Yorumunuz..."></textarea>
+										</div>
+										<div class="frm-row">
+											<div class="comment-form-notice columns column-4">
+												<div>Yorum yaparak Kullanım Şartları, Topluluk Şartları ve Sorumluluk Reddi Beyanınını kabul etmiş sayılırsınız.<br/>1 dakika da en fazla 1 yorum gönderebilirsiniz.</div>
+												<!-- <div>You are commenting as a visitor, you can <a href="#" data-modal="loginModal">login</a> or <a href="#" data-modal="registerModal">register</a></div> -->
+											</div>
+											<div class="columns column-2">
+												<button onClick="addComment();" type="button" class="addCommentButton frm-button full material-button">Gönder</button>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+				
+									</form>
+								</div>
 
-		<!-- JS -->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/lazyload.min.js"></script>
-		<script src="js/popper.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/marquee.js"></script>
-		<script src="js/moment.min.js"></script>
-		<script src="js/theia-sticky-sidebar.min.js"></script>
-		<script src="js/jquery.jplayer.min.js"></script>
-		<script src="js/jplayer.playlist.min.js"></script>
-		<script src="js/slick.min.js"></script>
-		<script src="js/carouFredSel.js"></script>
-		<script src="js/magnific-popup.min.js"></script>
-		<script src="js/main.js?v=<?php echo $version; ?>"></script>
-		<script type="text/javascript" src="js/hilitor.js"></script>
-		<script>
-		function highlight(text) {
-			var myHilitor = new Hilitor("inputText"); // id of the element to parse
-			myHilitor.apply(text);
-		}
-		function findGetParameter(parameterName) {
-			var result = null,
-				tmp = [];
-			var items = location.search.substr(1).split("&");
-			for (var index = 0; index < items.length; index++) {
-				tmp = items[index].split("=");
-				if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-			}
-			return result;
-		}
-		var ref = findGetParameter('ref');
-		if( ref !== null ){
-			if(ref==="search"){
-				highlight(findGetParameter('value'));
-			}
-		}
-		new LazyLoad();
-		function getComments(){
-		    $.ajax({
-				type: 'GET', 
-				url: 'view/comments.php', 
-				data: { process: "getComments", agency: '<?php echo $news_det['agency']; ?>', id: <?php echo $news_det['id']; ?> }, 
-				dataType: 'html',
-				beforeSend: function(){
-					$(".ajax-comments").html('<i style="text-align: center" class="fa fa-spin fa-4x fa-spinner" aria-hidden="true"></i> Yorumlar Yükleniyor...');	
+								<div class="w-header">
+									<div class="w-title">Yorumlar (<span id="comment-total">0</span>)</div>
+									<div class="w-seperator"></div>
+								</div>
+
+								<div class="all-comments">
+
+									<!-- comment item start -->
+									<!-- <div class="comment-item">
+										<div class="comment-avatar">
+											<span class="comment-img"><img src="img/user.png" width="50" height="50"></span>
+										</div>
+										<div class="comment-content">
+											<div class="comment-header">
+												<span class="author-name">Visitor</span> - 
+												<span class="comment-date">3 hours ago</span>
+											</div>
+											<div class="comment-wrapper">
+												Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+											</div>
+											<div class="comment-meta">
+												<span class="replay-button">Replay</span>
+												<button type="button" class="comment-vote up-vote"><i class="material-icons"></i> <span class="vote-count">+7</span></button>
+												<button type="button" class="comment-vote down-vote"><i class="material-icons"></i> <span class="vote-count">-1</span></button>
+											</div>
+										</div> -->
+									</div>
+									<!-- comment item end -->
+									
+								</div>
+							</div>
+							<!-- article comment area start -->
+
+						</div>
+					</article>
+					<?php
+					}else{
+					?>
+						<?php include("./view/404.php"); ?>
+					<?php
+					}
+					?>
+					<!-- article body end -->
+					<div class="content-sidebar">
+						<div class="sidebar_inner" style="position: absolute; top: 0px;">
+							<?php include("./view/most-read.php"); ?>
+							<div class="seperator"></div>
+							<!-- 
+							<a href="#" class="widget-ad-box">
+								<img src="img/adbox300x250.png" width="300" height="250">
+							</a> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+	<!--Main container end -->
+
+	<footer>
+		<?php include("./view/footer.php"); ?>
+	</footer>
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+
+	<!-- Tooltip plugin (zebra) js file -->
+	<script src="plugins/zebra-tooltip/zebra_tooltips.min.js"></script>
+
+	<!-- Owl Carousel plugin js file -->
+	<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
+
+	<!-- Ideabox theme js file. you have to add all pages. -->
+	<script src="js/main-script.js"></script>
+
+	<script type="text/javascript">
+	
+	var id = <?php echo $get_id; ?>;
+	var agency = "<?php echo $get_agency; ?>";
+
+		function addComment(){
+			let form_data = $('#comment-form').serializeArray();
+			let values = {};
+			
+			form_data.map(input=>{
+				values[input.name] = input.value;
+			});
+			$.ajax({
+				type: 'POST',
+				url: 'api.php?process=addComment',
+				async: true,
+				data: {
+					agency: agency,
+					id: id,
+					name: values.name,
+					text: values.text
 				},
-				success: function (data) {
-					$(".ajax-comments").html(data);
+				timeout: 2000,
+				beforeSend: function () {
+					$(".addCommentButton").prop('disabled', true);
+					console.log("Before...");
+				},
+				success: function (result) {
+					if (result.status) {
+						$("#comment-form")[0].reset();
+						getComment();
+					} else {
+						alert(result.desc);
+					}
 				},
 				error: function (data) {
-					alert("Yorumlar alınamadı.");
+					alert("Yorum eklerken hata oluştu");
+				},
+				complete: function (data) {
+					$(".addCommentButton").prop("disabled", null);
+					console.log("Process OK");
 				}
 			});
 		}
-		function addComment(){
-			if($("textarea[name=message]").val().length>4 && $("input[name=name]").val().length>=3){
-				var data={name: $("input[name=name]").val(), message: $("textarea[name=message]").val()};
-				$.ajax({
-					type: 'POST', 
-					url: 'view/comments.php?process=addComment&agency=<?php echo $news_det['agency']; ?>&id=<?php echo $news_det['id']; ?>', 
-					data: data, 
-					dataType: 'json',
-					success: function (data) {
-						if(data.status){
-							alert("Yorumunuz eklendi.");
-							$("input[name=name]").val('');
-							$("textarea[name=message]").val('');
-							getComments();
-							location.href = "#comments";
-						}else{
-							alert("Yorumunuz eklenemedi.")
-						}
-					},
-					error: function (data) {
-						alert("Tekrar deneyiniz.");
+
+		function getComment(){
+			$.ajax({
+				type: 'GET',
+				url: 'api.php',
+				async: true,
+				data: {
+					process: "getComments",
+					agency: agency,
+					id: id
+				},
+				timeout: 2000,
+				beforeSend: function () {
+					$('.all-comments').html('Yükleniyor...');
+				},
+				success: function (result) {
+					if (result.status) {       
+						$('.all-comments').html('');
+						console.log(result.result.length)
+						$('#comment-total').text(result.result.length);
+						result.result.map(comment=>{
+							$('.all-comments').append(`
+									<div class="comment-item">
+										<div class="comment-avatar">
+											<span class="comment-img"><img src="img/user.png" width="50" height="50"></span>
+										</div>
+										<div class="comment-content">
+											<div class="comment-header">
+												<span class="author-name">`+comment.name+`</span> - 
+												<span class="comment-date">`+comment.date+`</span>
+											</div>
+											<div class="comment-wrapper">
+												`+comment.text+`
+											</div>
+											<div class="comment-meta">
+											</div>
+									</div>
+							`);
+						})
+					} else {
+						$('.all-comments').html(result.desc);
 					}
-				});
-			}else{
-				alert("Adınız veya yorumunuz kısa...")
-			}
+				},
+				error: function (data) {
+					$('.all-comments').html('Yorumlar yüklenirken hata oldu.');
+				},
+				complete: function (data) {
+					console.log("Get Comment Process OK");
+				}
+			});
 		}
-		getComments();
-		</script>
-    </body>
-    </html>
+
+		//widget carousel initialize
+		$('#widgetCarousel').owlCarousel({
+		    dots:true,
+		    nav:false,
+		    items:1
+		});
+
+		getComment();
+
+	</script>
+
+
+
+</body></html>

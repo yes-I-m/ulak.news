@@ -1,205 +1,265 @@
 <?php
-	include("funcs.php");
-	if(!$is_local){
-		///// CACHE //////////
-			require_once "sCache.php";
-			$options = array(
-				'time'   => 60, // 60 saniye
-				'dir'    => 'cache/', // sCache2 klasörü oluşturup buraya yazılsın.
-				'load'   => false,  // sayfamızın sonunda load değerimiz görünsün.
-				'extension' => ".html", // standart değer .html olarak ayarlanmıştır cache dosyalarınızın uzantısını temsil etmektedir.
-				);
-			
-			$sCache = new sCache($options); // ayarları sınıfımıza gönderip sınıfı çalıştıralım.
-		///// CACHE BITIS /////
-	}
-	
-	$desc="";
-	$q="";
-	$all_news=[];
-	/// CACHE
+	include("config.php");
+	$ulak_api_class = new UlakNews();
+	$ulak_class = new UlakClass();
+
+	$all_cats = $ulak_api_class->get_cats();
+	$agencies = $ulak_api_class->get_agencies();
+	$most_read = $ulak_api_class->get_most_readed("today", 4);
+
+	$search_status = false;
+	$cat_data=[];
+	$desc = "";
+	$q = "";
+
 	if(isset($_GET['q'])){
-		$q=Sanitizer::alfanumerico($_GET['q'], true, true);
-		if(strlen($q)>=3){
-			$all_news=getSearchResult($q, 5);
-			if($all_news['status']){
-				$all_news=$all_news['result'];
-			}else{
-				$all_news=[];
+		$q = strip_tags(htmlentities($_GET['q']));
+		$all_news = $ulak_api_class->search_news($q);
+		if($all_news !== false){
+			$search_status = true;
+			$desc = "<strong>".$q."</strong> ilgili arama sonuçları";
+			if(count($all_news)<1){
+				$search_status = false;
+				$desc = "Sonuç bulunamadı.";
 			}
 		}else{
-			$desc="Lütfen en az üç harflik bir kelime girin";
+			$desc = "Arama yapılamadı.";
 		}
 	}else{
-		header("Location: /index.html");
-		exit();
+		$all_cats = $ulak_api_class->get_cats(10000);
+		$desc = "Ulak ile istediğinizi arayın.";
 	}
-	$get_cats=get_categories();
-	if($get_cats['status']){
-		$get_cats=$get_cats['result'];
-	}else{
-		$get_cats=[];
-	}
-	//////
-	$get_agency=get_agency_list();
-	if($get_agency['status']){
-		$get_agency=$get_agency['result'];
-	}else{
-		$get_agency=[];
-	}
-	//////
-	$son_dakika=get_news("all", 5, 0);
-	if($son_dakika['status']){
-		$son_dakika=$son_dakika['result'];
-	}else{
-		$son_dakika=[];
-	}
-	$lastSearch=lastSearch();
-	$search = true;
 ?>
-<html lang="tr" style="transform: none;">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="author" content="ulak.news">
-		<title><?php echo $q; ?> ile ilgili haberler | Ulak.news</title>
-        <meta property="og:title" content="<?php echo $q; ?> ile ilgili haberler, Haberleri" />
-        <meta name="keywords" content="<?php echo $q; ?> ile ilgili haberler, son dakika haberler" />
-        <meta property="og:description" content="<?php echo $q; ?> ile ilgili haberler, son dakika haberler" />
-        <meta name="description" content="<?php echo $q; ?> ile ilgili haberler, son dakika haberler" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="ulak.news">
+	<meta name="robots" content="index, follow">
 
-		<!-- CSS -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/magnific-popup.css">
-		<link rel="stylesheet" href="css/animate.css">
-		<link rel="stylesheet" href="css/slick.css">
-		<link rel="stylesheet" href="css/jplayer.css">
-		<link rel="stylesheet" href="css/main.css?v=<?php echo $version; ?>">  
-		<link rel="stylesheet" href="css/responsive.css">
+	<?php
+		if($search_status){
+	?>
 
-		<!-- font -->
-		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Signika+Negative" rel="stylesheet">
+	<title><?php echo $q; ?> ile ilgili haberler | Ulak.news</title>
+	<meta property="og:title" content="<?php echo $q; ?> ile ilgili haberler, Haberleri" />
+	<meta name="keywords" content="<?php echo $q; ?> ile ilgili haberler, son dakika haberler" />
+	<meta property="og:description" content="<?php echo $q; ?>, ile ilgili haberler, son dakika haberler" />
+	<meta name="description" content="<?php echo $q; ?> ile ilgili haberler, son dakika haberler" />
+	<meta name="robots" content="index, follow">
+
+	<?php
+		}else{
+	?>
+	<title>Ulak News ile Gelişmiş Haber Arama | Ulak.news</title>
+	<meta property="og:title" content="Ulak News Gelişmiş Haber Arama | Ulak.news" />
+	<meta name="keywords" content="haber ara, detaylı haber ara, haber arama, türkiye haber ara, tüm haberlerde arama" />
+	<meta property="og:description" content="Ulak News Gelişmiş Haber Arama | Ulak.news" />
+	<meta name="description" content="Ulak News Gelişmiş Haber Arama | Ulak.news" />
+	<meta name="robots" content="noindex, nofollow">
+
+	<?php
+		}
+	?>
+	<!-- icons -->
+	<link rel="apple-touch-icon" sizes="57x57" href="img/icon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="img/icon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/icon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/icon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/icon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="img/icon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="img/icon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="img/icon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="img/icon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="img/icon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="img/icon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,900&amp;subset=latin-ext" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Tooltip plugin (zebra) css file -->
+	<link rel="stylesheet" type="text/css" href="plugins/zebra-tooltip/zebra_tooltips.min.css">
+
+	<!-- Owl Carousel plugin css file. only used pages -->
+	<link rel="stylesheet" type="text/css" href="plugins/owl-carousel/assets/owl.carousel.min.css">
+
+	<!-- Ideabox main theme css file. you have to add all pages -->
+	<link rel="stylesheet" type="text/css" href="css/main-style.css">
+
+	<!-- Ideabox responsive css file -->
+	<link rel="stylesheet" type="text/css" href="css/responsive-style.css">
+</head>
+
+<body>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43122854-40"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-43122854-40');
+	</script>	
+	<!-- header start -->
+	<header class="header">
+		<?php include("./view/header.php"); ?>
+	</header>
+	<!-- header end -->
 
 
-		<!-- icons -->
-		<link rel="apple-touch-icon" sizes="57x57" href="images/icon/apple-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="images/icon/apple-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="images/icon/apple-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="images/icon/apple-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="images/icon/apple-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="images/icon/apple-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="images/icon/apple-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="images/icon/apple-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="images/icon/apple-icon-180x180.png">
-		<link rel="icon" type="image/png" sizes="192x192"  href="images/icon/android-icon-192x192.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="images/icon/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="images/icon/favicon-96x96.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="images/icon/favicon-16x16.png">
-		<link rel="manifest" href="manifest.json">
-		<meta name="msapplication-TileColor" content="#ffffff">
-		<meta name="msapplication-TileImage" content="images/icon/ms-icon-144x144.png">
-		<!-- icons -->
+	<!-- Left sidebar menu start -->
+	<div class="sidebar">
+		<?php include("./view/sidebar.php"); ?>
+	</div>
+	<!-- Left sidebar menu end -->
 
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-		<!-- Template Developed By ThemeRegion -->
-	<style id="theia-sticky-sidebar-stylesheet-TSS">.theiaStickySidebar:after {content: ""; display: table; clear: both;}</style></head>
-	<?php include("view/gtag.php"); ?>
-	<body class="homepage-2" style="transform: none;">
-		<div class="main-wrapper tr-page-top" style="transform: none;">
-			<div class="container-fluid" style="transform: none;">
-			<?php include("view/header.php"); ?>
-
-				<div class="row tr-content" style="transform: none;">
-					<div class="col-md-12 col-lg-12 tr-sticky" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-						<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; top: 0px; left: 15px;">
-							<div class="tr-section">
-							<div class="row col-md-6" style="margin: 0 auto;">
-								<style>
-									/* Style the buttons */
-									.btn {
-									border: none;
-									outline: none;
-									padding: 12px 16px;
-									background-color: #f1f1f1;
-									cursor: pointer;
-									}
-
-									.btn:hover {
-									background-color: #ddd;
-									}
-
-									.btn.active {
-									background-color: #666;
-									color: white;
-									}
-								</style>
-								<button class="active btn" id="all">Tüm ajanslar</button>
+	<!--Main container start -->
+	<main class="main-container">
+	<section class="main-highlight">
+			
+            </section>
+            <section class="main-content">
+                <div class="main-content-wrapper">
+                    <div class="content-body">
+                        <div class="content-timeline">
+                            <div class="post-list-header">
+                                <span class="post-list-title">Gelişmiş Arama</span> 
+									<div class="search">
+										<form action="arama.html" class="search-form" onsubmit="return validate('q', 3)">
+											<input type="text" autocomplete="off" min="1" value="<?php echo $q; ?>" require name="q" id="q" placeholder="Aramak istediğiniz Haber içeriği hakkında bir şeyler girebilirsiniz...">
+											<input type="submit" value="Ara">
+										</form>
+									</div>
 								<?php
-								foreach($get_agency as $key=>$raw){
-									echo '<button class="btn" id="'.$key.'">'.$raw['title'].'</button>';
+								if(isset($search_status)){
+								?>
+									<select id="agency_filter" class="frm-input">
+										<option value="all">Sırala</option>
+									</select>
+								<?php
 								}
-							?>
-							</div>
-								<h2 style="margin 0 auto;"><?php echo $q; ?> ile ilgili arama sonuçları</h2>
-								<div id="main_news" class="medium-post-content row">
-									<?php
-										if(strlen($desc)>=1){ 
-									?>
-											<h2 style="color: red; text-align:center;"><?php echo $desc; ?></h2>
-									<?php
-									 	}else{
-											include("view/main_news.php"); 
-										} 
-									?>
-								</div>				
-							</div>									
-						</div>
-					</div>				
-				</div><!-- /.row -->
-			</div><!-- /.container-fluid -->	
-		</div><!-- main-wrapper -->
+								?>
+                            </div>
 
-		<footer id="footer">
-			<?php
-				include("view/footer.php");
-			?>
-		</footer><!-- /#foot  er -->  	
-		<!-- JS -->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/popper.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/marquee.js"></script>
-		<script src="js/moment.min.js"></script>
-		<script src="js/theia-sticky-sidebar.min.js"></script>
-		<script src="js/jquery.jplayer.min.js"></script>
-		<script src="js/jplayer.playlist.min.js"></script>
-		<script src="js/slick.min.js"></script>
-		<script src="js/carouFredSel.js"></script>
-		<script src="js/magnific-popup.min.js"></script>
-		<script src="js/main.js?v=<?php echo $version; ?>"></script>
-		<script src="https://www.andreaverlicchi.eu/lazyload/dist/lazyload.min.js"></script>
-		<script>
-			var $btns = $('.btn').click(function() {
-				if (this.id == 'all') {
-					$('#main_news > div').fadeIn(450);
-				} else {
-					var $el = $('.' + this.id).fadeIn(450);
-					$('#main_news > div').not($el).hide();
-				}
-				$btns.removeClass('active');
-				$(this).addClass('active');
-			});
-		</script>
-		<script>
-			new LazyLoad();
-		</script>
-    </body>
-    </html>
+                            <div class="timeline-items">
+                                <span class="timeline-items-desc"><?php echo $desc; ?></span><br/>
+								<?php
+										include("./view/timeline.php");
+								?>
+                            </div>
+                        </div>
+    
+                    </div>
+                    <div class="content-sidebar">
+                        <div class="sidebar_inner">
+                            <?php include("./view/most-read.php"); ?>
+                            <div class="seperator"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+	</main>
+	<footer>
+		<?php include("./view/footer.php"); ?>
+	</footer>
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+
+	<!-- Tooltip plugin (zebra) js file -->
+	<script src="plugins/zebra-tooltip/zebra_tooltips.min.js"></script>
+
+	<!-- Owl Carousel plugin js file -->
+	<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
+
+	<!-- Ideabox theme js file. you have to add all pages. -->
+	<script src="js/main-script.js"></script>
+
+	<style>
+		.no_display_news{
+			display: none;
+		}
+		/* ===========================
+		====== Search Box ====== 
+		=========================== */
+		.search
+		{
+			border: 2px solid #CF5C3F;
+			overflow: auto;
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+		}
+
+		.search input[type="text"]
+		{
+			border: 0px;
+			width: 67%;
+			padding: 10px 10px;
+		}
+
+		.search input[type="text"]:focus
+		{
+			outline: 0;
+		}
+
+		.search input[type="submit"]
+		{
+			border: 0px;
+			background: none;
+			background-color: #CF5C3F;
+			color: #fff;
+			float: right;
+			padding: 10px;
+			border-radius-top-right: 5px;
+			-moz-border-radius-top-right: 5px;
+			-webkit-border-radius-top-right: 5px;
+			border-radius-bottom-right: 5px;
+			-moz-border-radius-bottom-right: 5px;
+			-webkit-border-radius-bottom-right: 5px;
+				cursor:pointer;
+		}
+
+		/* ===========================
+		====== Medua Query for Search Box ====== 
+		=========================== */
+
+		@media only screen and (min-width : 150px) and (max-width : 780px)
+		{
+			{}
+			.search
+			{
+				width: 95%;
+				margin: 0 auto;
+			}
+
+		}
+	</style>
+	<script type="text/javascript">
+
+		//Owl carousel initializing
+		$('#postCarousel').owlCarousel({
+		    loop:true,
+		    dots:true,
+		    nav:true,
+		    navText: ['<span><i class="material-icons">&#xE314;</i></span>','<span><i class="material-icons">&#xE315;</i></span>'],
+		    items:1,
+		    margin:20
+		});
+
+		//widget carousel initialize
+		$('#widgetCarousel').owlCarousel({
+		    dots:true,
+		    nav:false,
+		    items:1
+		});
+
+
+
+	</script>
+
+</body>
+
+</html>

@@ -1,241 +1,161 @@
 <?php
-	include("funcs.php");
-	if(!$is_local){
-		///// CACHE //////////
-			require_once "sCache.php";
-			$options = array(
-				'time'   => 60, // 60 saniye
-				'dir'    => 'cache/', // sCache2 klasörü oluşturup buraya yazılsın.
-				'load'   => false,  // sayfamızın sonunda load değerimiz görünsün.
-				'extension' => ".html", // standart değer .html olarak ayarlanmıştır cache dosyalarınızın uzantısını temsil etmektedir.
-				);
-			
-			$sCache = new sCache($options); // ayarları sınıfımıza gönderip sınıfı çalıştıralım.
-		///// CACHE BITIS /////
-	}
-	
-	$desc="";
-	$q="";
-	$all_news=[];
-	$cat_status=false;
+	include("config.php");
+	$ulak_api_class = new UlakNews();
+	$ulak_class = new UlakClass();
+
+	$agencies = $ulak_api_class->get_agencies();
+	$most_read = $ulak_api_class->get_most_readed("today", 4);
+
+	$cat_status = false;
+	$cat_data=[];
 
 	if(isset($_GET['kategori'])){
-		$kategori=base64_decode($_GET['kategori']);
-		$all_news=get_cat_news($kategori);
-		if(count($all_news['result'])>=1){
-			$all_news=$all_news['result'];
-			$cat_status=true;
+		$all_cats = $ulak_api_class->get_cats();
+		$all_news = $ulak_api_class->get_cat_news($_GET['kategori']);
+		if(count($all_news)>=0){
+			$cat_data['title']=base64_decode($_GET['kategori']);
+			$cat_status = true;
 		}
-	}
-	$get_cats=get_categories(1000);
-	if($get_cats['status']){
-		$get_cats=$get_cats['result'];
 	}else{
-		$get_cats=[];
+		$all_cats = $ulak_api_class->get_cats(10000);
 	}
-	//////
-	$get_agency=get_agency_list();
-	if($get_agency['status']){
-		$get_agency=$get_agency['result'];
-	}else{
-		$get_agency=[];
-	}
-	//////
-	$son_dakika=get_news("all", 5, 0);
-	if($son_dakika['status']){
-		$son_dakika=$son_dakika['result'];
-	}else{
-		$son_dakika=[];
-	}
-	$lastSearch=lastSearch();
 ?>
-<html lang="tr" style="transform: none;">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="author" content="ulak.news">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="ulak.news">
+	<meta name="robots" content="index, follow">
+
+	<?php
+		if($cat_status){
+	?>
+
+	<title><?php echo $cat_data['title']; ?> ile ilgili haberler | Ulak.news</title>
+	<meta property="og:title" content="<?php echo $cat_data['title']; ?> ile ilgili haberler, Haberleri" />
+	<meta name="keywords" content="<?php echo $cat_data['title']; ?> ile ilgili haberler, son dakika haberler" />
+	<meta property="og:description" content="<?php echo $cat_data['title']; ?>, ile ilgili haberler, son dakika haberler" />
+	<meta name="description" content="<?php echo $cat_data['title']; ?> ile ilgili haberler, son dakika haberler" />
+
+	<?php
+		}else{
+	?>
+	<title>Tüm kategoriler | Ulak.news</title>
+	<meta property="og:title" content="Tüm kategoriler | Ulak.news" />
+	<meta name="keywords" content="tüm kategoriler, kategoriler, ulak news kategorileri" />
+	<meta property="og:description" content="Tüm kategoriler | Ulak.news" />
+	<meta name="description" content="Tüm kategoriler | Ulak.news" />
+	<?php
+		}
+	?>
+	<!-- icons -->
+	<link rel="apple-touch-icon" sizes="57x57" href="img/icon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="img/icon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/icon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/icon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/icon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="img/icon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="img/icon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="img/icon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="img/icon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="img/icon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="img/icon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,900&amp;subset=latin-ext" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Tooltip plugin (zebra) css file -->
+	<link rel="stylesheet" type="text/css" href="plugins/zebra-tooltip/zebra_tooltips.min.css">
+
+	<!-- Owl Carousel plugin css file. only used pages -->
+	<link rel="stylesheet" type="text/css" href="plugins/owl-carousel/assets/owl.carousel.min.css">
+
+	<!-- Ideabox main theme css file. you have to add all pages -->
+	<link rel="stylesheet" type="text/css" href="css/main-style.css">
+
+	<!-- Ideabox responsive css file -->
+	<link rel="stylesheet" type="text/css" href="css/responsive-style.css">
+</head>
+
+<body>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43122854-40"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-43122854-40');
+	</script>	
+	<!-- header start -->
+	<header class="header">
+		<?php include("./view/header.php"); ?>
+	</header>
+	<!-- header end -->
+
+
+	<!-- Left sidebar menu start -->
+	<div class="sidebar">
+		<?php include("./view/sidebar.php"); ?>
+	</div>
+	<!-- Left sidebar menu end -->
+
+	<!--Main container start -->
+	<main class="main-container">
 		<?php
 			if($cat_status){
-		?>
-			<title><?php echo $kategori; ?> ile ilgili haberler | Ulak.news</title>
-			<meta property="og:title" content="<?php echo $kategori; ?> ile ilgili haberler, Haberleri" />
-			<meta name="keywords" content="<?php echo $kategori; ?> ile ilgili haberler, son dakika haberler" />
-			<meta property="og:description" content="<?php echo $kategori; ?> ile ilgili haberler, son dakika haberler" />
-			<meta name="description" content="<?php echo $kategori; ?> ile ilgili haberler, son dakika haberler" />
-		<?php
+				include("./view/cat.php");
 			}else{
-		?>
-			<title>Tüm kategoriler | Ulak.news</title>
-			<meta property="og:title" content="Tüm kategoriler | Ulak.news" />
-			<meta name="keywords" content="tüm kategoriler, kategoriler, ulak news kategorileri" />
-			<meta property="og:description" content="Tüm kategoriler | Ulak.news" />
-			<meta name="description" content="Tüm kategoriler | Ulak.news" />
-		<?php
+				include("./view/cats.php");
 			}
 		?>
+	</main>
+	<footer>
+		<?php include("./view/footer.php"); ?>
+	</footer>
 
-		<!-- CSS -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/magnific-popup.css">
-		<link rel="stylesheet" href="css/animate.css">
-		<link rel="stylesheet" href="css/slick.css">
-		<link rel="stylesheet" href="css/jplayer.css">
-		<link rel="stylesheet" href="css/main.css?v=<?php echo $version; ?>">  
-		<link rel="stylesheet" href="css/responsive.css">
+	<script src="js/jquery-3.2.1.min.js"></script>
 
-		<!-- font -->
-		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Signika+Negative" rel="stylesheet">
+	<!-- Tooltip plugin (zebra) js file -->
+	<script src="plugins/zebra-tooltip/zebra_tooltips.min.js"></script>
+
+	<!-- Owl Carousel plugin js file -->
+	<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
+
+	<!-- Ideabox theme js file. you have to add all pages. -->
+	<script src="js/main-script.js"></script>
+
+	<style>
+		.no_display_news{
+			display: none;
+		}
+	</style>
+	<script type="text/javascript">
+
+		//Owl carousel initializing
+		$('#postCarousel').owlCarousel({
+		    loop:true,
+		    dots:true,
+		    nav:true,
+		    navText: ['<span><i class="material-icons">&#xE314;</i></span>','<span><i class="material-icons">&#xE315;</i></span>'],
+		    items:1,
+		    margin:20
+		});
+
+		//widget carousel initialize
+		$('#widgetCarousel').owlCarousel({
+		    dots:true,
+		    nav:false,
+		    items:1
+		});
 
 
-		<!-- icons -->
-		<link rel="apple-touch-icon" sizes="57x57" href="images/icon/apple-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="images/icon/apple-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="images/icon/apple-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="images/icon/apple-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="images/icon/apple-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="images/icon/apple-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="images/icon/apple-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="images/icon/apple-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="images/icon/apple-icon-180x180.png">
-		<link rel="icon" type="image/png" sizes="192x192"  href="images/icon/android-icon-192x192.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="images/icon/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="images/icon/favicon-96x96.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="images/icon/favicon-16x16.png">
-		<link rel="manifest" href="manifest.json">
-		<meta name="msapplication-TileColor" content="#ffffff">
-		<meta name="msapplication-TileImage" content="images/icon/ms-icon-144x144.png">
-		<!-- icons -->
 
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-		<!-- Template Developed By ThemeRegion -->
-	<style id="theia-sticky-sidebar-stylesheet-TSS">.theiaStickySidebar:after {content: ""; display: table; clear: both;}</style></head>
-	<?php include("view/gtag.php"); ?>
-	<body class="homepage-2" style="transform: none;">
-		<div class="main-wrapper tr-page-top" style="transform: none;">
-			<div class="container-fluid" style="transform: none;">
-			<?php include("view/header.php"); ?>
+	</script>
 
-				<div class="row tr-content" style="transform: none;">
-					<div class="col-md-12 col-lg-12 tr-sticky" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-						<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; top: 0px; left: 15px;">
-							<div class="tr-section">
-								<?php
-									if($cat_status){
-									/**
-									 * eğer kategori isteği varsa
-									 */
-								?>
-									<h2 style="margin 0 auto;"><?php echo $kategori; ?> ile ilgili haberler</h2>
-									<div id="main_news" class="medium-post-content row">
-										<?php
-											if(strlen($desc)>=1){ 
-										?>
-												<h2 style="color: red; text-align:center;"><?php echo $desc; ?></h2>
-										<?php
-											}else{
-												include("view/main_news.php"); 
-											} 
-										?>
-									</div>
-								<?php
-									}else{
-									/**
-									 * eğer kategori isteği yoksa tüm kategorileri listeliyoruz.
-									 */
-								?>
-								<style>
-								.panel {
-									text-align: center;
-									border-radius: 0.3rem;
-									padding: 1rem;
-									margin-bottom: 1rem;
-								}
-								.panel.panel-blue {
-									border: 1px solid #0087FF;
-									background-color: #DDEDFF;
-									color: #0087FF;
-								}
-								.panel.panel-yellow {
-									border: 1px solid #FFBD00;
-									background-color: #FEF0B2;
-									color: #FFBD00;
-								}
-								.panel.panel-pink {
-									border: 1px solid #F84F7F;
-									background-color: #FAD2E1;
-									color: #F84F7F;
-								}
-								.panel.panel-purple {
-									border: 1px solid #7F51F4;
-									background-color: #DFCCFF;
-									color: #7F51F4;
-								}
-								</style>
-								<h2 style="margin 0 auto;">Tüm kategoriler (<?php echo count($get_cats); ?>)</h2><hr/>
-								<div class="row">
-									<?php
-										foreach($get_cats as $key=>$raw){
-									?>
-											<div class="col-sm-6 col-lg-3">
-												<a href="<?php echo $raw['seo_link']; ?>'">
-													<div class="panel panel-<?php echo $key%2===0 ? 'blue' : 'purple'; ?>"><?php echo $raw['cat']; ?> <i class="fa fa-external-link" aria-hidden="true"></i></div>
-												</a>
-											</div>
-									<?php
-										}
-									?>
-								</div>
-								<?php
-									}
-								?>
-							</div>									
-						</div>
-					</div>				
-				</div><!-- /.row -->
-			</div><!-- /.container-fluid -->	
-		</div><!-- main-wrapper -->
+</body>
 
-		<footer id="footer">
-			<?php
-				include("view/footer.php");
-			?>
-		</footer><!-- /#foot  er -->  	
-		<!-- JS -->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/popper.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/marquee.js"></script>
-		<script src="js/moment.min.js"></script>
-		<script src="js/theia-sticky-sidebar.min.js"></script>
-		<script src="js/jquery.jplayer.min.js"></script>
-		<script src="js/jplayer.playlist.min.js"></script>
-		<script src="js/slick.min.js"></script>
-		<script src="js/carouFredSel.js"></script>
-		<script src="js/magnific-popup.min.js"></script>
-		<script src="js/main.js?v=<?php echo $version; ?>"></script>
-		<script src="https://www.andreaverlicchi.eu/lazyload/dist/lazyload.min.js"></script>
-		<script>
-			var $btns = $('.btn').click(function() {
-				if (this.id == 'all') {
-					$('#main_news > div').fadeIn(450);
-				} else {
-					var $el = $('.' + this.id).fadeIn(450);
-					$('#main_news > div').not($el).hide();
-				}
-				$btns.removeClass('active');
-				$(this).addClass('active');
-			});
-		</script>
-		<script>
-			new LazyLoad();
-		</script>
-    </body>
-    </html>
+</html>

@@ -1,84 +1,131 @@
+<div class="seperator"></div>
+<!-- Footer -->
+<footer class="page-footer font-small" style="width: 70%;">
 
-			<div class="footer-menu">
-				<div class="container">
-					<ul class="nav navbar-nav">                       
-						<li class="active"><a href="/index.html">Ana Sayfa</a></li>
-						<li class="dropdown"><a href="/hakkimizda.html">Hakkımızda</a></li>
-						<li><a href="/reddi_beyan.html">Reddi Beyan</a></li>
-						<li><a href="/topluluk_sozlesmesi.html">Topluluk Sözleşmesi</a></li>
-						<li><a href="/kullanim_sozlesmesi.html">Kullanım Sözleşmesi</a></li>
-						<li><a href="/iletisim.html">İletişim</a></li>
-					</ul> 
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">
+        <p>
+            ulak.news açık kaynak kodlu bir projedir. Basının özgürlüğüne inanan, bireyin haber alma özgürlüğüne sahip çıkan bir ortam yaratmak amaçlı oluşturulan otomatik olarak haber yayınlayan sistemdir. Daha fazla detay için hakkımızda kısmına göz atın...<br>
+            Bu İnternet Sitesinin her hangi bir sayfasına girilmesi halinde Kullanım Şartları, Topluluk Şartları, Sorumluluk Reddi Beyanı şartlarını kabul edilmiş sayılır. Bu şartların kabul edilmemesi durumunda İnternet Sitesine girilmemelidir. İlgili Şartlara Sayfalar bölümünden ulaşabilirsiniz.
+        </p>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+
+	<!-- Register popup html source start -->
+	<div class="m-modal-box" id="registerModal">
+		<div class="m-modal-overlay"></div>
+		<div class="m-modal-content small">
+			<div class="m-modal-header">
+				<h3 class="m-modal-title">Register</h3>
+				<span class="m-modal-close"><i class="material-icons">&#xE5CD;</i></span>
+			</div>
+			<div class="m-modal-body">
+				<div class="m-modal-social-logins">
+					<div class="columns column-2">
+						<button class="frm-button facebook material-button full" type="button">Facebook</button>
+					</div>
+					<div class="columns column-2">
+						<button class="frm-button twitter material-button full" type="button">Twitter</button>
+					</div>
+					<div class="columns column-2">
+						<button class="frm-button google material-button full" type="button">Google</button>
+					</div>
+				</div>
+
+				<div class="m-modal-seperator"><span>OR</span></div>
+
+				<form>
+					<div class="frm-row">
+						<input class="frm-input" type="text" name="name" placeholder="Name">
+					</div>
+					<div class="frm-row">
+						<input class="frm-input" type="text" name="username" placeholder="Username">
+					</div>
+					<div class="frm-row">
+						<input class="frm-input" type="text" name="email" placeholder="Email">
+					</div>
+					<div class="frm-row">
+						<input class="frm-input" type="text" name="password" placeholder="Password">
+					</div>
+					<div class="frm-row">
+						<label class="frm-check-radio-label"><input type="checkbox" name="test"> <span>I accept your <a href="#">register policy</a>.</span></label>
+					</div>
+					<div class="frm-row">
+						<button class="frm-button material-button full" type="button">Register</button>
+					</div>
+				</form>
+				<div class="frm-row">
+					<p class="txt-center">Do you already have an account? <a href="#" data-modal="loginModal">Login</a></p>
 				</div>
 			</div>
-			<div class="footer-widgets">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="widget widget-menu-2">
-								<h2>Kategoriler</h2> 
-								<ul style="list-style-type: circle;">
-                                    <?php
-                                        foreach($get_cats as $key=>$raw){
-											echo '<li><a href="'.$raw['seo_link'].'">'.$raw['cat'].'</a></li>';
-											if($key===10){
-												break;
-											}
-                                        }
-                                    ?>
-                                    <li><a style="font-weight: bold" href="kategori.html">Tüm kategoriler</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="widget">
-								<h2>Ajanslar</h2> 
-								<ul>
-                                    <?php
-                                        foreach($get_agency as $raw){
-											echo '<li><a href="'.$raw['seo_link'].'"><img style="width: 25px" src="'.$raw['image'].'"> '.$raw['title'].'</a></li>';
-										}
-                                    ?>
-                                    <li><a style="font-weight: bold" href="kaynak.html">Tüm Ajanslar</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-5">
-							<div class="widget widget-menu-2">
-								<h2>Son aramalar</h2> 
-								<ul style="list-style-type: circle;">
-                                    <?php
-                                        foreach($lastSearch as $raw){
-											echo '<li><a href="arama.html?q='.$raw['keyword'].'">'.(strlen($raw['keyword'])>=15 ? mb_substr($raw['keyword'], 0, 15)."..." : $raw['keyword']).'</a></li>';
-										}
-                                    ?>
-								</ul>
-							</div>
-						</div>
-					</div><!-- /.row -->
+		</div>
+	</div>
+	<!-- Register popup html source end ---->
+
+	<!-- Login popup html source start -->
+	<div class="m-modal-box" id="loginModal">
+		<div class="m-modal-overlay"></div>
+		<div class="m-modal-content small">
+			<div class="m-modal-header">
+				<h3 class="m-modal-title">Login</h3>
+				<span class="m-modal-close"><i class="material-icons">&#xE5CD;</i></span>
+			</div>
+			<div class="m-modal-body">
+				<div class="m-modal-social-logins">
+					<div class="columns column-3">
+						<button class="frm-button facebook material-button full" type="button">Facebook</button>
+					</div>
+					<div class="columns column-3">
+						<button class="frm-button google material-button full" type="button">Google</button>
+					</div>
+				</div>
+
+				<div class="m-modal-seperator"><span>OR</span></div>
+
+				<form>
+					<div class="frm-row">
+						<input class="frm-input" type="text" name="email" placeholder="Email">
+					</div>
+					<div class="frm-row">
+						<input class="frm-input" type="text" name="password" placeholder="Password">
+					</div>
+					<div class="frm-row">
+						<button class="frm-button material-button full" type="button">Login</button>
+					</div>
+				</form>
+				<div class="frm-row">
+					<p class="txt-center">Don't you have an account yet? <a href="#" data-modal="registerModal">Register</a></p>
 				</div>
 			</div>
-			<div class="footer-bottom text-center">
-				<div class="container">
-					<div class="footer-bottom-content">
-						<div class="footer-logo">
-							<img class="img-fluid" style="width: 30%" src="images/logo_2.png" alt="Logo">
-						</div>
-						<p>
-                            ulak.news açık kaynak kodlu bir projedir. Basının özgürlüğüne inanan, bireyin haber alma özgürlüğüne sahip çıkan bir ortam yaratmak amaçlı oluşturulan otomatik olarak haber yayınlayan sistemdir. Daha fazla detay için hakkımızda kısmına göz atın ;)<br>
-                            Bu İnternet Sitesinin her hangi bir sayfasına girilmesi halinde Kullanım Şartları, Topluluk Şartları, Sorumluluk Reddi Beyanı şartlarını kabul edilmiş sayılır. Bu şartların kabul edilmemesi durumunda İnternet Sitesine girilmemelidir. İlgili Şartlara Sayfalar bölümünden ulaşabilirsiniz.
-                        </p>
-						<address>
-							<p>© 2019 
-                                Ulak.News | 
-                                <strong>Email:</strong>
-                                <script type="text/javascript">
-                                    document.write('info@' + 'orhanaydogdu.com.tr')
-                                </script>
-                                <br>
-                                | Made with <i class="fa fa-heart-o" style="color: red" aria-hidden="true"></i> by <a href="https://orhanaydogdu.com.tr" target="_blank">O.A</a> |
-                            </p>
-						</address>					
-					</div><!-- /.footer-bottom-content -->
-				</div><!-- /.container -->
-			</div><!-- /.footer-bottom -->		
+		</div>
+	</div>
+	<!-- Login popup html source end -->
+
+	<!-- Newsletter popup html source start -->
+	<div class="m-modal-box" id="newsletterModal">
+		<div class="m-modal-overlay"></div>
+		<div class="m-modal-content small">
+			<div class="m-modal-header">
+				<h3 class="m-modal-title">Newsletter</h3>
+				<span class="m-modal-close"><i class="material-icons">&#xE5CD;</i></span>
+			</div>
+			<div class="m-modal-body">
+				<p>Submit to our newsletter to receive exclusive stories delivered to you inbox!</p>
+				<form>
+					<div class="frm-row">
+						<input class="frm-input" type="text" name="email" placeholder="Email address">
+					</div>
+					<div class="frm-row">
+						<button class="frm-button material-button full" type="button">Send</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Newsletter popup html source end -->
+
+	<div class="overlay"></div>
