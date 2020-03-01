@@ -50,7 +50,7 @@
 	<link rel="stylesheet" type="text/css" href="plugins/owl-carousel/assets/owl.carousel.min.css">
 
 	<!-- Ideabox main theme css file. you have to add all pages -->
-	<link rel="stylesheet" type="text/css" href="css/main-style.css">
+	<link rel="stylesheet" type="text/css" href="css/main-style.min.css">
 
 	<!-- Ideabox responsive css file -->
 	<link rel="stylesheet" type="text/css" href="css/responsive-style.css">

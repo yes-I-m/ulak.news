@@ -35,16 +35,16 @@
 		 */
 	?>
 
-	<title><?php echo $news_data['title']; ?></title>
+	<title><?php echo $news_data['title']; ?> - <?php echo $news_data['agency_title']; ?> | Ulak News</title>
 	<meta itemprop="image" content="<?php echo $news_data['image']; ?>" />
-	<meta property="og:title" content="<?php echo $news_data['title']; ?>" />
+	<meta property="og:title" content="<?php echo $news_data['title']; ?> | Ulak News" />
 	<meta property="og:type" content="article" />
 	<meta property="og:image" content="<?php echo $news_data['image']; ?>" />
 	<meta property="og:url" content="https://ulak.news/<?php echo $news_data['seo_link']; ?>" />
 	<link rel="image_src" href="<?php echo $news_data['image']; ?>" />
-	<meta name="keywords" content="<?php echo str_replace(' ', ', ', $news_data['spot']); ?>" />
-	<meta property="og:description" content="<?php echo $news_data['spot']; ?>" />
-	<meta name="description" content="<?php echo $news_data['spot']; ?>" />
+	<meta name="keywords" content="<?php echo str_replace(' ', ', ', $news_data['spot']); ?> | Ulak News" />
+	<meta property="og:description" content="<?php echo $news_data['spot']; ?> | Ulak News" />
+	<meta name="description" content="<?php echo $news_data['spot']; ?> | Ulak News" />
 	<meta itemprop="dateCreated" content="<?php echo $news_data['date']; ?>">
 	<meta itemprop="dateModified" content="<?php echo $news_data['saved_date']; ?>">
 	<meta name="news_keywords" content="<?php echo str_replace(' ', ', ', $news_data['spot']); ?>"/>
@@ -93,7 +93,7 @@
 	<link rel="stylesheet" type="text/css" href="plugins/owl-carousel/assets/owl.carousel.min.css">
 
 	<!-- Ideabox main theme css file. you have to add all pages -->
-	<link rel="stylesheet" type="text/css" href="css/main-style.css">
+	<link rel="stylesheet" type="text/css" href="css/main-style.min.css">
 
 	<!-- Ideabox responsive css file -->
 	<link rel="stylesheet" type="text/css" href="css/responsive-style.css">
