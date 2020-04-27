@@ -3,3 +3,7 @@ Disallow:
 Disallow: /cache/
 Sitemap: https://ulak.news/sitemap.php?page=1
 Sitemap: https://ulak.news/sitemap.php?page=2
+Sitemap: https://ulak.news/sitemap.php?page=3
+Sitemap: https://ulak.news/sitemap.php?page=4
+Sitemap: https://ulak.news/sitemap.php?page=5
+Sitemap: https://ulak.news/sitemap.php?page=6

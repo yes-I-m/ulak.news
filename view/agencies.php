@@ -22,7 +22,7 @@
                                         <div class="post-top">
                                             <img class="post-image" src="<?php echo $agency['image']; ?>">
                                             <h3 class="post-title">
-                                                <a href="#"><span><?php echo $agency['title']; ?></span></a>
+                                                <a href="/<?php echo $agency['seo_link']; ?>"><span><?php echo $agency['title']; ?></span></a>
                                             </h3>
                                         </div>
                                         <div class="post-bottom">

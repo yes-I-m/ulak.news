@@ -35,19 +35,19 @@
 		 */
 	?>
 
-	<title><?php echo $news_data['title']; ?> - <?php echo $news_data['agency_title']; ?> | Ulak News</title>
+	<title><?php echo strip_tags($news_data['title']); ?> - <?php echo $news_data['agency_title']; ?> | Ulak News</title>
 	<meta itemprop="image" content="<?php echo $news_data['image']; ?>" />
-	<meta property="og:title" content="<?php echo $news_data['title']; ?> | Ulak News" />
+	<meta property="og:title" content="<?php echo strip_tags($news_data['title']); ?> | Ulak News" />
 	<meta property="og:type" content="article" />
 	<meta property="og:image" content="<?php echo $news_data['image']; ?>" />
 	<meta property="og:url" content="https://ulak.news/<?php echo $news_data['seo_link']; ?>" />
 	<link rel="image_src" href="<?php echo $news_data['image']; ?>" />
-	<meta name="keywords" content="<?php echo str_replace(' ', ', ', $news_data['spot']); ?> | Ulak News" />
-	<meta property="og:description" content="<?php echo $news_data['spot']; ?> | Ulak News" />
-	<meta name="description" content="<?php echo $news_data['spot']; ?> | Ulak News" />
-	<meta itemprop="dateCreated" content="<?php echo $news_data['date']; ?>">
+	<meta name="keywords" content="<?php echo strip_tags(str_replace(' ', ', ', $news_data['spot'])); ?> | Ulak News" />
+	<meta property="og:description" content="<?php echo strip_tags($news_data['spot']); ?> | Ulak News" />
+	<meta name="description" content="<?php echo strip_tags($news_data['spot']); ?> | Ulak News" />
+	<meta itemprop="dateCreated" content="<?php echo strip_tags($news_data['date']); ?>">
 	<meta itemprop="dateModified" content="<?php echo $news_data['saved_date']; ?>">
-	<meta name="news_keywords" content="<?php echo str_replace(' ', ', ', $news_data['spot']); ?>"/>
+	<meta name="news_keywords" content="<?php echo strip_tags(str_replace(' ', ', ', $news_data['spot'])); ?>"/>
 	<meta name="robots" content="index, follow">
 	<?php
 		}else{
@@ -321,12 +321,16 @@
 
 	<!-- Owl Carousel plugin js file -->
 	<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@13.0.1/dist/lazyload.min.js"></script>
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
 	<script src="js/main-script.js"></script>
 
 	<script type="text/javascript">
-	
+	// Initialize LazyLoad inside the callback
+	new LazyLoad({
+                    elements_selector: ".lazyload"
+                });
 	var id = <?php echo $get_id; ?>;
 	var agency = "<?php echo $get_agency; ?>";
 
