@@ -20,7 +20,7 @@
                                 <div class="columns column-2">
                                     <div class="post-list-item">
                                         <div class="post-top">
-                                            <img class="post-image" src="<?php echo $agency['image']; ?>">
+                                            <img alt="<?php echo $agency['title']; ?>" class="post-image" src="<?php echo $agency['image']; ?>">
                                             <h3 class="post-title">
                                                 <a href="/<?php echo $agency['seo_link']; ?>"><span><?php echo $agency['title']; ?></span></a>
                                             </h3>

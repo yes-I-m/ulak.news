@@ -96,7 +96,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main-style.min.css">
 
 	<!-- Ideabox responsive css file -->
-	<link rel="stylesheet" type="text/css" href="css/responsive-style.css">
+	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css">
 </head>
 
 <body>
@@ -324,7 +324,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@13.0.1/dist/lazyload.min.js"></script>
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
-	<script src="js/main-script.js"></script>
+	<script src="js/main-script.min.js"></script>
 
 	<script type="text/javascript">
 	// Initialize LazyLoad inside the callback

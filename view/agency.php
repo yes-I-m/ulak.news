@@ -6,7 +6,7 @@
                     <div class="content-body">
                         <div class="author-wrapper">
                             <div class="author-image">
-                                <img src="<?php echo $agency_data['image']; ?>" width="100" height="100">
+                                <img alt="<?php echo $agency_data['title']; ?>" src="<?php echo $agency_data['image']; ?>" width="100" height="100">
                             </div>
                             <h2 class="author-name"><?php echo $agency_data['title']; ?></h2>
                             <p><?php echo $agency_data['about']; ?></p>
