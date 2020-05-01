@@ -147,7 +147,7 @@
                             <div class="timeline-items">
                                 <span class="timeline-items-desc"><?php echo $desc; ?></span><br/>
 								<?php
-										include("./view/timeline.php");
+										include("./view/timeline_other.php");
 								?>
                             </div>
                         </div>

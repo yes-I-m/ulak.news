@@ -8,13 +8,13 @@
 	$most_read = $ulak_api_class->get_most_readed("today", 4);
 
 	$agency_status = false;
-	$agency_data=[];
+	$agency_data = [];
 
 	if(isset($_GET['agency'])){
 		$all_news = $ulak_api_class->get_news($_GET['agency']);
 		foreach($agencies as $agency){
 			if($agency['id'] === $_GET['agency']){
-				$agency_data=$agency;
+				$agency_data = $agency;
 				$agency_status = true;
 			}
 		}

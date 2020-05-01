@@ -15,7 +15,7 @@
                             <!--Timeline items start -->
                             <div class="timeline-items">
                                 <span class="timeline-items-desc"></span>
-                                <?php include("./view/timeline.php"); ?>
+                                <?php include("./view/timeline_other.php"); ?>
                             </div>
                             <!--Timeline items end -->
     
