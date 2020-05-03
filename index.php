@@ -48,10 +48,10 @@
 	<link rel="stylesheet" type="text/css" href="plugins/owl-carousel/assets/owl.carousel.min.css">
 
 	<!-- Ideabox main theme css file. you have to add all pages -->
-	<link rel="stylesheet" type="text/css" href="css/main-style.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main-style.min.css?v=<?php echo date('Ymd'); ?>">
 
 	<!-- Ideabox responsive css file -->
-	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css">
+	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css?v=<?php echo date('Ymd'); ?>">
 </head>
 
 <body>

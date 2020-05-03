@@ -129,3 +129,29 @@
 	<!-- Newsletter popup html source end -->
 
 	<div class="overlay"></div>
+
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://ulak.news",
+			"logo": {
+				"@type": "ImageObject",
+				"url": "https://ulak.news/img/ulak/logo_2.webp",
+				"width": 190,
+				"height": 90    
+			}
+		}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "WebSite",
+		"url": "https://ulak.news/",
+		"potentialAction": {
+			"@type": "SearchAction",
+			"target": "https://ulak.news/arama.html?q={search_term_string}",
+			"query-input": "required name=search_term_string"
+		}
+	}
+	</script>

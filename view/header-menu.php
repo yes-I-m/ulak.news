@@ -15,7 +15,7 @@
                 foreach($agencies as $agency){
             ?>
                 <li>
-                    <a href="/<?php echo $agency['seo_link']; ?>" class="material-button submenu-toggle"><?php echo $agency['title']; ?></a>
+                    <a title="<?php echo $agency['title']; ?>" href="/<?php echo $agency['seo_link']; ?>" class="material-button submenu-toggle"><?php echo $agency['title']; ?></a>
                 
                 </li>
             <?php
@@ -29,7 +29,7 @@
                         <?php
                             foreach($all_cats as $key=>$cat){
                         ?>
-                            <li><a href="/<?php echo $cat['seo_link']; ?>"><?php echo $cat['cat']; ?></a></li>
+                            <li><a title="<?php echo $cat['cat']; ?>" href="/<?php echo $cat['seo_link']; ?>"><?php echo $cat['cat']; ?></a></li>
                         <?php
                             if($key===6){
                                 break;

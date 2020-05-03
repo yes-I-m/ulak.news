@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="/<?php echo $news['seo_link']; ?>" class="post-overlayLink"></a>
+                <a title="<?php echo $news['title']; ?>" href="/<?php echo $news['seo_link']; ?>" class="post-overlayLink"></a>
             </article>
         </div>
     <?php

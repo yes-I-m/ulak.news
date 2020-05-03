@@ -101,6 +101,21 @@
             return $m . ' dakika' . ($m == 1 ? '' : '') . ', ' . $s . ' saniye' . ($s == 1 ? '' : '');
         }
 
+        public function seo_text(string $s){
+            $s  = html_entity_decode($s);
+            $tr = array('ş','Ş','ı','I','İ','ğ','Ğ','ü','Ü','ö','Ö','Ç','ç','(',')','/',':',',', "'", "!",'’','#',"'",'&039;','"','“','.','…','?','‘','”', ';', '%');
+            $eng = array('s','s','i','i','i','g','g','u','u','o','o','c','c','','','-','-','','','','','','','','','','','','','','', '', '');
+            $s = str_replace($tr,$eng,$s);
+            $s = strtolower($s);
+            $s = preg_replace('/&amp;amp;amp;amp;amp;amp;amp;amp;amp;.+?;/', '', $s);
+            $s = preg_replace('/\s+/', '-', $s);
+            $s = preg_replace('|-+|', '-', $s);
+            $s = preg_replace('/#/', '', $s);
+            $s = str_replace('.', '', $s);
+            $s = trim($s, '-');
+            $s = substr($s, 0, 32);
+            return $s;
+        }
 
     }
 ?>
