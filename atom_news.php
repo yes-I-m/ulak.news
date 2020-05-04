@@ -24,6 +24,9 @@ if(isset($_GET['cat'])){
         case 'guncel':
             $cat = "Güncel";
             break;
+        case 'sondakika':
+            $cat = "sondakika";
+            break;
         default:
             $cat = null;
             break;

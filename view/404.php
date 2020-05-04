@@ -23,7 +23,7 @@
 							</div>
 							<div class="article-inner">
                             <div class="error-container">
-                                <div class="error-code">
+                                <div style="background-image: url('https://ulak.news/img/500.gif');" class="error-code">
                                     404
                                 </div>
                                 <h1>Aradığınız sayfaya <i>Ulak</i> yetişemedi.<br/>Silinmiş veya böyle bir sayfa olmayabilir.</h1>
