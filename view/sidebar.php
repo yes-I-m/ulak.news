@@ -87,12 +87,12 @@
     <!-- sidebar menu start -->
     <ul class="sidebar-menu">
         <li>
-            <a href="https://www.facebook.com/ulaknewstr/" target="_blank" class="facebook material-button">
+            <a rel="noreferrer" href="https://www.facebook.com/ulaknewstr/" target="_blank" class="facebook material-button">
                 <span class="menu-label">Facebook</span>
             </a>
         </li>
         <li>
-            <a href="https://twitter.com/ulak_news" target="_blank" class="twitter material-button">
+            <a rel="noreferrer" href="https://twitter.com/ulak_news" target="_blank" class="twitter material-button">
                 <span class="menu-label">Twitter</span>
             </a>
         </li>

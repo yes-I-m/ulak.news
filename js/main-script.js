@@ -265,12 +265,12 @@ $(document).ready(function(){
         }
     });
 
-	//trigger scrollable elements actions
-    $(window).on('scroll',function () {
-    	showHideHeader.call(this);
-    	setStickySidebar.call(this);
-    	makeParallax.call(this);
-    });
+	// //trigger scrollable elements actions
+    // $(window).on('scroll',function () {
+    // 	showHideHeader.call(this);
+    // 	setStickySidebar.call(this);
+    // 	makeParallax.call(this);
+    // });
 
     //sidebar boxed posts scripts    
     $('.w-boxed-post ul li').on('mouseover', function(e){

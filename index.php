@@ -39,8 +39,8 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="img/icon/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
 
-	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,900&amp;subset=latin-ext" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+	<link rel="stylesheet" type="text/css" href="fonts/material-icons.css">
 
 	<!-- Tooltip plugin (zebra) css file -->
 	<link rel="stylesheet" type="text/css" href="plugins/zebra-tooltip/zebra_tooltips.min.css">
@@ -53,6 +53,8 @@
 
 	<!-- Ideabox responsive css file -->
 	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css?v=<?php echo date('Ymd'); ?>">
+
+	<link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -132,7 +134,7 @@
 
 	<?php include("./view/footer.php"); ?>
 
-	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/jquery-3.5.1.min.js"></script>
 
 	<!-- Tooltip plugin (zebra) js file -->
 	<script src="plugins/zebra-tooltip/zebra_tooltips.min.js"></script>

@@ -85,8 +85,8 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="img/icon/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
 
-	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,900&amp;subset=latin-ext" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="fonts/material-icons.css">
 
 	<!-- Tooltip plugin (zebra) css file -->
 	<link rel="stylesheet" type="text/css" href="plugins/zebra-tooltip/zebra_tooltips.min.css">
@@ -99,6 +99,8 @@
 
 	<!-- Ideabox responsive css file -->
 	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css?v=<?php echo date('Ymd'); ?>">
+
+	<link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -157,8 +159,8 @@
 							<div class="article-left-box" style="height: 2641.03px;">
 								<div class="article-left-box-inner" style="position: absolute; top: 0px; bottom: auto;">
 									<div class="article-share">
-										<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://ulak.news/<?php echo $news_data['seo_link']; ?>&t=<?php echo $news_data['title']; ?>" class="facebook"></a>
-										<a target="_blank" href="https://twitter.com/share?url=https://ulak.news/<?php echo $news_data['seo_link']; ?>&via=ulak_news&text=<?php echo $news_data['title']; ?>" class="twitter"></a>
+										<a rel="noreferrer" style="font-size:0px" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://ulak.news/<?php echo $news_data['seo_link']; ?>&t=<?php echo $news_data['title']; ?>" class="facebook">Facebook</a>
+										<a rel="noreferrer" style="font-size:0px" target="_blank" href="https://twitter.com/share?url=https://ulak.news/<?php echo $news_data['seo_link']; ?>&via=ulak_news&text=<?php echo $news_data['title']; ?>" class="twitter">Twitter</a>
 									</div>
 									<!-- <span class="add-to-favorite" data-zebra-tooltip="" title="Ad to favorite">
 										<i class="material-icons"></i>
@@ -183,7 +185,7 @@
 								<div class="article-source-box">
 									<div class="source-item">
 										<span class="source-subtitle">Kaynak : </span>
-										<span class="source-url"><a href="<?php echo $news_data['url']; ?>" target="_blank"><?php echo $news_data['url']; ?></a></span>
+										<span class="source-url"><a rel="noreferrer" href="<?php echo $news_data['url']; ?>" target="_blank"><?php echo $news_data['url']; ?></a></span>
 									</div>
 								</div>
 								<!-- article sources area end -->
@@ -305,7 +307,7 @@
 
 	<?php include("./view/footer.php"); ?>
 
-	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/jquery-3.5.1.min.js"></script>
 
 	<!-- Tooltip plugin (zebra) js file -->
 	<script src="plugins/zebra-tooltip/zebra_tooltips.min.js"></script>
