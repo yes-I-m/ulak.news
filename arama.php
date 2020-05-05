@@ -62,6 +62,8 @@
 	<?php
 		}
 	?>
+	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />
+	
 	<!-- icons -->
 	<link rel="apple-touch-icon" sizes="57x57" href="img/icon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="img/icon/apple-icon-60x60.png">
@@ -87,10 +89,10 @@
 	<link rel="stylesheet" type="text/css" href="plugins/owl-carousel/assets/owl.carousel.min.css">
 
 	<!-- Ideabox main theme css file. you have to add all pages -->
-	<link rel="stylesheet" type="text/css" href="css/main-style.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main-style.min.css?v=<?php echo date('Ymd'); ?>">
 
 	<!-- Ideabox responsive css file -->
-	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css">
+	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css?v=<?php echo date('Ymd'); ?>">
 </head>
 
 <body>
@@ -153,9 +155,9 @@
                 </div>
             </section>
 	</main>
-	<footer>
-		<?php include("./view/footer.php"); ?>
-	</footer>
+
+	<?php include("./view/footer.php"); ?>
+	
 
 	<script src="js/jquery-3.2.1.min.js"></script>
 
@@ -167,67 +169,6 @@
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
 	<script src="js/main-script.min.js"></script>
-
-	<style>
-		.no_display_news{
-			display: none;
-		}
-		/* ===========================
-		====== Search Box ====== 
-		=========================== */
-		.search
-		{
-			border: 2px solid #CF5C3F;
-			overflow: auto;
-			border-radius: 5px;
-			-moz-border-radius: 5px;
-			-webkit-border-radius: 5px;
-		}
-
-		.search input[type="text"]
-		{
-			border: 0px;
-			width: 67%;
-			padding: 10px 10px;
-		}
-
-		.search input[type="text"]:focus
-		{
-			outline: 0;
-		}
-
-		.search input[type="submit"]
-		{
-			border: 0px;
-			background: none;
-			background-color: #CF5C3F;
-			color: #fff;
-			float: right;
-			padding: 10px;
-			border-radius-top-right: 5px;
-			-moz-border-radius-top-right: 5px;
-			-webkit-border-radius-top-right: 5px;
-			border-radius-bottom-right: 5px;
-			-moz-border-radius-bottom-right: 5px;
-			-webkit-border-radius-bottom-right: 5px;
-				cursor:pointer;
-		}
-
-		/* ===========================
-		====== Medua Query for Search Box ====== 
-		=========================== */
-
-		@media only screen and (min-width : 150px) and (max-width : 780px)
-		{
-			{}
-			.search
-			{
-				width: 95%;
-				margin: 0 auto;
-			}
-
-		}
-	</style>
 	<script type="text/javascript">
 
 		//Owl carousel initializing

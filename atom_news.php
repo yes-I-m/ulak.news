@@ -4,7 +4,7 @@ header ("Content-Type:text/xml");
 if(isset($_GET['cat'])){
 
 ///// CACHE BITIS /////
-    $page = $_GET['cat'];
+    $page = strip_tags($_GET['cat']);
     switch ($page) {
         case 'gundem':
             $cat = "Gündem";
@@ -35,7 +35,7 @@ if(isset($_GET['cat'])){
         echo "";
         exit();
     }
-    $data = file_get_contents("https://nodejs-api.ulak.news/atom_". urlencode($cat).".xml");
+    $data = file_get_contents("https://nodejs-api.ulak.news/atom_". urlencode($cat).".xml?to=".$page);
     echo $data;
 }
 ?>

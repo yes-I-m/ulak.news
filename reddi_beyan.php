@@ -24,6 +24,7 @@
 	<meta name="keywords" content="Reddi Beyan, kategoriler, ulak news kategorileri" />
 	<meta property="og:description" content="Reddi Beyan | Ulak.news" />
 	<meta name="description" content="Reddi Beyan | Ulak.news" />
+	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />
 
 	<!-- icons -->
 	<link rel="apple-touch-icon" sizes="57x57" href="img/icon/apple-icon-57x57.png">
@@ -50,10 +51,10 @@
 	<link rel="stylesheet" type="text/css" href="plugins/owl-carousel/assets/owl.carousel.min.css">
 
 	<!-- Ideabox main theme css file. you have to add all pages -->
-	<link rel="stylesheet" type="text/css" href="css/main-style.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main-style.min.css?v=<?php echo date('Ymd'); ?>">
 
 	<!-- Ideabox responsive css file -->
-	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css">
+	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css?v=<?php echo date('Ymd'); ?>">
 </head>
 
 <body>	
@@ -137,12 +138,6 @@
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
 	<script src="js/main-script.min.js"></script>
-
-	<style>
-		.no_display_news{
-			display: none;
-		}
-	</style>
 	<script type="text/javascript">
 
 		//Owl carousel initializing

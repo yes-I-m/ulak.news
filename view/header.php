@@ -50,7 +50,7 @@
         <div class="search-bar">
             <form action="arama.html" onsubmit="return validate('q', 3)" class="search-form">
                 <div class="search-input-wrapper">
-                    <input autocomplete="off" type="text" id="q" name="q" min="1" placeholder="Ulak hemen bulsun!" class="search-input">
+                    <input autocomplete="off" type="text" id="q" name="q" placeholder="Ulak hemen bulsun!" class="search-input">
                     <input type="submit" class="search-submit" value='Ara' />
                 </div>
                 <span class="search-close search-toggle">

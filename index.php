@@ -22,6 +22,7 @@
 	<meta name="description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
 	<meta itemprop="isFamilyFriendly" content="true"/>
 	<meta name="robots" content="index, follow">
+	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />
 
 	<!-- icons -->
 	<link rel="apple-touch-icon" sizes="57x57" href="img/icon/apple-icon-57x57.png">
@@ -128,9 +129,8 @@
 			</div>
 		</section>
 	</main>
-	<footer>
-		<?php include("./view/footer.php"); ?>
-	</footer>
+
+	<?php include("./view/footer.php"); ?>
 
 	<script src="js/jquery-3.2.1.min.js"></script>
 
@@ -142,12 +142,6 @@
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
 	<script src="js/main-script.min.js"></script>
-
-	<style>
-		.no_display_news{
-			display: none;
-		}
-	</style>
 	<script type="text/javascript">
 
 			var $btns = $('#agency_filter').change(function() {
