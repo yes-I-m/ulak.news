@@ -14,12 +14,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="author" content="ulak.news">
-	<title>Ulak News | Haberler, Son Dakika Haberleri ve Güncel Haber</title>
-	<meta property="og:title" content="Ulak News | Haberler, Son Dakika Haberleri ve Güncel Haber" />
+	<title>Son dakika haberler - Ulak News</title>
+	<meta property="og:title" content="Son dakika haberler - Ulak News" />
 
-	<meta name="keywords" content="ulak.news, ulak haber, ulak news, ulak, haber, haberler, son dakika, son dakika haber, haber oku, gazete haberleri,gazeteler" />
-	<meta property="og:description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
-	<meta name="description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
+	<meta name="keywords" content="son dakika haberler, son 24 saat haberler, en son haberler, tüm türkiyeden haberler, haberler, magazin haberler, son dakika gelişme, tüm haberler" />
+	<meta property="og:description" content="son dakika haberler, son 24 saat haberler, en son haberler, tüm türkiyeden haberler, haberler, magazin haberler, son dakika gelişme, tüm haberler" />
+	<meta name="description" content="Türkiye'den ve Dünya'dan son dakika haberleri buradan takip et. Son dakika haberleri hızlı ve kolay takip et." />
 	<meta itemprop="isFamilyFriendly" content="true"/>
 	<meta name="robots" content="index, follow">
 	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />
@@ -84,8 +84,7 @@
 					<div class="content-timeline">
 						<!--Timeline header area start -->
 						<div class="post-list-header">
-							<h1 style="display:none;">Son dakika haberler</h1>
-							<span class="post-list-title">Ulak ile getirilen</span>
+							<h1 class="post-list-title">Son Dakika haberler</h1>
 							<select id="agency_filter" class="frm-input">
 								<option value="all">Tümü</option>
 								<?php
