@@ -24,6 +24,7 @@
 	<meta name="keywords" content="Hakkımızda, kategoriler, ulak news kategorileri" />
 	<meta property="og:description" content="Hakkımızda | Ulak.news" />
 	<meta name="description" content="Hakkımızda | Ulak.news" />
+	<meta property="og:locale" content="tr_TR" />
 	<link rel="canonical" href="https://ulak.news/hakkimizda.html" />
 	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />
 

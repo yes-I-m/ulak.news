@@ -20,9 +20,14 @@
 	<meta name="keywords" content="ulak.news, ulak haber, ulak news, ulak, haber, haberler, son dakika, son dakika haber, haber oku, gazete haberleri,gazeteler" />
 	<meta property="og:description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
 	<meta name="description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
+	<meta property="og:title" content="Ulak News | Haberler, Son Dakika Haberleri ve Güncel Haber" />
+	<meta property="og:description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
+	<meta property="og:image" content="https://ulak.news/img/ulak/ulak_logo_3.png" />
+	<meta property="og:url" content="https://ulak.news" />
+	<meta property="og:locale" content="tr_TR" />
 	<meta itemprop="isFamilyFriendly" content="true"/>
 	<meta name="robots" content="index, follow">
-	<link rel="canonical" href="<?php echo $actual_link; ?>" />
+	<link rel="canonical" href="https://ulak.news" />
 	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />
 
 	<!-- icons -->

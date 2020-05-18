@@ -38,6 +38,8 @@
 	<meta property="og:description" content="<?php echo $agency_data['title']; ?>, ile ilgili haberler, son dakika haberler" />
 	<meta name="description" content="<?php echo $agency_data['title']; ?> ile ilgili haberler, son dakika haberler" />
 	<link rel="canonical" href="https://ulak.news/<?php echo $agency_data['seo_link']; ?>" />
+	<meta property="og:locale" content="tr_TR" />
+
 	<?php
 		}else{
 	?>
@@ -48,6 +50,8 @@
 	<meta property="og:description" content="<?php foreach($agencies as $agency){ echo $agency['title']." haberleri, "; } ?>Tüm ajanslar, türkiyeden haber ajanslarının son dakika haberleri | Ulak.news" />
 	<meta name="description" content="<?php foreach($agencies as $agency){ echo $agency['title']." haberleri, "; } ?>Tüm ajanslar, türkiyeden haber ajanslarının son dakika haberleri | Ulak.news" />
 	<link rel="canonical" href="https://ulak.news/kaynak.html" />
+	<meta property="og:locale" content="tr_TR" />
+
 	<?php
 		}
 	?>

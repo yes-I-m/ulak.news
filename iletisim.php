@@ -25,6 +25,7 @@
 	<meta property="og:description" content="İletişim | Ulak.news" />
 	<meta name="description" content="İletişim | Ulak.news" />
 	<link rel="canonical" href="https://ulak.news/iletisim.html" />
+	<meta property="og:locale" content="tr_TR" />
 	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />
 	
 	<!-- icons -->

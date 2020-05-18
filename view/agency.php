@@ -8,7 +8,7 @@
                             <div class="author-image">
                                 <img alt="<?php echo $agency_data['title']; ?>" src="<?php echo $agency_data['image']; ?>" width="100" height="100">
                             </div>
-                            <h2 class="author-name"><?php echo $agency_data['title']; ?></h2>
+                            <h1 class="author-name"><?php echo $agency_data['title']; ?></h1>
                             <p><?php echo $agency_data['about']; ?></p>
                             <div class="author-meta">
                                 <span>Website : </span><a target="_blank" href="<?php echo $agency_data['website']; ?>"><?php echo $agency_data['website']; ?></a>

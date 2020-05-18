@@ -18,9 +18,12 @@
 	<meta property="og:title" content="Son dakika haberler - Ulak News" />
 
 	<meta name="keywords" content="son dakika haberler, son 24 saat haberler, en son haberler, tüm türkiyeden haberler, haberler, magazin haberler, son dakika gelişme, tüm haberler" />
-	<meta property="og:description" content="son dakika haberler, son 24 saat haberler, en son haberler, tüm türkiyeden haberler, haberler, magazin haberler, son dakika gelişme, tüm haberler" />
-	<meta name="description" content="Türkiye'den ve Dünya'dan son dakika haberleri buradan takip et. Son dakika haberleri hızlı ve kolay takip et." />
+	<meta name="description" content="Dünya'dan ve Türkiye'den Son dakika haberler ulak news de bu sayfada reklamsız ve hızlı burada." />
 	<meta itemprop="isFamilyFriendly" content="true"/>
+	<meta property="og:description" content="son dakika haberler, son 24 saat haberler, en son haberler, tüm türkiyeden haberler, haberler, magazin haberler, son dakika gelişme, tüm haberler" />
+	<meta property="og:image" content="https://ulak.news/img/ulak/ulak_logo_3.png" />
+	<meta property="og:url" content="https://ulak.news" />
+	<meta property="og:locale" content="tr_TR" />
 	<link rel="canonical" href="https://ulak.news/sondakika.html" />
 	<meta name="robots" content="index, follow">
 	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />

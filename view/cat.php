@@ -7,7 +7,7 @@
                         <div class="content-timeline">
                             <!--Timeline header area start -->
                             <div class="post-list-header">
-                                <span class="post-list-title"><?php echo $cat_data['title']; ?></span> ile ilgili haberler
+                                <h1><span class="post-list-title"><u><?php echo $cat_data['title']; ?></u></span> ile ilgili haberler</h1>
                             </div>
                             <!--Timeline header area end -->
     

@@ -26,6 +26,7 @@
 	<meta name="description" content="Reddi Beyan | Ulak.news" />
 	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />
 	<link rel="canonical" href="https://ulak.news/reddi_beyan.html" />
+	<meta property="og:locale" content="tr_TR" />
 
 	<!-- icons -->
 	<link rel="apple-touch-icon" sizes="57x57" href="img/icon/apple-icon-57x57.png">

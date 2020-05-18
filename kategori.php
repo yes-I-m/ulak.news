@@ -39,6 +39,7 @@
 	<meta property="og:description" content="<?php echo $cat_data['title']; ?>, ile ilgili haberler, son dakika haberler" />
 	<meta name="description" content="<?php echo $cat_data['title']; ?> ile ilgili haberler, son dakika haberler" />
 	<link rel="canonical" href="https://ulak.news/kategori.php?kategori=<?php echo base64_encode($cat_data['title']); ?>" />
+	<meta property="og:locale" content="tr_TR" />
 
 	<?php
 		}else{
@@ -49,6 +50,8 @@
 	<meta property="og:description" content="Tüm kategoriler | Ulak.news" />
 	<meta name="description" content="Tüm kategoriler | Ulak.news" />
 	<link rel="canonical" href="https://ulak.news/kategori.html" />
+	<meta property="og:locale" content="tr_TR" />
+
 	<?php
 		}
 	?>
