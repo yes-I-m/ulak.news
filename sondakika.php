@@ -9,7 +9,7 @@
 	$most_read = $ulak_api_class->get_most_readed("today", 4);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,6 +21,7 @@
 	<meta property="og:description" content="son dakika haberler, son 24 saat haberler, en son haberler, tüm türkiyeden haberler, haberler, magazin haberler, son dakika gelişme, tüm haberler" />
 	<meta name="description" content="Türkiye'den ve Dünya'dan son dakika haberleri buradan takip et. Son dakika haberleri hızlı ve kolay takip et." />
 	<meta itemprop="isFamilyFriendly" content="true"/>
+	<link rel="canonical" href="https://ulak.news/sondakika.html" />
 	<meta name="robots" content="index, follow">
 	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />
 

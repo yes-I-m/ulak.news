@@ -12,7 +12,7 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,6 +25,7 @@
 	<meta property="og:description" content="Topluluk Sözleşmesi | Ulak.news" />
 	<meta name="description" content="Topluluk Sözleşmesi | Ulak.news" />
 	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />
+	<link rel="canonical" href="https://ulak.news/topluluk_sozlesmesi.html" />
 
 	<!-- icons -->
 	<link rel="apple-touch-icon" sizes="57x57" href="img/icon/apple-icon-57x57.png">

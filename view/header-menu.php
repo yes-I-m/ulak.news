@@ -29,7 +29,7 @@
                         <?php
                             foreach($all_cats as $key=>$cat){
                         ?>
-                            <li><a title="<?php echo $cat['cat']; ?>" href="/<?php echo $cat['seo_link']; ?>"><?php echo $cat['cat']; ?></a></li>
+                            <li><a title="<?php echo $cat['cat']; ?>" href="/<?php echo $cat['seo_link']; ?>"><?php echo $cat['cat']; ?> (<?php echo $cat['total']; ?>)</a></li>
                         <?php
                             if($key===6){
                                 break;

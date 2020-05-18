@@ -9,7 +9,7 @@
 	$most_read = $ulak_api_class->get_most_readed("today", 4);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,6 +22,7 @@
 	<meta name="description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
 	<meta itemprop="isFamilyFriendly" content="true"/>
 	<meta name="robots" content="index, follow">
+	<link rel="canonical" href="<?php echo $actual_link; ?>" />
 	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />
 
 	<!-- icons -->
@@ -85,6 +86,7 @@
 						<!--Timeline header area start -->
 						<div class="post-list-header">
 							<h1 style="display:none;">Son dakika haberler</h1>
+							<h2 style="display:none;">En son haberler</h2>
 							<span class="post-list-title">Ulak ile getirilen</span>
 							<select id="agency_filter" class="frm-input">
 								<option value="all">Tümü</option>

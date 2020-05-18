@@ -22,7 +22,7 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,6 +48,7 @@
 	<meta itemprop="dateCreated" content="<?php echo strip_tags($news_data['date']); ?>">
 	<meta itemprop="dateModified" content="<?php echo $news_data['saved_date']; ?>">
 	<meta name="news_keywords" content="<?php echo strip_tags(str_replace(' ', ', ', htmlentities($news_data['spot'], ENT_QUOTES))); ?>"/>
+	<link rel="canonical" href="https://ulak.news/<?php echo $news_data['seo_link']; ?>" />
 	<meta name="robots" content="index, follow">
 	<script type="application/ld+json"> { "@context": "https://schema.org", "@type": "NewsArticle", "mainEntityOfPage": { "@type": "WebPage", "@id": "https://ulak.news/<?php echo $news_data['seo_link']; ?>" }, "headline": "<?php echo htmlentities(strip_tags($news_data['title']), ENT_QUOTES); ?>", "name": "<?php echo htmlentities(strip_tags($news_data['title']), ENT_QUOTES); ?>", "articleBody": "<?php echo htmlentities(strip_tags(str_replace("\\", "", $news_data['text'])), ENT_QUOTES); ?>", "articleSection": "<?php echo strip_tags($news_data['categories'][0]); ?>", "image": { "@type": "ImageObject", "url": "<?php echo $news_data['image']; ?>", "height": 325, "width": 650 }, "datePublished": "<?php echo gmdate("Y-m-d\TH:i:s\+03:00", $news_data['date_u']); ?>", "dateModified": "<?php echo gmdate("Y-m-d\TH:i:s\+03:00", $news_data['date_u']); ?>", "genre": "news", "wordCount": <?php echo str_word_count($news_data['text']); ?>, "inLanguage": "tr-TR", "keywords": "<?php echo strip_tags(str_replace(' ', ', ', htmlentities($news_data['spot'], ENT_QUOTES))); ?>", "author": { "@type": "Person", "name": "<?php echo $news_data['agency_title']; ?>" }, "publisher": { "@type": "Organization", "name": "Ulak News", "logo": { "@type": "ImageObject", "url": "https://ulak.news/img/ulak/logo_2.webp", "width": 111, "height": 60 } }, "description": "<?php echo htmlentities(strip_tags($news_data['title']), ENT_QUOTES); ?>" } </script>
 

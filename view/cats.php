@@ -12,7 +12,7 @@
                                     ?>
                                         <div class="author-item">
                                             <div class="author-info">
-                                                <a href="/<?php echo $cat['seo_link']; ?>" class="author-name" style="margin-left: 15px;"><h4><?php echo $cat['cat']; ?></h4></a>
+                                                <a href="/<?php echo $cat['seo_link']; ?>" class="author-name" style="margin-left: 15px;"><h4><?php echo $cat['cat']; ?> (<?php echo $cat['total']; ?>)</h4></a>
                                             </div>
                                         </div>
                                     <?php

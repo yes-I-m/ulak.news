@@ -31,7 +31,7 @@
 	}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,6 +62,7 @@
 	<?php
 		}
 	?>
+	<link rel="canonical" href="https://ulak.news/arama.html" />
 	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />
 	
 	<!-- icons -->

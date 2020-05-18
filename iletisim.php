@@ -12,7 +12,7 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
 	<meta name="keywords" content="İletişim, kategoriler, ulak news kategorileri" />
 	<meta property="og:description" content="İletişim | Ulak.news" />
 	<meta name="description" content="İletişim | Ulak.news" />
-
+	<link rel="canonical" href="https://ulak.news/iletisim.html" />
 	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />
 	
 	<!-- icons -->

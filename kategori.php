@@ -10,9 +10,10 @@
 	$cat_data=[];
 
 	if(isset($_GET['kategori'])){
+		$_GET['kategori'] = strip_tags($_GET['kategori']);
 		$all_cats = $ulak_api_class->get_cats();
 		$all_news = $ulak_api_class->get_cat_news($_GET['kategori']);
-		if(count($all_news)>=0){
+		if(count($all_news)>0){
 			$cat_data['title']=base64_decode($_GET['kategori']);
 			$cat_status = true;
 		}
@@ -21,7 +22,7 @@
 	}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,6 +38,7 @@
 	<meta name="keywords" content="<?php echo $cat_data['title']; ?> ile ilgili haberler, son dakika haberler" />
 	<meta property="og:description" content="<?php echo $cat_data['title']; ?>, ile ilgili haberler, son dakika haberler" />
 	<meta name="description" content="<?php echo $cat_data['title']; ?> ile ilgili haberler, son dakika haberler" />
+	<link rel="canonical" href="https://ulak.news/kategori.php?kategori=<?php echo base64_encode($cat_data['title']); ?>" />
 
 	<?php
 		}else{
@@ -46,6 +48,7 @@
 	<meta name="keywords" content="tüm kategoriler, kategoriler, ulak news kategorileri" />
 	<meta property="og:description" content="Tüm kategoriler | Ulak.news" />
 	<meta name="description" content="Tüm kategoriler | Ulak.news" />
+	<link rel="canonical" href="https://ulak.news/kategori.html" />
 	<?php
 		}
 	?>

@@ -21,7 +21,7 @@
 	}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +37,7 @@
 	<meta name="keywords" content="<?php echo $agency_data['title']; ?> ile ilgili haberler, son dakika haberler" />
 	<meta property="og:description" content="<?php echo $agency_data['title']; ?>, ile ilgili haberler, son dakika haberler" />
 	<meta name="description" content="<?php echo $agency_data['title']; ?> ile ilgili haberler, son dakika haberler" />
-
+	<link rel="canonical" href="https://ulak.news/<?php echo $agency_data['seo_link']; ?>" />
 	<?php
 		}else{
 	?>
@@ -47,7 +47,7 @@
 	<meta name="keywords" content="<?php foreach($agencies as $agency){ echo $agency['title']." haberleri, "; } ?>, tüm ajanslar, ajanslar, türkiye haber ajansları, haber ajanslar, ulak news ajanslar" />
 	<meta property="og:description" content="<?php foreach($agencies as $agency){ echo $agency['title']." haberleri, "; } ?>Tüm ajanslar, türkiyeden haber ajanslarının son dakika haberleri | Ulak.news" />
 	<meta name="description" content="<?php foreach($agencies as $agency){ echo $agency['title']." haberleri, "; } ?>Tüm ajanslar, türkiyeden haber ajanslarının son dakika haberleri | Ulak.news" />
-
+	<link rel="canonical" href="https://ulak.news/kaynak.html" />
 	<?php
 		}
 	?>
