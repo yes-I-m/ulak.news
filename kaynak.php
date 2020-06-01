@@ -38,7 +38,7 @@
 	<meta property="og:description" content="<?php echo $agency_data['title']; ?>, ile ilgili haberler, son dakika haberler" />
 	<meta name="description" content="<?php echo $agency_data['title']; ?> ile ilgili haberler, son dakika haberler" />
 	<link rel="canonical" href="https://ulak.news/<?php echo $agency_data['seo_link']; ?>" />
-	<meta property="og:locale" content="tr_TR" />
+	<meta property="og:url" content="https://ulak.news/<?php echo $agency_data['seo_link']; ?>" />
 
 	<?php
 		}else{
@@ -50,11 +50,21 @@
 	<meta property="og:description" content="<?php foreach($agencies as $agency){ echo $agency['title']." haberleri, "; } ?>Tüm ajanslar, türkiyeden haber ajanslarının son dakika haberleri | Ulak.news" />
 	<meta name="description" content="<?php foreach($agencies as $agency){ echo $agency['title']." haberleri, "; } ?>Tüm ajanslar, türkiyeden haber ajanslarının son dakika haberleri | Ulak.news" />
 	<link rel="canonical" href="https://ulak.news/kaynak.html" />
-	<meta property="og:locale" content="tr_TR" />
+	<meta property="og:url" content="https://ulak.news/kaynak.html" />
 
 	<?php
 		}
 	?>
+	<meta itemprop="isFamilyFriendly" content="true"/>
+	<meta property="og:locale" content="tr_TR" />
+	<meta property="og:image" content="https://ulak.news/img/ulak/ulak_logo_3.png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@ulak_news" />
+	<meta name="twitter:creator" content="@ulak_news" />
+	<meta name="twitter:image" content="https://ulak.news/img/ulak/ulak_logo_3.png" />
+	<meta property="og:image:width" content="670" />
+	<meta property="og:image:height" content="371" />
+
 	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />
 
 	<!-- icons -->

@@ -1953,6 +1953,12 @@ blockquote span{
   margin-top:1em;
 }
 
+.source-item{
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .article-source-box{
 	border:dashed 1px #CCC;
 	padding: 6px 12px;

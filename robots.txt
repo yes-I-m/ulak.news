@@ -7,3 +7,4 @@ Sitemap: https://ulak.news/sitemap.php?page=3
 Sitemap: https://ulak.news/sitemap.php?page=4
 Sitemap: https://ulak.news/sitemap.php?page=5
 Sitemap: https://ulak.news/sitemap.php?page=6
+Sitemap: https://ulak.news/sitemap.php?page=7

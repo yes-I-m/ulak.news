@@ -60,7 +60,8 @@
 			}
 		}
 	?>
-	
+
+	<meta property="article:published_time" content="<?php echo gmdate("Y-m-d\TH:i:s\+03:00", $news_data['date_u']); ?>"/>
 	<meta property="og:description" content="<?php echo htmlentities(strip_tags($news_data['spot']), ENT_QUOTES); ?> | Ulak News" />
 	<meta itemprop="image" content="<?php echo $news_data['image']; ?>" />
 	<meta itemprop="dateCreated" content="<?php echo strip_tags($news_data['date']); ?>">
