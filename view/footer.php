@@ -1,17 +1,21 @@
 <div class="seperator"></div>
 <!-- Footer -->
-<footer class="page-footer font-small" style="width: 70%;">
+<footer class="page-footer font-small">
 
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3">
-        <p>
-            ulak.news açık kaynak kodlu bir projedir. Basının özgürlüğüne inanan, bireyin haber alma özgürlüğüne sahip çıkan bir ortam yaratmak amaçlı oluşturulan otomatik olarak haber yayınlayan sistemdir. Daha fazla detay için hakkımızda kısmına göz atın...<br>
+        <p style="padding-left: 15px; padding-right: 15px">
+            ulak.news açık kaynak kodlu bir projedir. Basının özgürlüğüne inanan, bireyin haber alma özgürlüğüne sahip çıkan bir ortam yaratmak amaçlı oluşturulan otomatik olarak haber yayınlayan sistemdir. Daha fazla detay için hakkımızda kısmına göz atın...<hr/>
             Bu İnternet Sitesinin her hangi bir sayfasına girilmesi halinde Kullanım Şartları, Topluluk Şartları, Sorumluluk Reddi Beyanı şartlarını kabul edilmiş sayılır. Bu şartların kabul edilmemesi durumunda İnternet Sitesine girilmemelidir. İlgili Şartlara Sayfalar bölümünden ulaşabilirsiniz.
         </p>
+		<p>
+			<img style="width: 10%;" src="./img/ulak/iyad-logo.jpg" alt="İYAD" title="İYAD" /> - Ulak News İYAD Üyesidir.
+		</p>
   </div>
   <!-- Copyright -->
 
 </footer>
+
 <!-- Footer -->
 
 
