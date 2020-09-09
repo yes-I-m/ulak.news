@@ -86,8 +86,17 @@
 						<div class="article-content">
 							<h1 class="extra-title">Hakkımızda</h1>
 							<div class="article-inner">
-								<p>En iyi haber okuma deneyimini Türkiye'de ki  bir çok haber kaynaklarını birleştirerek sonuç alıyoruz.</p>
-								<p>ulak.news açık kaynak kodlu bir projedir. Basının özgürlüğüne inanan, bireyin haber alma özgürlüğüne sahip çıkan bir ortam yaratmak amaçlı oluşturulan otomatik olarak haber yayınlayan sistemdir.</p>	
+								<ul style="list-style-type: circle;">
+									<li>En iyi haber okuma deneyimini Türkiye'de ki  bir çok haber kaynaklarını birleştirerek sonuç alıyoruz.</li>
+									<li>ulak.news açık kaynak kodlu bir projedir. Basının özgürlüğüne inanan, bireyin haber alma özgürlüğüne sahip çıkan bir ortam yaratmak amaçlı oluşturulan otomatik olarak haber yayınlayan sistemdir.</li>	
+									<li>Bir çok haber kaynağından haberleri tek bir platformda topladık! Reklamsız, Özgür ve Tarafsız olarak yayınlıyoruz.  </li>	
+									<li>Haberlere özgürce yorum yapabilir, paylaşabilir veya duygu belirtebilirsiniz.</li>	
+									<li>Sizlere en iyi haber okuma deneyimi sunmak için sürekli ulak.news'i geliştiriyoruz.</li>
+									<li>ulak.news asla kaynağından aldığı haberi değiştirmez, haberin orjinalliği ile kaynak belirterek yayınlar.</li>	
+									<li>ulak.news'e isteyen tüm haber kaynakları katılabilir. Haberleri kaynağından izin alarak paylaşıyoruz.</li>
+									<li>İçeriğimiz ile ilgili hukuki bir durum olduğunda hızlı bir şekilde geri dönüyoruz.</li>
+									<li>Okurlarımızın bilgilerini toplamıyor, istatistiki verilerimizi güvenilir olmayan platformlarla paylaşmıyoruz.</li>
+								</ul>
 							</div>
 
 							<!--this is important for the left ad box or share box fixer -->
@@ -99,24 +108,7 @@
                     </div>
                     <div class="content-sidebar">
                         <div class="sidebar_inner">
-						<ul>
-							<li>
-								<a href="./hakkimizda.html"><span class="menu-label">Hakkımızda</span></a>
-							</li>
-							<li>
-								<a href="./iletisim.html"><span class="menu-label">İletişim</span></a>
-							</li>
-							<li>
-								<a href="./reddi_beyan.html"><span class="menu-label">Reddi Beyan</span></a>
-							</li>
-							<li>
-								<a href="./topluluk_sozlesmesi.html"><span class="menu-label">Topluluk Sözleşmesi</span></a>
-							</li>
-							<li>
-								<a href="./kullanim_sozlesmesi.html"><span class="menu-label">Kullanım Sözleşmesi</span></a>
-							</li>
-						</ul>
-                            <div class="seperator"></div>
+							<?php include("./view/sidebar_menu_group.php"); ?>
                             <!-- 
                             <a href="#" class="widget-ad-box">
                                 <img src="img/adbox300x250.png" width="300" height="250">
@@ -136,7 +128,7 @@
 	<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
-	<script src="js/main-script.min.js"></script>
+	<script src="js/main-script.js"></script>
 	<script type="text/javascript">
 
 		//Owl carousel initializing

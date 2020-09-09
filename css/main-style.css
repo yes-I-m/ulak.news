@@ -1467,14 +1467,12 @@ a{
     border-radius: 100%;
     box-shadow: 0 1px 6px rgba(0,0,0,.1);
     position: relative;
-    top: -30px;
 }
 .author-wrapper .author-image img{
 	display: block;
 }
 .author-wrapper .author-name{
 	margin: 0;
-	margin-top: -30px;
 	font-size: 36px;
 }
 .author-wrapper p{
@@ -1836,22 +1834,25 @@ a{
 	padding-bottom: 5px;
 }
 .article-emoticons li .happy{
-	background-image: url(../img/happy.svg);
+	background-image: url(../img/emote/happy.svg);
 }
 .article-emoticons li .love{
-	background-image: url(../img/love.svg);
+	background-image: url(../img/emote/love.svg);
 }
 .article-emoticons li .shocked{
-	background-image: url(../img/shocked.svg);
+	background-image: url(../img/emote/shocked.svg);
 }
 .article-emoticons li .angry{
-	background-image: url(../img/angry.svg);
+	background-image: url(../img/emote/angry.svg);
 }
 .article-emoticons li .crying{
-	background-image: url(../img/crying.svg);
+	background-image: url(../img/emote/crying.svg);
 }
 .article-emoticons li .sleepy{
-	background-image: url(../img/sleepy.svg);
+	background-image: url(../img/emote/sleepy.svg);
+}
+.article-emoticons li .superhappy{
+	background-image: url(../img/emote/superhappy.svg);
 }
 
 .article-inner{

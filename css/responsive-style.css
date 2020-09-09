@@ -47,7 +47,37 @@
 	}
 	
 }
+.header-menu-mobile{
+	display: none;
+}
 
+
+@media (max-width: 950px){
+	.header-menu{
+		display: none;
+	}
+	.header-menu-mobile{
+		display: inherit;
+	}
+}
+
+@media (max-width: 515px){
+	.header-menu{
+		display: none;
+	}
+	.header-menu-mobile{
+		display: none;
+	}
+}
+
+/* @media (max-width: 950px){
+	.header-menu{
+		display: none;
+	}
+	.header-menu-mobile{
+		display: contents;
+	}
+} */
 
 @media (max-width: 767px){
 	.header-menu{

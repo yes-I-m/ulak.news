@@ -39,8 +39,8 @@
 	<meta name="keywords" content="<?php echo strip_tags(str_replace(' ', ', ', htmlentities($news_data['spot'], ENT_QUOTES))); ?>" />
 	<meta name="description" content="<?php echo htmlentities(strip_tags($news_data['spot']), ENT_QUOTES); ?> | Ulak News" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@ulak_news" />
-	<meta name="twitter:creator" content="@ulak_news" />
+	<meta name="twitter:site" content="@ulaknews" />
+	<meta name="twitter:creator" content="@ulaknews" />
 	<meta name="twitter:title" content="<?php echo htmlentities(strip_tags($news_data['title']), ENT_QUOTES); ?>" />
 	<meta name="twitter:image" content="<?php echo $news_data['image']; ?>" />
 	<meta property="og:image:width" content="670" />
@@ -118,7 +118,6 @@
 
 	<!-- Ideabox responsive css file -->
 	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css?v=<?php echo date('Ymd'); ?>">
-
 	<link rel="manifest" href="manifest.json">
 </head>
 
@@ -165,27 +164,25 @@
 							</div>
 
 							<div class="article-meta-info">
-								<a href="#" class="author-name"><?php echo $news_data['agency_title']; ?></a> —
-								<span class="article-post-date"><?php echo $ulak_class->time_since($news_data['date_u']===null ? 0 : $news_data['date_u']); ?></span>
-								<span class="article-reading-time"><?php echo $ulak_class->reading_time($news_data['text']===null ? "" : $news_data['text']); ?> okuma süresi</span>
+								<a href="/kaynak_<?php echo $news_data['agency']; ?>.html" class="author-name article-reading-time"><i class="material-icons" style="vertical-align:middle">&#xe8bf;</i> <?php echo $news_data['agency_title']; ?></a>
+								<span class="article-reading-time"><i class="material-icons date_range" style="vertical-align:middle">&#xe916;</i> <?php echo $ulak_class->time_since($news_data['date_u']===null ? 0 : $news_data['date_u']); ?></span>
+								<span class="article-reading-time"><i class="material-icons remove_red_eye" style="vertical-align:middle">&#xe417;</i> <?php echo $news_data['read_times']; ?> kere okundu.</span>
+								<span class="article-reading-time"><i class="material-icons av_timer" style="vertical-align:middle">&#xe01b;</i> <?php echo $ulak_class->reading_time($news_data['text']===null ? "" : $news_data['text']); ?> okuma süresi</span>
+								<button style="border: none; outline:none;" class="article-reading-time article-reading-time" data-zebra-tooltip title="Favoriye ekle">
+										<i class="material-icons">&#xE866;</i>
+								</button>
 							</div>
-							<figure>
-								<img style="width: 100%;" alt="<?php echo $news_data['title']; ?>" src="<?php echo $news_data['image']; ?>">	
-							</figure>
 							
 						</div>
 						<div class="article-content"> <!-- adbox120 or adbox160 -->
-							<div class="article-left-box" style="height: 2641.03px;">
-								<div class="article-left-box-inner" style="position: absolute; top: 0px; bottom: auto;">
+							<div class="article-left-box">
+								<div class="article-left-box-inner">
 									<div class="article-share">
 										<a rel="noreferrer" style="font-size:0px" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://ulak.news/<?php echo $news_data['seo_link']; ?>&t=<?php echo $news_data['title']; ?>" class="facebook">Facebook</a>
-										<a rel="noreferrer" style="font-size:0px" target="_blank" href="https://twitter.com/share?url=https://ulak.news/<?php echo $news_data['seo_link']; ?>&via=ulak_news&text=<?php echo $news_data['title']; ?>" class="twitter">Twitter</a>
+										<a rel="noreferrer" style="font-size:0px" target="_blank" href="https://twitter.com/share?url=https://ulak.news/<?php echo $news_data['seo_link']; ?>&via=ulaknews&text=<?php echo $news_data['title']; ?>" class="twitter">Twitter</a>
 									</div>
-									<!-- <span class="add-to-favorite" data-zebra-tooltip="" title="Ad to favorite">
-										<i class="material-icons"></i>
-									</span> -->
-									<!-- <ul class="article-emoticons">
-										<li>
+									<ul class="article-emoticons">
+									<!-- <li>
 											<a href="#" class="popular happy"></a><span>13</span>
 											<ul>
 												<li><a href="#" class="love"></a><span>7</span></li>
@@ -194,11 +191,14 @@
 												<li><a href="#" class="crying"></a><span>1</span></li>
 												<li><a href="#" class="sleepy"></a><span>0</span></li>
 											</ul>
-										</li>										
-									</ul> -->
+									</li> -->
+									</ul>
 								</div>
 							</div>
 							<div class="article-inner">
+								<figure>
+									<img style="width: 100%;" alt="<?php echo $news_data['title']; ?>" src="<?php echo $news_data['image']; ?>">	
+								</figure>
 								<?php echo $news_data['text']; ?>
 								<!-- article sources area start -->
 								<div class="article-source-box">
@@ -223,9 +223,9 @@
 							<div id="endOfTheArticle"></div>
 
 							<!-- More article unit start -->
-							<div class="more-article">
+							<div style="display: none;" class="more-article">
 								<div class="w-header">
-									<div class="w-title">Bu haber ile ilgili</div>
+									<div class="w-title">Haber ile ilgili</div>
 									<div class="w-seperator"></div>
 								</div>
 								<div class="more-posts">
@@ -233,37 +233,6 @@
 								</div>
 							</div>
 							<!-- More article unit end -->
-
-							<!-- article comment area start -->
-							<div class="article-comments">
-								<div class="w-header">
-									<div class="w-title">Bu haberi yorumla</div>
-									<div class="w-seperator"></div>
-								</div>
-								<div class="comment-form">
-									<form id="comment-form">
-										<div class="comment-columns">
-											<div class="frm-row columns column-2">
-												<input require type="text" autocomplete="off" name="name" placeholder="Adınız" class="frm-input">
-											</div>
-										</div>
-										<div class="frm-row">
-											<textarea require class="frm-input" name="text" autocomplete="off" rows="4" placeholder="Yorumunuz..."></textarea>
-										</div>
-										<div class="frm-row">
-											<div class="comment-form-notice columns column-4">
-												<div>Yorum yaparak Kullanım Şartları, Topluluk Şartları ve Sorumluluk Reddi Beyanınını kabul etmiş sayılırsınız.<br/>1 dakika da en fazla 1 yorum gönderebilirsiniz.</div>
-												<!-- <div>You are commenting as a visitor, you can <a href="#" data-modal="loginModal">login</a> or <a href="#" data-modal="registerModal">register</a></div> -->
-											</div>
-											<div class="columns column-2">
-												<button onClick="addComment();" type="button" class="addCommentButton frm-button full material-button">Gönder</button>
-											</div>
-											<div class="clearfix"></div>
-										</div>
-				
-									</form>
-								</div>
-
 								<div class="w-header">
 									<div class="w-title">Yorumlar (<span id="comment-total">0</span>)</div>
 									<div class="w-seperator"></div>
@@ -290,7 +259,38 @@
 												<button type="button" class="comment-vote down-vote"><i class="material-icons"></i> <span class="vote-count">-1</span></button>
 											</div>
 										</div> -->
-									</div>
+								</div>
+
+							<!-- article comment area start -->
+							<div class="article-comments">
+								<div class="w-header">
+									<div class="w-title">Haberi yorumla</div>
+									<div class="w-seperator"></div>
+								</div>
+								<div class="comment-form">
+									<form id="comment-form">
+										<div class="comment-columns">
+											<div class="frm-row columns column-2">
+												<input require type="text" autocomplete="off" name="name" placeholder="Adınız" class="frm-input">
+											</div>
+										</div>
+										<div class="frm-row">
+											<textarea require class="frm-input" name="text" autocomplete="off" rows="4" placeholder="Yorumunuz..."></textarea>
+										</div>
+										<div class="frm-row">
+											<div class="comment-form-notice columns column-4">
+												<div>Yorum yaparak Kullanım Şartları, Topluluk Şartları ve Sorumluluk Reddi Beyanınını kabul etmiş sayılırsınız.<br/>1 dakika da en fazla 1 yorum gönderebilirsiniz.</div>
+												<!-- <div>You are commenting as a visitor, you can <a href="#" data-modal="loginModal">login</a> or <a href="#" data-modal="registerModal">register</a></div> -->
+											</div>
+											<div class="columns column-2">
+												<button onClick="addComment();" type="button" class="addCommentButton frm-button full material-button">Gönder</button>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+				
+									</form>
+								</div>
+
 									<!-- comment item end -->
 									
 								</div>
@@ -336,15 +336,50 @@
 	<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@13.0.1/dist/lazyload.min.js"></script>
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
-	<script src="js/main-script.min.js"></script>
+	<script src="js/main-script.js"></script>
 
 	<script type="text/javascript">
+
 	// Initialize LazyLoad inside the callback
-	new LazyLoad({
-                    elements_selector: ".lazyload"
-                });
+	new LazyLoad({ elements_selector: ".lazyload" });
 	var id = <?php echo $get_id; ?>;
 	var agency = "<?php echo $get_agency; ?>";
+
+	function emojiFinder(emoji){
+		let emote = '';
+		let caseNumber = 0;
+		switch (emoji) {
+			case 1:
+				emote = 'angry';
+				caseNumber = 1;
+				break;
+			case 2:
+				emote = 'crying';
+				caseNumber = 2;
+				break;
+			case 3:
+				emote = 'happy';
+				caseNumber = 3;
+				break;
+			case 4:
+				emote = 'love';
+				caseNumber = 4;
+				break;
+			case 5:
+				emote = 'superhappy';
+				caseNumber = 5;
+				break;
+			case 6:
+				emote = 'shocked';
+				caseNumber = 6;
+				break;
+			case 7:
+				emote = 'sleepy';
+				caseNumber = 7;
+				break;
+		}
+		return {emote, caseNumber};
+	}
 
 		function addComment(){
 			let form_data = $('#comment-form').serializeArray();
@@ -390,7 +425,6 @@
 			$.ajax({
 				type: 'GET',
 				url: 'api.php',
-				async: true,
 				data: {
 					process: "getComments",
 					agency: agency,
@@ -437,6 +471,97 @@
 			});
 		}
 
+		function emojiGet(click=0){
+			$.ajax({
+				type: 'GET',
+				url: 'api.php',
+				data: {
+					process: "emojiGet",
+					agency: agency,
+					id: id
+				},
+				timeout: 10000,
+				beforeSend: function () {
+					$("#emojiStats").html("");
+				},
+				success: function (result) {
+					if (result.status) {
+						let first = ``;
+						let lis = ``;
+						added = [];
+						if(result.result.length < 1){
+							first += '<a onClick="emojiSave(1)" class="popular happy"></a><span>0</span>';
+							added.push(1);
+						}
+						for (let index = 0; index < result.result.length; index++) {
+							emojiDetail = emojiFinder(result.result[index].emoji);
+							added.push(emojiDetail.caseNumber);
+							if(index===0){
+								first += '<a onClick="emojiSave('+emojiDetail.caseNumber+')" class="popular '+emojiDetail.emote+'"></a><span>'+result.result[index].total+'</span>';
+							}else{
+								lis += '<li><a onClick="emojiSave('+emojiDetail.caseNumber+')" class="'+emojiDetail.emote+'"></a><span>'+result.result[index].total+'</span></li>';
+							}
+						}
+						for (let index = 1; index <= 7; index++) {
+							if(!added.includes(index)){
+								emojiDetail = emojiFinder(index);
+								lis += '<li><a onClick="emojiSave('+emojiDetail.caseNumber+')" class="'+emojiDetail.emote+'"></a><span>0</span></li>';
+							}
+						}
+						let fullhtml = `<li>`+first+`<ul>`+lis+`</ul></li>`
+						$('.article-emoticons').html(fullhtml);
+						// $("#emojiStats").html("<strong>Ort:</strong> "+result.result.avg+" - <strong>Toplam:</strong> "+result.result.total+" Oy");
+					} else {
+						$(".rating").html("Emoji bilgileri yüklenirken hata!");
+					}
+				},
+				error: function (data) {
+					$(".rating").html("Emoji bilgileri yüklenirken bağlantıda hata!");
+				},
+				complete: function (data) {
+					console.log("Get Emoji Process OK");
+				}
+			});
+		}
+
+
+		function emojiSave(val){
+			$.ajax({
+				type: 'GET',
+				url: 'api.php',
+				data: {
+					process: "emojiSave",
+					agency: agency,
+					id: id,
+					rate: val
+				},
+				timeout: 10000,
+				beforeSend: function () {
+					$("#emojiStatus").html('<i class="material-icons timer">&#xe425;</i> '+"Kaydediliyor...");
+				},
+				success: function (result) {
+					if (result.status) {
+						$("#emojiStatus").html("<p style='color: green;'>"+result.desc+"</p>");
+						// $("input[name='rating']").prop( "disabled", true );
+					} else {
+						$("#emojiStatus").html("<p style='color: red;'>"+result.desc+"</p>");
+					}
+				},
+				error: function (data) {
+					$(".rating").html("<p style='color: red;'>Emoji bilgileri kaydedilirken bağlantıda hata!</p>");
+				},
+				complete: function (data) {
+					emojiGet(val);
+					console.log("Save Emoji Process OK");
+				}
+			});
+		}
+
+		$("input[name='rating']").click(function(){
+			let val = $(this).val();
+			emojiSave(val);
+		});
+
 		//widget carousel initialize
 		$('#widgetCarousel').owlCarousel({
 		    dots:true,
@@ -445,6 +570,7 @@
 		});
 
 		getComment();
+		emojiGet();
 
 	</script>
 

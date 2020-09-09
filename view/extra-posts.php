@@ -6,7 +6,7 @@
                         <article class="extra-post-box" style="min-height: 130px; max-height: 130px;">
                             <a title="<?php echo $news['title']; ?>" href="/<?php echo $news['seo_link']; ?>" class="extra-post-link">
                                 <div class="post-image">
-                                    <span><img alt="<?php echo $news['title']; ?>" src="<?php echo $news['image']; ?>?v=123.webp" width="80" height="80"></span>
+                                    <span><img alt="<?php echo $news['title']; ?>" src="<?php echo $news['image']; ?>" width="80" height="80"></span>
                                 </div>
                                 <div class="post-title">
                                     <?php echo $news['title']; ?>

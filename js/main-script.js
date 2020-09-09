@@ -120,7 +120,7 @@ var setStickySidebar = function(){
 				if ((scrollTop+leftSidebarH+80) > endOfTheArticlePos)
 					leftSidebar.css({'position':'absolute', 'top':'auto', 'bottom':10});
 				else
-					leftSidebar.css({'position':'fixed', 'top':70, 'bottom':'auto'});
+					leftSidebar.css({'position':'fixed', 'top':63, 'bottom':'auto'});
 			}
 			else
 				leftSidebar.css({'position':'absolute', 'top':0, 'bottom':'auto'});
@@ -265,12 +265,12 @@ $(document).ready(function(){
         }
     });
 
-	// //trigger scrollable elements actions
-    // $(window).on('scroll',function () {
-    // 	showHideHeader.call(this);
-    // 	setStickySidebar.call(this);
-    // 	makeParallax.call(this);
-    // });
+	//trigger scrollable elements actions
+    $(window).on('scroll',function () {
+    	showHideHeader.call(this);
+    	setStickySidebar.call(this);
+    	makeParallax.call(this);
+    });
 
     //sidebar boxed posts scripts    
     $('.w-boxed-post ul li').on('mouseover', function(e){

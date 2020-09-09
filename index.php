@@ -27,6 +27,7 @@
 	<meta property="og:locale" content="tr_TR" />
 	<meta itemprop="isFamilyFriendly" content="true"/>
 	<meta name="robots" content="index, follow">
+	<meta name="revisit-after" content="1 Days"/>
 	<link rel="canonical" href="https://ulak.news" />
 	<link rel="alternate" type="application/rss+xml" title="ulak news rss beslemesi" href="https://ulak.news/atom_news.php?cat=sondakika" />
 
@@ -151,7 +152,7 @@
 	<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
-	<script src="js/main-script.min.js"></script>
+	<script src="js/main-script.js"></script>
 	<script type="text/javascript">
 
 			var $btns = $('#agency_filter').change(function() {

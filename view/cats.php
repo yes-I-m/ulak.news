@@ -28,16 +28,7 @@
 				</div>
 				<div class="content-sidebar">
 					<div class="sidebar_inner" style="position: absolute; top: 0px;">
-
-						<div class="sidebar-spacer"></div>
-						<div class="sidebar-button-group">
-							<a href="about-us.html" class="sidebar-buttons material-button"><i class="material-icons"></i><span class="btn-label">About Us</span></a>
-							<a href="authors.html" class="sidebar-buttons material-button active"><i class="material-icons"></i><span class="btn-label">Authors</span></a>
-							<a href="privacy-policy.html" class="sidebar-buttons material-button"><i class="material-icons"></i><span class="btn-label">Privacy Policy</span></a>
-							<a href="contact.html" class="sidebar-buttons material-button"><i class="material-icons"></i><span class="btn-label">Contacts</span></a>
-						</div>
-
-
+						<?php include("./view/sidebar_menu_group.php"); ?>
 					</div>
 				</div>
 			</div>

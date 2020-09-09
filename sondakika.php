@@ -147,7 +147,7 @@
 	<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
-	<script src="js/main-script.min.js"></script>
+	<script src="js/main-script.js"></script>
 	<script type="text/javascript">
 
 			var $btns = $('#agency_filter').change(function() {

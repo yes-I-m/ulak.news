@@ -9,7 +9,7 @@
                 foreach($most_read as $key=>$news){
             ?>
                 <li class="active">
-                    <a title="<?php echo $news['title']; ?>" href="/<?php echo $news['seo_link']; ?>" style="background-image: url(<?php echo $news['image']; ?>?v=123.webp);">
+                    <a title="<?php echo $news['title']; ?>" href="/<?php echo $news['seo_link']; ?>" style="background-image: url(<?php echo $news['image']; ?>);">
                         <div class="box-wrapper">
                             <div class="box-left">
                                 <span><?php echo $key+1; ?></span>

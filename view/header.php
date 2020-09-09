@@ -12,13 +12,10 @@
     </div>
     <!--logo end -->
 
-    <div class="header-menu">
-
         <!-- header left menu start -->
             <?php include("./view/header-menu.php"); ?>
         <!-- header left menu end -->
 
-    </div>
     <div class="header-right with-seperator">
 
         <!-- header right menu start -->

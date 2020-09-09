@@ -2,7 +2,7 @@
 
     <!-- side menu logo start -->
     <div class="sidebar-logo">
-        <a href="#"></a>
+        <a href="./index.php"><img alt="Ulak News | Son dakika haberler" style="width: 122px; height: 27px;" src="./img/ulak/ulak_logo_3.png" /></a>
         <div class="sidebar-toggle-button">
             <i class="material-icons">&#xE317;</i>
         </div>
@@ -25,9 +25,21 @@
             </a>
         </li>
         <li>
+            <a href="./kaynak.html" class="material-button">
+                <span class="menu-icon"><i class="material-icons">&#xe8bf;</i></span>
+                <span class="menu-label">Kaynaklar</span>
+            </a>
+        </li>
+        <li>
             <a href="./hakkimizda.html" class="material-button">
                 <span class="menu-icon"><i class="material-icons">&#xE866;</i></span>
                 <span class="menu-label">Hakkımızda</span>
+            </a>
+        </li>
+        <li>
+            <a href="./kunye.html" class="material-button">
+                <span class="menu-icon"><i class="material-icons">&#xe85d;</i></span>
+                <span class="menu-label">Künye</span>
             </a>
         </li>
         <li>
@@ -92,7 +104,7 @@
             </a>
         </li>
         <li>
-            <a rel="noreferrer" href="https://twitter.com/ulak_news" target="_blank" class="twitter material-button">
+            <a rel="noreferrer" href="https://twitter.com/ulaknews" target="_blank" class="twitter material-button">
                 <span class="menu-label">Twitter</span>
             </a>
         </li>

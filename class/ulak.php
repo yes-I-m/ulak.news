@@ -281,6 +281,113 @@ class UlakNews{
         }
         return [];
     }
+
+    /**
+     * get emoji stats.
+     * 
+     * @param string $agency
+     * @param integer $id
+     * 
+     * @return array;
+     */
+    public function get_emoji(string $agency=null, string $id=null){
+
+        if($agency === null || $id === null){
+            return false;
+        }
+
+        $id = strip_tags($id);
+        $agency = strip_tags($agency);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://nodejs-api.ulak.news/emoji/get",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_TIMEOUT => 2,
+            CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => json_encode(
+                array(
+                    "agency"=> $agency,
+                    "id"=> $id
+                )
+            ),
+            CURLOPT_HTTPHEADER => array(
+                "authorization: ".$_ENV["curl-auth-token"],
+                "content-type: application/json"
+            ),
+        ));
+
+        $response = json_decode(curl_exec($curl), true);
+        $err = curl_error($curl);
+        curl_close($curl);
+        
+        if ($err) {
+            return false;
+        } else {
+            return $response;
+        }
+        return false;
+
+    }
+
+    /**
+     * get emoji stats.
+     * 
+     * @param string $agency
+     * @param integer $id
+     * 
+     * @return array;
+     */
+    public function save_emoji(string $agency=null, string $id=null, $rate=null){
+
+        if($agency === null || $id === null || $rate === null){
+            return false;
+        }
+
+        $id = strip_tags($id);
+        $agency = strip_tags($agency);
+        $rate = strip_tags($rate);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://nodejs-api.ulak.news/emoji/save",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_TIMEOUT => 2,
+            CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => json_encode(
+                array(
+                    "agency"=> $agency,
+                    "id"=> $id,
+                    "rate"=> $rate,
+                    "ip"=> $this->getUserIP(),
+                )
+            ),
+            CURLOPT_HTTPHEADER => array(
+                "authorization: ".$_ENV["curl-auth-token"],
+                "content-type: application/json"
+            ),
+        ));
+
+        $response = json_decode(curl_exec($curl), true);
+        $err = curl_error($curl);
+        curl_close($curl);
+        
+        if ($err) {
+            return false;
+        } else {
+            return $response;
+        }
+        return false;
+
+    }
 }
 
 ?>

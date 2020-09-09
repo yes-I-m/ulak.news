@@ -1,6 +1,3 @@
-            <section class="main-highlight">
-			
-            </section>
             <section class="main-content">
                 <div class="main-content-wrapper">
                     <div class="content-body">

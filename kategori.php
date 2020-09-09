@@ -60,8 +60,8 @@
 	<meta property="og:locale" content="tr_TR" />
 	<meta property="og:image" content="https://ulak.news/img/ulak/ulak_logo_3.png" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@ulak_news" />
-	<meta name="twitter:creator" content="@ulak_news" />
+	<meta name="twitter:site" content="@ulaknews" />
+	<meta name="twitter:creator" content="@ulaknews" />
 	<meta name="twitter:image" content="https://ulak.news/img/ulak/ulak_logo_3.png" />
 	<meta property="og:image:width" content="670" />
 	<meta property="og:image:height" content="371" />
@@ -138,7 +138,7 @@
 	<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
-	<script src="js/main-script.min.js"></script>
+	<script src="js/main-script.js"></script>
 	<script type="text/javascript">
 
 		//Owl carousel initializing

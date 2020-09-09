@@ -88,9 +88,9 @@
 							<div class="article-inner">
 								<p>Ulak News ile 7/24 iletişim kurabilirsiniz: 
 								<script type="text/javascript">
-                                    document.write('info@' + 'orhanaydogdu.com.tr');
+                                    document.write('ulak@' + 'orhanaydogdu.com.tr');
                                 </script> <br/><br/>
-								Bir haberin doğrulundan şüphe ediyorsanız yada kaynağında ki güncellemeden dolayı sitemizde ki bir haberin güncelleşmesini istiyorsanız ilgili haber sayfasından bildirim gönderebilirsiniz.<br/>
+								Bir haberin doğrulundan şüphe ediyorsanız yada kaynağında ki güncellemeden dolayı sitemizde ki bir haberin güncelleşmesini istiyorsanız bizimle iletişime geçebilirsiniz.<br/>
 								Sitemizde ki bir içerik ile ilgili <i><strong>Hukuki</strong></i> bir durum söz konusu ise lütfen bizimle iletişime geçin. İlgili talebiniz ivediklikle yerine getirilecetir.</p>	
 							</div>
 
@@ -140,7 +140,7 @@
 	<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
-	<script src="js/main-script.min.js"></script>
+	<script src="js/main-script.js"></script>
 	<script type="text/javascript">
 
 		//Owl carousel initializing
