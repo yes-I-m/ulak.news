@@ -76,9 +76,9 @@ class UlakNews{
     public function get_news(string $agency="all", int $limit=60){
 
         if($agency==="all"){
-            $curl = $this->curl_func("https://nodejs-api.ulak.news/news/?limit=$limit");
+            $curl = $this->curl_func($_ENV['local3']."/news/?limit=$limit");
         }else{
-            $curl = $this->curl_func("https://nodejs-api.ulak.news/news/$agency?limit=$limit");
+            $curl = $this->curl_func($_ENV['local3']."/news/$agency?limit=$limit");
         }
 
         if($curl && $curl['status']){
@@ -99,7 +99,7 @@ class UlakNews{
             return false;
         }
 
-        $curl = $this->curl_func("https://nodejs-api.ulak.news/news/$agency/$id");
+        $curl = $this->curl_func($_ENV['local3']."/news/$agency/$id");
 
         if($curl && $curl['status']){
             return $curl['result'][0];
@@ -114,7 +114,7 @@ class UlakNews{
      * @return array
      */
     public function get_agencies(){
-        $curl = $this->curl_func("https://nodejs-api.ulak.news/agencies");
+        $curl = $this->curl_func($_ENV['local3']."/agencies");
         if($curl && $curl['status']){
             return $curl['result'];
         }
@@ -129,7 +129,7 @@ class UlakNews{
      * @return array
      */
     public function get_cats(int $limit=6){
-        $curl = $this->curl_func("https://nodejs-api.ulak.news/categories?limit=$limit");
+        $curl = $this->curl_func($_ENV['local3']."/categories?limit=$limit");
         if($curl && $curl['status']){
             return $curl['result'];
         }
@@ -144,7 +144,7 @@ class UlakNews{
      * @return array
      */
     public function get_cat_news(string $cat, $limit=50){
-        $curl = $this->curl_func("https://nodejs-api.ulak.news/category/$cat?limit=$limit");
+        $curl = $this->curl_func($_ENV['local3']."/category/$cat?limit=$limit");
         if($curl && $curl['status']){
             return $curl['result'];
         }
@@ -158,13 +158,20 @@ class UlakNews{
      * @param integer $limit
      * @return array
      */
-    public function search_news(string $arg, $limit=50){
+    public function search_news(string $arg, $regex=0, $sort=1, $limit=50){
         $arg = urlencode($arg);
-        $curl = $this->curl_func("https://nodejs-api.ulak.news/search?q=$arg&limit=$limit");
+        if(strlen($arg)<3){
+            return false;
+        }
+        $url = $_ENV['local3']."/search?q=$arg&regex=$regex&limit=$limit";
+        if($sort!==1){
+            $url = $_ENV['local3']."/search?q=$arg&regex=$regex&limit=$limit&sort=$sort";
+        }
+        $curl = $this->curl_func($url, 20000);
         if($curl && $curl['status']){
             return $curl['result'];
         }
-        return false;
+        return null;
     }
 
 
@@ -179,7 +186,7 @@ class UlakNews{
     public function get_most_readed($filter="today", $limit=5, $agency="all"){
     
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,"https://nodejs-api.ulak.news/most_read?limit=$limit");
+        curl_setopt($ch, CURLOPT_URL,$_ENV['local3']."/most_read?limit=$limit");
         curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Authorization:'.$_ENV["curl-auth-token"],
@@ -228,7 +235,7 @@ class UlakNews{
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://nodejs-api.ulak.news/comments/".$agency."/".$id."/add",
+            CURLOPT_URL => $_ENV['local3']."/comments/".$agency."/".$id."/add",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_TIMEOUT => 2,
@@ -275,7 +282,7 @@ class UlakNews{
             return false;
         }
 
-        $curl = $this->curl_func("https://nodejs-api.ulak.news/comments/".$agency."/".$id."/get");
+        $curl = $this->curl_func($_ENV['local3']."/comments/".$agency."/".$id."/get");
         if($curl && $curl['status']){
             return $curl;
         }
@@ -302,7 +309,7 @@ class UlakNews{
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://nodejs-api.ulak.news/emoji/get",
+            CURLOPT_URL => $_ENV['local3']."/emoji/get",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_TIMEOUT => 2,
@@ -355,7 +362,7 @@ class UlakNews{
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://nodejs-api.ulak.news/emoji/save",
+            CURLOPT_URL => $_ENV['local3']."/emoji/save",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_TIMEOUT => 2,

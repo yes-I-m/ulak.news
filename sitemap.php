@@ -16,7 +16,7 @@ if(isset($_GET['page'])){
 ///// CACHE BITIS /////
 
     $page = preg_replace('/\D/', '', $_GET['page']);
-    $data = file_get_contents("https://nodejs-api.ulak.news/sitemap_$page.xml");
+    $data = file_get_contents($_ENV['local3']."/sitemap_$page.xml");
     echo $data;
 }
 ?>

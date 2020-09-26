@@ -1888,6 +1888,8 @@ a{
 	max-height: 450px;
 	display: block;
 	max-width: 100% !important;
+	height: auto;
+    width: 100%;
 }
 .article-inner figure figcaption{
 	display: block;

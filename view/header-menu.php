@@ -30,7 +30,7 @@
                     </ul>
                 </div>
             </li>
-            <li><a href="/istatistik.html" class="material-button submenu-toggle">Analiz <i class="material-icons insert_chart">&#xe24b;</i></a></li>
+            <li><a href="/istatistik.html" class="material-button">Analiz <i class="material-icons insert_chart">&#xe24b;</i></a></li>
         </ul>
 </div>
 
@@ -72,6 +72,6 @@
                     </ul>
                 </div>
             </li>
-            <li><a href="/istatistik.html" class="material-button submenu-toggle">Analiz <i class="material-icons insert_chart">&#xe24b;</i></a></li>
+            <li><a href="/istatistik.html" class="material-button">Analiz <i class="material-icons insert_chart">&#xe24b;</i></a></li>
         </ul>
 </div>

@@ -267,7 +267,7 @@ $(document).ready(function(){
 
 	//trigger scrollable elements actions
     $(window).on('scroll',function () {
-    	showHideHeader.call(this);
+    	// showHideHeader.call(this);
     	setStickySidebar.call(this);
     	makeParallax.call(this);
     });

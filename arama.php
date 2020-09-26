@@ -11,16 +11,31 @@
 	$cat_data=[];
 	$desc = "";
 	$q = "";
+	$sort = 1;
+	$regex = 0;
 
 	if(isset($_GET['q'])){
 		$q = strip_tags(htmlentities($_GET['q']));
-		$all_news = $ulak_api_class->search_news($q);
+		$sortable = [1, 2, 3];
+		if(isset($_GET['sort'])){
+			if(in_array($_GET['sort'], $sortable)){
+				$sort = $_GET['sort'];
+			}
+		}
+		if(isset($_GET['regex'])){
+			$regex = 1;
+		}
+		$all_news = $ulak_api_class->search_news(strip_tags($q), $regex, $sort);
 		if($all_news !== false){
-			$search_status = true;
-			$desc = "<strong>".$q."</strong> ilgili arama sonuçları";
-			if(count($all_news)<1){
-				$search_status = false;
-				$desc = "Sonuç bulunamadı.";
+			if($all_news === null){
+				$desc = "Aramanız sıraya alındı lütfen bir kaç saniye sonra tekrar deneyin...";
+			}else{
+				$search_status = true;
+				$desc = "<strong>".$q."</strong> ilgili arama sonuçları";
+				if(count($all_news)<1){
+					$search_status = false;
+					$desc = "Sonuç bulunamadı.";
+				}
 			}
 		}else{
 			$desc = "Arama yapılamadı.";
@@ -91,7 +106,8 @@
 
 	<!-- Ideabox main theme css file. you have to add all pages -->
 	<link rel="stylesheet" type="text/css" href="css/main-style.min.css?v=<?php echo date('Ymd'); ?>">
-
+	<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+	<link rel="stylesheet" type="text/css" href="css/daterangepicker.css" />
 	<!-- Ideabox responsive css file -->
 	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css?v=<?php echo date('Ymd'); ?>">
 
@@ -123,19 +139,28 @@
                     <div class="content-body">
                         <div class="content-timeline">
                             <div class="post-list-header">
-                                <span class="post-list-title">Gelişmiş Arama</span> 
+                                <span class="post-list-title">Gelişmiş Arama</span><br/>
+									<!-- Arama tarih aralığı:
+									<div style="border: 1px solid #727cf5; width: 230px;" class="date datepicker dashboard-date" id="dashboardDates" >
+										<span class="input-group-addon bg-transparent"></span>
+										<i class="material-icons">event</i>
+									</div> -->
 									<div class="search">
-										<form action="arama.html" class="search-form" onsubmit="return validate('q', 3)">
+										<form action="arama.php" class="search-form" onsubmit="return validate('q', 3)">
 											<input type="text" autocomplete="off" min="1" value="<?php echo $q; ?>" require name="q" id="q" placeholder="Aramak istediğiniz Haber içeriği hakkında bir şeyler girebilirsiniz...">
 											<input type="submit" value="Ara">
-										</form>
 									</div>
+											<input type="checkbox" name="regex" value="1" id="regex" <?php if($regex===1){ echo "checked"; } ?>><label for="regex"> Regex</label>
+											<select onchange="this.form.submit()" id="sort" name="sort" class="frm-input">
+												<option <?php echo ($sort==1 ? 'selected' : ''); ?> value="1">En iyi eşleşen</option>
+												<option <?php echo ($sort==2 ? 'selected' : ''); ?> value="2">En Yeni</option>
+												<option <?php echo ($sort==3 ? 'selected' : ''); ?> value="3">En Eski</option>
+											</select>
+
+										</form>
 								<?php
 								if(isset($search_status)){
 								?>
-									<select id="agency_filter" class="frm-input">
-										<option value="all">Sırala</option>
-									</select>
 								<?php
 								}
 								?>
@@ -173,6 +198,82 @@
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
 	<script src="js/main-script.js"></script>
+	<script type="text/javascript" src="js/moment.min.js"></script>
+	<script type="text/javascript" src="js/moment-timezone.min.js"></script>
+	<script type="text/javascript" src="js/daterangepicker.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/daterangepicker.css" />
+
+	<script>
+		var start = moment().locale("tr").startOf('day');
+		var end = moment().locale("tr").endOf('day');
+
+		$(function() {
+
+			async function cb(start, end) {
+				let formated_start = start.format('YYYY.MM.DD');
+				let formated_end = end.format('YYYY.MM.DD');
+				let startX = parseInt(start.locale("tr").format('X'));
+				let endX = parseInt(end.locale("tr").format('X'));
+
+				await $('#dashboardDates span').html(formated_start + ' - ' + formated_end);
+
+			}
+
+			$('#dashboardDates').daterangepicker({
+				startDate: start,
+				endDate: end,
+				maxDate: start,
+				autoApply: true,
+				ranges: {
+					'Bugün': [moment().locale("tr").startOf('day'), moment().locale("tr").locale("tr").endOf('day')],
+					'Dün': [moment().locale("tr").subtract(1, 'days'), moment().locale("tr").subtract(1, 'days')],
+					'Son 7 gün': [moment().locale("tr").subtract(6, 'days'), moment().locale("tr")],
+					'Son 30 gün': [moment().locale("tr").subtract(29, 'days'), moment().locale("tr")],
+					'Bu ay': [moment().locale("tr").startOf('month'), moment().locale("tr").endOf('month')],
+					'Geçen ay': [moment().locale("tr").subtract(1, 'month').startOf('month'), moment().locale("tr").subtract(1, 'month').endOf('month')]
+				},
+				"locale": {
+					"format": "YYYY.MM.DD",
+					"separator": " - ",
+					"applyLabel": "Uygula",
+					"cancelLabel": "Çıkış",
+					"fromLabel": "Başlangıç",
+					"toLabel": "Bitiş",
+					"customRangeLabel": "Özeltarih",
+					"weekLabel": "H",
+					"daysOfWeek": [
+						"Paz",
+						"Pzt",
+						"Sal",
+						"Çar",
+						"Per",
+						"Cum",
+						"Cmt"
+				],
+				"monthNames": [
+					"Ocak",
+					"Şubat",
+					"Mart",
+					"Nisan",
+					"Mayıs",
+					"Haziran",
+					"Temmuz",
+					"Ağustos",
+					"Eylül",
+					"Ekim",
+					"Kasım",
+					"Aralık"
+				],
+				"firstDay": 1
+			},
+			}, cb);
+
+			cb(start, end);
+
+		});
+
+	</script>
+
 	<script type="text/javascript">
 
 		//Owl carousel initializing
@@ -191,8 +292,6 @@
 		    nav:false,
 		    items:1
 		});
-
-
 
 	</script>
 

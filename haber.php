@@ -19,6 +19,8 @@
 		$news_status = true;
 	}
 	
+	$news_data['image'] = in_array(end(explode('/', $news_data['image'])), $noImage) ? $news_data['image'] : 'https://cdn.ulak.news/'.end(explode('/', $news_data['image']));
+	
 
 ?>
 <!DOCTYPE html>
@@ -168,9 +170,9 @@
 								<span class="article-reading-time"><i class="material-icons date_range" style="vertical-align:middle">&#xe916;</i> <?php echo $ulak_class->time_since($news_data['date_u']===null ? 0 : $news_data['date_u']); ?></span>
 								<span class="article-reading-time"><i class="material-icons remove_red_eye" style="vertical-align:middle">&#xe417;</i> <?php echo $news_data['read_times']; ?> kere okundu.</span>
 								<span class="article-reading-time"><i class="material-icons av_timer" style="vertical-align:middle">&#xe01b;</i> <?php echo $ulak_class->reading_time($news_data['text']===null ? "" : $news_data['text']); ?> okuma süresi</span>
-								<button style="border: none; outline:none;" class="article-reading-time article-reading-time" data-zebra-tooltip title="Favoriye ekle">
+								<!-- <button style="border: none; outline:none;" class="article-reading-time article-reading-time" data-zebra-tooltip title="Favoriye ekle">
 										<i class="material-icons">&#xE866;</i>
-								</button>
+								</button> -->
 							</div>
 							
 						</div>
@@ -346,39 +348,38 @@
 	var agency = "<?php echo $get_agency; ?>";
 
 	function emojiFinder(emoji){
-		let emote = '';
-		let caseNumber = 0;
+		let result = {}
 		switch (emoji) {
 			case 1:
-				emote = 'angry';
-				caseNumber = 1;
+				result.emote = 'angry';
+				result.caseNumber = 1;
 				break;
 			case 2:
-				emote = 'crying';
-				caseNumber = 2;
+				result.emote = 'crying';
+				result.caseNumber = 2;
 				break;
 			case 3:
-				emote = 'happy';
-				caseNumber = 3;
+				result.emote = 'happy';
+				result.caseNumber = 3;
 				break;
 			case 4:
-				emote = 'love';
-				caseNumber = 4;
+				result.emote = 'love';
+				result.caseNumber = 4;
 				break;
 			case 5:
-				emote = 'superhappy';
-				caseNumber = 5;
+				result.emote = 'superhappy';
+				result.caseNumber = 5;
 				break;
 			case 6:
-				emote = 'shocked';
-				caseNumber = 6;
+				result.emote = 'shocked';
+				result.caseNumber = 6;
 				break;
 			case 7:
-				emote = 'sleepy';
-				caseNumber = 7;
+				result.emote = 'sleepy';
+				result.caseNumber = 7;
 				break;
 		}
-		return {emote, caseNumber};
+		return result;
 	}
 
 		function addComment(){
@@ -490,8 +491,8 @@
 						let lis = ``;
 						added = [];
 						if(result.result.length < 1){
-							first += '<a onClick="emojiSave(1)" class="popular happy"></a><span>0</span>';
-							added.push(1);
+							first += '<a onClick="emojiSave(3)" class="popular happy"></a><span>0</span>';
+							added.push(3);
 						}
 						for (let index = 0; index < result.result.length; index++) {
 							emojiDetail = emojiFinder(result.result[index].emoji);

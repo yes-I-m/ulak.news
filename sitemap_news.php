@@ -29,7 +29,7 @@ if(isset($_GET['cat'])){
         echo "";
         exit();
     }
-    $data = file_get_contents("https://nodejs-api.ulak.news/sitemapnews_". urlencode($cat).".xml");
+    $data = file_get_contents($_ENV['local3']."/sitemapnews_". urlencode($cat).".xml");
     echo $data;
 }
 ?>

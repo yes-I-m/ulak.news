@@ -35,7 +35,7 @@ if(isset($_GET['cat'])){
         echo "";
         exit();
     }
-    $data = file_get_contents("https://nodejs-api.ulak.news/atom_". urlencode($cat).".xml?to=".$page);
+    $data = file_get_contents($_ENV['local3']."/atom_". urlencode($cat).".xml?to=".$page);
     echo $data;
 }
 ?>

@@ -414,7 +414,7 @@
 			cache: false,
 			contentType: "application/json",
 			dataType: 'json',
-			timeout: 180000,
+			timeout: 500000,
 			beforeSend: function () {
 				divLoading('agencyReadsChart');
 				divLoading('agencyTotalChart');
@@ -427,7 +427,7 @@
 					let tmpTotalData = [];
 					for (let i = 0; i < result.result.agency.length; i++) {
 						tmpReadData.push({y: result.result.agency[i].read_times, label: result.result.agency[i]._id})
-						tmpTotalData.push({y: result.result.agency[i].read_times, name: result.result.agency[i]._id})
+						tmpTotalData.push({y: result.result.agency[i].total, name: result.result.agency[i]._id})
 					}
 					new CanvasJS.Chart("agencyReadsChart", {
 						animationEnabled: true,
@@ -489,7 +489,7 @@
 			cache: false,
 			contentType: "application/json",
 			dataType: 'json',
-			timeout: 180000,
+			timeout: 500000,
 			beforeSend: function () {
 				divLoading('catsChart')
 			},
@@ -557,7 +557,7 @@
 			cache: false,
 			contentType: "application/json",
 			dataType: 'json',
-			timeout: 180000,
+			timeout: 500000,
 			beforeSend: function () {
 				divLoading('mostNews')
 			},
@@ -622,7 +622,7 @@
 			cache: false,
 			contentType: "application/json",
 			dataType: 'json',
-			timeout: 180000,
+			timeout: 500000,
 			beforeSend: function () {
 				divLoading('mostWord')
 			},
@@ -672,7 +672,7 @@
 			cache: false,
 			contentType: "application/json",
 			dataType: 'json',
-			timeout: 180000,
+			timeout: 500000,
 			beforeSend: function () {
 				divLoading('stats')
 			},
