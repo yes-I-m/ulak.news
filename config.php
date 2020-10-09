@@ -6,7 +6,8 @@
     include("./class/funcs.php");
 
     $noImage = [
-		'node-image.webp',
-		'diken_manset.png'
-	];
+      'node-image.webp',
+      'diken_manset.png',
+      'dokuz8-manset.webp'
+	  ];
 ?>
