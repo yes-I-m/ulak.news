@@ -19,7 +19,7 @@
 		$news_status = true;
 	}
 	
-	$news_data['image'] = in_array(end(explode('/', $news_data['image'])), $noImage) ? $news_data['image'] : 'https://cdn.ulak.news/'.end(explode('/', $news_data['image']));
+	$news_data['image'] = in_array(@end(@explode('/', $news_data['image'])), $noImage) ? $news_data['image'] : 'https://cdn.ulak.news/'.@end(@explode('/', $news_data['image']));
 	
 
 ?>

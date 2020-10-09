@@ -90,7 +90,7 @@
 									<p style="text-align: center;"><strong>Genel Yayın Yönetmeni</strong><br/>Orhan AYDOĞDU</p>
 									<p style="text-align: center;"><strong>Email</strong><br/>
 										<script type="text/javascript">
-                                    		document.write('ulak@' + 'orhanaydogdu.com.tr');
+                                    		document.write('info@' + 'ulak.news');
                                 		</script>
 									</p>
 									<p style="text-align: center;"><strong>Yer Sağlayıcı</strong><br/>Scaleway</p>

@@ -88,7 +88,7 @@
 							<div class="article-inner">
 								<p>Ulak News ile 7/24 iletişim kurabilirsiniz: 
 								<script type="text/javascript">
-                                    document.write('ulak@' + 'orhanaydogdu.com.tr');
+                                    document.write('info@' + 'ulak.news');
                                 </script> <br/><br/>
 								Bir haberin doğrulundan şüphe ediyorsanız yada kaynağında ki güncellemeden dolayı sitemizde ki bir haberin güncelleşmesini istiyorsanız bizimle iletişime geçebilirsiniz.<br/>
 								Sitemizde ki bir içerik ile ilgili <i><strong>Hukuki</strong></i> bir durum söz konusu ise lütfen bizimle iletişime geçin. İlgili talebiniz ivediklikle yerine getirilecetir.</p>	

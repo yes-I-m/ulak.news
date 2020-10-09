@@ -1,6 +1,7 @@
 <?php
 
 header ("Content-Type:text/xml");
+include('env.php');
 if(isset($_GET['page'])){
 
     ///// CACHE //////////
