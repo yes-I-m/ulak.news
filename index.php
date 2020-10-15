@@ -62,9 +62,14 @@
 	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css?v=<?php echo date('Ymd'); ?>">
 
 	<link rel="manifest" href="manifest.json">
+	<?php include("./view/head-under.php"); ?>
+
 </head>
 
 <body>
+
+	<?php include("./view/body-under.php"); ?>
+	
 	<!-- header start -->
 	<header class="header">
 		<?php include("./view/header.php"); ?>

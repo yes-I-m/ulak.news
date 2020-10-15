@@ -8,7 +8,7 @@
 	$most_read = $ulak_api_class->get_most_readed("today", 4);
 
 	$search_status = false;
-	$cat_data=[];
+	$cat_data = [];
 	$desc = "";
 	$q = "";
 	$sort = 1;
@@ -25,23 +25,28 @@
 		if(isset($_GET['regex'])){
 			$regex = 1;
 		}
-		$all_news = $ulak_api_class->search_news(strip_tags($q), $regex, $sort);
-		if($all_news !== false){
-			if($all_news === null){
-				$desc = "Aramanız sıraya alındı lütfen bir kaç saniye sonra tekrar deneyin...";
-			}else{
-				$search_status = true;
-				$desc = "<strong>".$q."</strong> ilgili arama sonuçları";
-				if(count($all_news)<1){
-					$search_status = false;
-					$desc = "Sonuç bulunamadı.";
-				}
-			}
+		if(isset($_COOKIE['search'])){
+			$desc = "<strong>Aramanız sıraya alınmış, Lütfen bir kaç saniye sonra tekrar deneyin...</strong>";
 		}else{
-			$desc = "Arama yapılamadı.";
+			$all_news = $ulak_api_class->search_news(strip_tags($q), $regex, $sort);
+			if($all_news !== false){
+				if($all_news === null){
+					setcookie("search", "yes", time() + 2*60, "/");
+					$desc = "<strong>Aramanız sıraya alındı, Lütfen bir kaç saniye sonra tekrar deneyin...</strong>";
+				}else{
+					$search_status = true;
+					$desc = "<strong>".$q."</strong> ilgili arama sonuçları";
+					if(count($all_news)<1){
+						$search_status = false;
+						$desc = "Sonuç bulunamadı.";
+					}
+				}
+			}else{
+				$desc = "Arama yapılamadı.";
+			}
 		}
 	}else{
-		$all_cats = $ulak_api_class->get_cats(10000);
+		$all_cats = $ulak_api_class->get_cats();
 		$desc = "Ulak ile istediğinizi arayın.";
 	}
 ?>
@@ -112,10 +117,11 @@
 	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css?v=<?php echo date('Ymd'); ?>">
 
 	<link rel="manifest" href="manifest.json">
-
+	<?php include("./view/head-under.php"); ?>
 </head>
 
 <body>
+	<?php include("./view/body-under.php"); ?>
 	<!-- header start -->
 	<header class="header">
 		<?php include("./view/header.php"); ?>
@@ -158,19 +164,14 @@
 											</select>
 
 										</form>
-								<?php
-								if(isset($search_status)){
-								?>
-								<?php
-								}
-								?>
                             </div>
-
-                            <div class="timeline-items">
+							<div class="timeline-items">
                                 <span class="timeline-items-desc"><?php echo $desc; ?></span><br/>
-								<?php
-										include("./view/timeline_other.php");
-								?>
+							<?php
+								if(isset($search_status)){
+									include("./view/timeline_other.php");
+								}
+							?>
                             </div>
                         </div>
     

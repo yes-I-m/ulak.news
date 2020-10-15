@@ -59,9 +59,14 @@
 	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css?v=<?php echo date('Ymd'); ?>">
 	
 	<link rel="manifest" href="manifest.json">
+	<?php include("./view/head-under.php"); ?>
+
 </head>
 
 <body>
+
+	<?php include("./view/body-under.php"); ?>
+
 	<!-- header start -->
 	<header class="header">
 		<?php include("./view/header.php"); ?>
@@ -84,18 +89,15 @@
                     <div class="content-body">
                         <div class="content-timeline">
 						<div class="article-content">
-							<h1 class="extra-title">Hakkımızda</h1>
+							<h1 class="extra-title">DİJİTAL DÜNYANIN SANAL ULAĞI: ULAK NEWS</h1>
 							<div class="article-inner">
 								<ul style="list-style-type: circle;">
-									<li>En iyi haber okuma deneyimini Türkiye'de ki  bir çok haber kaynaklarını birleştirerek sonuç alıyoruz.</li>
-									<li>ulak.news açık kaynak kodlu bir projedir. Basının özgürlüğüne inanan, bireyin haber alma özgürlüğüne sahip çıkan bir ortam yaratmak amaçlı oluşturulan otomatik olarak haber yayınlayan sistemdir.</li>	
-									<li>Bir çok haber kaynağından haberleri tek bir platformda topladık! Reklamsız, Özgür ve Tarafsız olarak yayınlıyoruz.  </li>	
-									<li>Haberlere özgürce yorum yapabilir, paylaşabilir veya duygu belirtebilirsiniz.</li>	
-									<li>Sizlere en iyi haber okuma deneyimi sunmak için sürekli ulak.news'i geliştiriyoruz.</li>
-									<li>ulak.news asla kaynağından aldığı haberi değiştirmez, haberin orjinalliği ile kaynak belirterek yayınlar.</li>	
-									<li>ulak.news'e isteyen tüm haber kaynakları katılabilir. Haberleri kaynağından izin alarak paylaşıyoruz.</li>
-									<li>İçeriğimiz ile ilgili hukuki bir durum olduğunda hızlı bir şekilde geri dönüyoruz.</li>
-									<li>Okurlarımızın bilgilerini toplamıyor, istatistiki verilerimizi güvenilir olmayan platformlarla paylaşmıyoruz.</li>
+									<li>Ulak News dijital dünyadaki sanal ulağınızdır. Biz, Ulak News olarak, basın özgürlüğüne ve bireysel haber alma özgürlüğüne inanıyoruz. Bu nedenle dijital dünyadaki sanal ulağınız olacağız. Amacımız, haber ajanslarına giren tüm haberlere tek bir akış üzerinden ulaşmanızı sağlamak.</li><br/>
+									<li>Açık kaynak kodlu bir dijital ortam projesi olan Ulak News’te, tamamen kendimize ait bir yazılımla sizler için en iyi okuma deneyimini geliştirmek üzere sürekli olarak çalışıyoruz. Sistemimiz otomatik olarak haber yayınlayan gerçek zamanlı bir haber takip ve yayın sistemidir.</li>	<br/>
+									<li>Ulak News farklı haber kaynaklarından derlenen haberleri yayına girdikleri anda yayına sokulan şekliyle hiçbir editoryal müdahale yapmaksızın sizlere iletir. Haberlere özgürce yorum yapabilir, dilediğiniz platformda paylaşabilir ya da emojilerle kısa yoldan tepkinizi gösterebilirsiniz.</li>	<br/>
+									<li>Reklamsız, özgür ve tarafsız bir yayın akışı ile tüm bilgiye sürekli erişim sağlamanızı amaçlayan platformumuz, sürekli gelişimine Ulak haber takip sistemleri ve raporları ile devam etmektedir. Çok yakında sizlere kişisel ulağınız olarak ilave hizmetler sunacağımız platformumuzda yayınlarımız, haber kaynaklarından izin alınarak sizinle buluşturulmaktadır.</li>	<br/>
+									<li>Okurlarımızın verilerinin güvenliği bizler için birincil öneme sahiptir. Bu nedenle güvenilir olmayan hiçbir üçüncü taraf ile veri paylaşımı kesinlikle yapmamaktayız. </li><br/>
+									<li>Platformumuza katılım için haber ajansları ve merkezleri iletişim sayfamızdan bizimle hemen <a href="https://ulak.news/iletisim.html">buraya tıklayarak</a> iletişime geçebilir. Diğer sorular ve hukuki konular hakkında da bizimle şimdi iletişime geçebilirsiniz.</li>	
 								</ul>
 							</div>
 

@@ -67,9 +67,12 @@
     	padding-bottom: 5%;
 	}
 	</style>
+	<?php include("./view/head-under.php"); ?>
+
 </head>
 
 <body>
+	<?php include("./view/body-under.php"); ?>
 	<!-- header start -->
 	<header class="header">
 		<?php include("./view/header.php"); ?>
