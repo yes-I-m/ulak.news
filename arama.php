@@ -38,7 +38,7 @@
 					$desc = "<strong>".$q."</strong> ilgili arama sonuçları";
 					if(count($all_news)<1){
 						$search_status = false;
-						$desc = "Sonuç bulunamadı.";
+						$desc = "Sonuç bulunamadı. Gelişmiş arama olan Regex'i denediniz mi?";
 					}
 				}
 			}else{
