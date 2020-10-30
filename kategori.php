@@ -83,20 +83,8 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="img/icon/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
 
-	
-	<link rel="stylesheet" type="text/css" href="fonts/material-icons.css">
-
-	<!-- Tooltip plugin (zebra) css file -->
-	<link rel="stylesheet" type="text/css" href="plugins/zebra-tooltip/zebra_tooltips.min.css">
-
-	<!-- Owl Carousel plugin css file. only used pages -->
-	<link rel="stylesheet" type="text/css" href="plugins/owl-carousel/assets/owl.carousel.min.css">
-
 	<!-- Ideabox main theme css file. you have to add all pages -->
 	<link rel="stylesheet" type="text/css" href="css/main-style.min.css?v=<?php echo date('Ymd'); ?>">
-
-	<!-- Ideabox responsive css file -->
-	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css?v=<?php echo date('Ymd'); ?>">
 
 	<link rel="manifest" href="manifest.json">
 	<?php include("./view/head-under.php"); ?>
@@ -142,7 +130,7 @@
 	<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
-	<script src="js/main-script.js"></script>
+	<script src="js/main-script.js?v=<?php echo date('Ymd'); ?>"></script>
 	<script type="text/javascript">
 
 		//Owl carousel initializing

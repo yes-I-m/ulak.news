@@ -57,10 +57,6 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
-
-	<!-- Tooltip plugin (zebra) css file -->
-	<link rel="stylesheet" type="text/css" href="plugins/zebra-tooltip/zebra_tooltips.min.css">
-
 	<!-- Ideabox main theme css file. you have to add all pages -->
 	<link rel="stylesheet" type="text/css" href="css/main-style.css">
 	<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
@@ -68,13 +64,6 @@
 
 	<!-- Ideabox responsive css file -->
 	<link rel="stylesheet" type="text/css" href="css/responsive-style.css">
-	<style>
-	.post-lists .columns{
-		max-height: 350px;
-		margin-bottom: 5%;
-    	padding-bottom: 5%;
-	}
-	</style>
 	<?php include("./view/head-under.php"); ?>
 
 </head>
@@ -114,9 +103,7 @@
 								<div class="columns column-2">
 									<div class="post-list-item">
 										<div class="post-bottom">
-											<div class="post-meta">
-												<a href="#" class="read-more"><span id="newsTotal">Yükleniyor...</span> - Toplam Haber</a>
-											</div>
+											<a href="#" class="read-more"><span id="newsTotal">Yükleniyor...</span> - Toplam Haber</a>
 										</div>
 									</div>
 								</div>
@@ -124,9 +111,7 @@
 								<div class="columns column-2">
 									<div class="post-list-item">
 										<div class="post-bottom">
-											<div class="post-meta">
-												<a href="#" class="read-more"><span id="commentsTotal">Yükleniyor...</span> - Toplam Yorum</a>
-											</div>
+											<a href="#" class="read-more"><span id="commentsTotal">Yükleniyor...</span> - Toplam Yorum</a>
 										</div>
 									</div>
 								</div>
@@ -134,12 +119,19 @@
 								<div class="columns column-2">
 									<div class="post-list-item">
 										<div class="post-bottom">
-											<div class="post-meta">
-												<a href="#" class="read-more"><span id="emojiTotal">Yükleniyor...</span> - Toplam Emoji</a>
-											</div>
+											<a href="#" class="read-more"><span id="emojiTotal">Yükleniyor...</span> - Toplam Emoji</a>
 										</div>
 									</div>
 								</div>
+
+								<div class="columns column-2">
+									<div class="post-list-item">
+										<div class="post-bottom">
+											<a href="#" class="read-more"><span id="agencyTotal">Yükleniyor...</span> - Toplam Ajans</a>
+										</div>
+									</div>
+								</div>
+
 							</div>
 							<hr/>
 							<div style="border: 1px solid #727cf5; width: 230px;" class="date datepicker dashboard-date" id="dashboardDates" >
@@ -267,7 +259,7 @@
 	<script src="plugins/zebra-tooltip/zebra_tooltips.min.js"></script>
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
-	<script src="js/main-script.js"></script>
+	<script src="js/main-script.js?v=<?php echo date('Ymd'); ?>"></script>
 	<script>
 	var start = moment().locale("tr").startOf('day');
   	var end = moment().locale("tr").endOf('day');
@@ -723,8 +715,8 @@
 				divLoading('stats')
 			},
 			success: function (result) {
-				$('#stats').html('');
 				if (result.status) {
+					$('#stats').html('');
 					let rslt = result.result.countStats;
 					let chart = new CanvasJS.Chart("stats", {
 						animationEnabled: true,
@@ -779,18 +771,16 @@
 				divLoading('stats')
 			},
 			success: function (result) {
-				$('#stats').html('');
 				if (result.status) {
 					console.log(result.result)
-					$('#newsTotal').text(result.result.totalCount.newsTotal);
+					$('#newsTotal').text(result.result.totalCount.newsTotal.toLocaleString("tr-TR"));
 					$('#commentsTotal').text(result.result.totalCount.commentTotal);
 					$('#emojiTotal').text(result.result.totalCount.emoji);
+					$('#agencyTotal').text(result.result.totalCount.agencyTotal);
 				} else {
-					$('#stats').html('Veriler alınamadı!');
 				}
 			},
 			error: function (data) {
-				$('#stats').html('Hata oluştu: '+JSON.stringify(data));
 			},
 			complete: function (data) {
 				

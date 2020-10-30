@@ -3,7 +3,7 @@ foreach($news_data['related'] as $news){
     $news['image'] = in_array(end(explode('/', $news['image'])), $noImage) ? $news['image'] : 'https://cdn.ulak.news/'.end(explode('/', $news['image']));
 ?>
     <div class="columns column-2">
-        <article class="post-box" style="background-image: url(<?php echo $news['image']; ?>);">
+        <article class="post-box" style="background-image: url(<?php echo $news['image']; ?>?w=320&h=215);">
             <div class="post-overlay">
                 <h3 class="post-title"><?php echo $news['title']; ?></h3>
                 <div class="post-meta">

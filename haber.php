@@ -107,19 +107,14 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
 
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="fonts/material-icons.css">
+	<link href="./fonts/MaterialIcons-Regular.woff2" rel="preload">
 
-	<!-- Tooltip plugin (zebra) css file -->
-	<link rel="stylesheet" type="text/css" href="plugins/zebra-tooltip/zebra_tooltips.min.css">
+	<link rel="dns-prefetch" href="https://cdn.ulak.news/" />
+	<link rel="preconnect" href="https://cdn.ulak.news/" />
 
-	<!-- Owl Carousel plugin css file. only used pages -->
-	<link rel="stylesheet" type="text/css" href="plugins/owl-carousel/assets/owl.carousel.min.css">
-
-	<!-- Ideabox main theme css file. you have to add all pages -->
+	<link rel="preload" as="style" type="text/css" href="css/main-style.min.css?v=<?php echo date('Ymd'); ?>">
 	<link rel="stylesheet" type="text/css" href="css/main-style.min.css?v=<?php echo date('Ymd'); ?>">
 
-	<!-- Ideabox responsive css file -->
-	<link rel="stylesheet" type="text/css" href="css/responsive-style.min.css?v=<?php echo date('Ymd'); ?>">
 	<link rel="manifest" href="manifest.json">
 	<?php include("./view/head-under.php"); ?>
 </head>
@@ -340,7 +335,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@13.0.1/dist/lazyload.min.js"></script>
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
-	<script src="js/main-script.js"></script>
+	<script src="js/main-script.js?v=<?php echo date('Ymd'); ?>"></script>
 
 	<script type="text/javascript">
 

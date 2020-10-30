@@ -48,11 +48,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,900&amp;subset=latin-ext" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
-
-	<!-- Tooltip plugin (zebra) css file -->
-	<link rel="stylesheet" type="text/css" href="plugins/zebra-tooltip/zebra_tooltips.min.css">
-
 	<!-- Ideabox main theme css file. you have to add all pages -->
 	<link rel="stylesheet" type="text/css" href="css/main-style.css">
 	<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
@@ -225,7 +220,7 @@
 	<script src="plugins/zebra-tooltip/zebra_tooltips.min.js"></script>
 
 	<!-- Ideabox theme js file. you have to add all pages. -->
-	<script src="js/main-script.js"></script>
+	<script src="js/main-script.js?v=<?php echo date('Ymd'); ?>"></script>
 	<script>
 	var start = moment().locale("tr").startOf('day');
   	var end = moment().locale("tr").endOf('day');

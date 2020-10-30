@@ -14,7 +14,7 @@
             <div class="timeline-right">
                 <div class="timeline-post-image">
                     <a title="<?php echo $news['title']; ?>" href="/<?php echo $news['seo_link']; ?>">
-                        <img alt="<?php echo $news['title']; ?>" loading="lazy" src="<?php echo $news['image']; ?>" width="260">
+                        <img alt="<?php echo $news['title']; ?>" class="ulak-lazy-load-image" src="//:0" data-src="<?php echo $news['image']; ?>?w=320&h=215">
                     </a>
                 </div>
                 <div class="timeline-post-content">

@@ -10,7 +10,7 @@
                     $news['image'] = @(in_array(end(explode('/', $news['image'])), $noImage) ? $news['image'] : 'https://cdn.ulak.news/'.end(explode('/', $news['image'])));
             ?>
                 <li class="active">
-                    <a title="<?php echo $news['title']; ?>" href="/<?php echo $news['seo_link']; ?>" style="background-image: url(<?php echo $news['image']; ?>);">
+                    <a title="<?php echo $news['title']; ?>" href="/<?php echo $news['seo_link']; ?>" style="background-image: url(<?php echo $news['image']; ?>?w=320&h=215);">
                         <div class="box-wrapper">
                             <div class="box-left">
                                 <span><?php echo $key+1; ?></span>

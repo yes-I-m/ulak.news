@@ -1,14 +1,14 @@
 "use strict";
 
 //sidebar navigation close method.
-var closeNavigate = function (){
+var closeNavigate = function () {
 	$('.overlay').hide();
 	$('.sidebar').removeClass('opened');
 	$('body').removeClass('fixed');
 }
 
 //sidebar navigation close method.
-var openNavigate = function (){
+var openNavigate = function () {
 	if ($(window).width() < 760)
 		$('body').addClass('fixed');
 	$('.overlay').show();
@@ -16,55 +16,54 @@ var openNavigate = function (){
 }
 
 //creating mobile menu from header menu
-var createMobileMenu = function (){
+var createMobileMenu = function () {
 	var newMenu = '<ul class="sidebar-menu">';
 	var menuContent = $('[data-show-menu-on-mobile]').html();
-	menuContent = menuContent.replace(/<div class="header-submenu">/g , "");
-	menuContent = menuContent.replace(/<\/div>/g , "");
+	menuContent = menuContent.replace(/<div class="header-submenu">/g, "");
+	menuContent = menuContent.replace(/<\/div>/g, "");
 	newMenu = newMenu + menuContent + '</ul>';
 	$('#mobileMenu').prepend(newMenu);
 
-	$('#mobileMenu li a').each(function(){
+	$('#mobileMenu li a').each(function () {
 		var t = $(this).text().trim();
-		
-		if ($(this).find('i').length)
-		{
-			$(this).html('<span class="menu-label">'+t.slice(0, -1)+'</span><span class="multimenu-icon"><i class="material-icons">&#xE313;</i></span>')
+
+		if ($(this).find('i').length) {
+			$(this).html('<span class="menu-label">' + t.slice(0, -1) + '</span><span class="multimenu-icon"><i class="material-icons">&#xE313;</i></span>')
 		}
 		else
-			$(this).html('<span class="menu-label">'+t+'</span>');
+			$(this).html('<span class="menu-label">' + t + '</span>');
 	});
 
-	
+
 }
 
 
 var scrollPos = 0, scrollTime;
 //show or hide header with scroll position.
-var showHideHeader = function (e){
+var showHideHeader = function (e) {
 	clearTimeout(scrollTime);
 
 	var currentScroll = $(this).scrollTop();
 
-    if (currentScroll < 60) {
-        $('header').removeClass('hide');
-    } else {
-        if (currentScroll <= scrollPos) {
-            $('header').removeClass('hide');    
-        }
-        else {
-            $('header').addClass('hide');
-            $('.search-bar').removeClass('active');
-        }
-    }
+	if (currentScroll < 60) {
+		$('header').removeClass('hide');
+	} else {
+		if (currentScroll <= scrollPos) {
+			$('header').removeClass('hide');
+		}
+		else {
+			$('header').addClass('hide');
+			$('.search-bar').removeClass('active');
+		}
+	}
 
-    scrollTime = setTimeout(function() {
-        scrollPos = $(window).scrollTop();
-    }, 100);
+	scrollTime = setTimeout(function () {
+		scrollPos = $(window).scrollTop();
+	}, 100);
 }
 
 //add material wave effect to element
-var addWaveEffect = function (self, e){
+var addWaveEffect = function (self, e) {
 	var wave = '.wave-effect',
 		btnWidth = self.outerWidth(),
 		x = e.offsetX,
@@ -72,70 +71,65 @@ var addWaveEffect = function (self, e){
 
 	self.prepend('<span class="wave-effect"></span>')
 
-	$(wave).css({'top': y,'left': x}).animate({
-	  	opacity: '0',
-	  	width: btnWidth * 2,
-	  	height: btnWidth * 2
-	}, 500, function() {
-	 	self.find(wave).remove()
+	$(wave).css({ 'top': y, 'left': x }).animate({
+		opacity: '0',
+		width: btnWidth * 2,
+		height: btnWidth * 2
+	}, 500, function () {
+		self.find(wave).remove()
 	})
 }
 
 //making sidebars fix to screen top.
-var setStickySidebar = function(){
+var setStickySidebar = function () {
 	//if window screen < 960 sidebar hiding.
-	if (window.outerWidth > 960)
-	{
+	if (window.outerWidth > 960) {
 		var sidebar = $('.sidebar_inner');
 		var sidebarHeight = sidebar.outerHeight();
 		var windowHeight = $(window).height();
 		var wrapperTopPos = $('.main-content').position().top;
 		var scrollTop = $(this).scrollTop();
 
-		if ((sidebarHeight+30) < windowHeight)
-		{
-			if ((scrollTop+30) > wrapperTopPos)
-				sidebar.css({'position':'fixed', 'top':30});
+		if ((sidebarHeight + 30) < windowHeight) {
+			if ((scrollTop + 30) > wrapperTopPos)
+				sidebar.css({ 'position': 'fixed', 'top': 30 });
 			else
-				sidebar.css({'position':'absolute', 'top':0});
+				sidebar.css({ 'position': 'absolute', 'top': 0 });
 		}
-		else
-		{
-			if (scrollTop > (wrapperTopPos+30+sidebarHeight-windowHeight))
-				sidebar.css({'position':'fixed', 'top':-(sidebarHeight+30-windowHeight)});
+		else {
+			if (scrollTop > (wrapperTopPos + 30 + sidebarHeight - windowHeight))
+				sidebar.css({ 'position': 'fixed', 'top': -(sidebarHeight + 30 - windowHeight) });
 			else
-				sidebar.css({'position':'absolute', 'top':0});
+				sidebar.css({ 'position': 'absolute', 'top': 0 });
 
 		}
 
-		if ($('.article-left-box-inner').length)
-		{
+		if ($('.article-left-box-inner').length) {
 
 			var leftSidebar = $('.article-left-box-inner');
 			var leftSidebarH = leftSidebar.outerHeight();
 			var endOfTheArticlePos = $('#endOfTheArticle').offset().top;
 
-			if ((scrollTop+30) > wrapperTopPos)
-			{
-				if ((scrollTop+leftSidebarH+80) > endOfTheArticlePos)
-					leftSidebar.css({'position':'absolute', 'top':'auto', 'bottom':10});
+			if ((scrollTop + 30) > wrapperTopPos) {
+				if ((scrollTop + leftSidebarH + 80) > endOfTheArticlePos)
+					leftSidebar.css({ 'position': 'absolute', 'top': 'auto', 'bottom': 10 });
 				else
-					leftSidebar.css({'position':'fixed', 'top':63, 'bottom':'auto'});
+					leftSidebar.css({ 'position': 'fixed', 'top': 63, 'bottom': 'auto' });
 			}
 			else
-				leftSidebar.css({'position':'absolute', 'top':0, 'bottom':'auto'});
+				leftSidebar.css({ 'position': 'absolute', 'top': 0, 'bottom': 'auto' });
 
-			
+
 		}
 	}
 }
 
 
 /*detail page parallax effect script */
-var makeParallax = function(){
+var makeParallax = function () {
 	var scrollTop = $(this).scrollTop();
 	if (scrollTop < 300)
-		$('.parallax-box .parallax-image').css({'transform': 'translate3d(0px, '+(scrollTop/2)+'px, 0px)'});
+		$('.parallax-box .parallax-image').css({ 'transform': 'translate3d(0px, ' + (scrollTop / 2) + 'px, 0px)' });
 
 	var opacity = 1;
 	if (scrollTop > 10 && scrollTop < 50)
@@ -156,21 +150,21 @@ var makeParallax = function(){
 		opacity = 0.2;
 	else if (scrollTop >= 400)
 		opacity = 0;
-	
-	$('.parallax-box .post-overlay-inner').css({'opacity':opacity});
+
+	$('.parallax-box .post-overlay-inner').css({ 'opacity': opacity });
 }
 
 
 //Browser is IE check
-var GetIEVersion = function() {
+var GetIEVersion = function () {
 	var sAgent = window.navigator.userAgent;
 	var Idx = sAgent.indexOf("MSIE");
 
 	// If IE, return version number.
-	if (Idx > 0) 
-		return parseInt(sAgent.substring(Idx+ 5, sAgent.indexOf(".", Idx)));
+	if (Idx > 0)
+		return parseInt(sAgent.substring(Idx + 5, sAgent.indexOf(".", Idx)));
 	// If IE 11 then look for Updated user agent string.
-	else if (!!navigator.userAgent.match(/Trident\/7\./)) 
+	else if (!!navigator.userAgent.match(/Trident\/7\./))
 		return 11;
 	else
 		return 0; //It is not IE
@@ -178,14 +172,14 @@ var GetIEVersion = function() {
 
 
 
-$(document).ready(function(){
+$(document).ready(function () {
 
 	//initialize zebra tooltip plugin.
-	new $.Zebra_Tooltips($('[data-zebra-tooltip]'),{
-		'animation_speed':50,
-		'animation_offset':10,
-		'hide_delay':0,
-		'show_delay':0
+	new $.Zebra_Tooltips($('[data-zebra-tooltip]'), {
+		'animation_speed': 50,
+		'animation_offset': 10,
+		'hide_delay': 0,
+		'show_delay': 0
 	});
 
 	//first creating mobile menu for mobile screen sizes
@@ -195,17 +189,17 @@ $(document).ready(function(){
 	$('.header-submenu').show();
 
 	//close sidebar panel, clicked overlay and close sidebar button.
-	$('.overlay, .sidebar-toggle-button').on('click', function(){
+	$('.overlay, .sidebar-toggle-button').on('click', function () {
 		closeNavigate();
 	});
 
 	//sidebar menu click event. open when clicked.
-	$('.toggle-sidebar').on('click', function(){
+	$('.toggle-sidebar').on('click', function () {
 		openNavigate();
 	});
 
 	//search panel toggler
-	$('.search-toggle').on('click', function(e){
+	$('.search-toggle').on('click', function (e) {
 		e.preventDefault();
 		$('.search-bar').toggleClass('active');
 	});
@@ -214,19 +208,18 @@ $(document).ready(function(){
 	if (GetIEVersion() > 0)
 		$('.playerlist').height($('.player-box').outerHeight());
 
-	$('.header-submenu').parent().find('a:first').on('click', function(e){
+	$('.header-submenu').parent().find('a:first').on('click', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
 		$(this).parents('.header-navigation').find('.header-submenu').not($(this).parents('li').find('.header-submenu')).removeClass('active');
 		$(this).parents('li').find('.header-submenu').show().toggleClass('active');
-		
+
 	});
 
-	$('.sidebar-menu > li > a').on('click', function(e){
+	$('.sidebar-menu > li > a').on('click', function (e) {
 		var firstSubMenu = $(this).parent().find('ul:first');
 		var that = $(this);
-		if (firstSubMenu.length)
-		{
+		if (firstSubMenu.length) {
 			e.stopPropagation();
 			e.preventDefault();
 			that.parent().parent().find('li').removeClass('active');
@@ -236,73 +229,83 @@ $(document).ready(function(){
 				that.parent().addClass('active');
 
 			firstSubMenu.slideToggle(100);
-			
+
 		}
 	});
 
-	$('.article-left-box').css('height',$('.article-inner').outerHeight())
+	$('.article-left-box').css('height', $('.article-inner').outerHeight())
 
 	setStickySidebar.call($(window));
 
 	makeParallax.call($(window));
 
-	$('.material-button').on('click', function(e) {
+	$('.material-button').on('click', function (e) {
 		addWaveEffect($(this), e);
 	});
 
-	$(document).on('click',function (event) {
-        //close submenu on anywhere
-        var clickover = $(event.target);
-        var _opened = $(".header-submenu").hasClass("active");
-        if (_opened === true && !clickover.hasClass("submenu-toggle")) {
-            $(".header-submenu").removeClass('active');
-        }
+	$(document).on('click', function (event) {
+		//close submenu on anywhere
+		var clickover = $(event.target);
+		var _opened = $(".header-submenu").hasClass("active");
+		if (_opened === true && !clickover.hasClass("submenu-toggle")) {
+			$(".header-submenu").removeClass('active');
+		}
 
-        //close searchbar on click anywhere
-        if (clickover.parents('.search-bar').length < 1 && !clickover.hasClass("search-bar") && !clickover.parent().hasClass("search-toggle") && !clickover.hasClass("search-toggle"))
-        {
-        	$('.search-bar').removeClass('active');
-        }
-    });
+		//close searchbar on click anywhere
+		if (clickover.parents('.search-bar').length < 1 && !clickover.hasClass("search-bar") && !clickover.parent().hasClass("search-toggle") && !clickover.hasClass("search-toggle")) {
+			$('.search-bar').removeClass('active');
+		}
+	});
 
 	//trigger scrollable elements actions
-    $(window).on('scroll',function () {
-    	// showHideHeader.call(this);
-    	setStickySidebar.call(this);
-    	makeParallax.call(this);
-    });
+	$(window).on('scroll', function () {
+		// showHideHeader.call(this);
+		setStickySidebar.call(this);
+		makeParallax.call(this);
+	});
 
-    //sidebar boxed posts scripts    
-    $('.w-boxed-post ul li').on('mouseover', function(e){
-    	$(this).parent().find('li').removeClass();
-    });
+	//sidebar boxed posts scripts    
+	$('.w-boxed-post ul li').on('mouseover', function (e) {
+		$(this).parent().find('li').removeClass();
+	});
 
-    $('.w-boxed-post ul li').on('mouseleave', function(e){
-    	$(this).addClass('active');
-    });
+	$('.w-boxed-post ul li').on('mouseleave', function (e) {
+		$(this).addClass('active');
+	});
 
-    //article share emoticons action
-    $('.article-emoticons>li').on('mouseover', function(e){
-    	$(this).parent().addClass('active');
-    });
-    $('.article-emoticons>li').on('mouseleave', function(e){
-    	$(this).parent().removeClass('active');
-    });
+	//article share emoticons action
+	$('.article-emoticons>li').on('mouseover', function (e) {
+		$(this).parent().addClass('active');
+	});
+	$('.article-emoticons>li').on('mouseleave', function (e) {
+		$(this).parent().removeClass('active');
+	});
 
-    
-    
+
+
 });
 
 
 /*live event triggers*/
 /*open popup modal from data attribute*/
-$(document).on('click', '[data-modal]', function(e){
+$(document).on('click', '[data-modal]', function (e) {
 	e.preventDefault();
 	$('.m-modal-box').hide();
 	var modalId = $(this).attr('data-modal');
-	$('#'+modalId).show();
+	$('#' + modalId).show();
 });
+
 /*close popup modal clicked close button*/
-$(document).on('click', '.m-modal-close, .m-modal-overlay', function(e){
+$(document).on('click', '.m-modal-close, .m-modal-overlay', function (e) {
 	$(this).parents('.m-modal-box').hide();
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+	var lazyloadImages; if ("IntersectionObserver" in window) { let options = { root: null, rootMargin: "100px 0px 100px 0px" }; lazyloadImages = document.querySelectorAll(".ulak-lazy-load-image"); var imageObserver = new IntersectionObserver(function (entries, observer) { entries.forEach(function (entry) { if (entry.isIntersecting) { var image = entry.target; image.src = image.dataset.src; image.classList.remove("ulak-lazy-load-image"); imageObserver.unobserve(image); } }); }, options); lazyloadImages.forEach(function (image) { imageObserver.observe(image); }); } else {
+		var lazyloadThrottleTimeout; lazyloadImages = document.querySelectorAll(".lazy"); function lazyload() {
+			if (lazyloadThrottleTimeout) { clearTimeout(lazyloadThrottleTimeout); }
+			lazyloadThrottleTimeout = setTimeout(function () { var scrollTop = window.pageYOffset; lazyloadImages.forEach(function (img) { if (img.offsetTop < (window.innerHeight + scrollTop)) { img.src = img.dataset.src; img.classList.remove('lazy'); } }); if (lazyloadImages.length == 0) { document.removeEventListener("scroll", lazyload); window.removeEventListener("resize", lazyload); window.removeEventListener("orientationChange", lazyload); } }, 20);
+		}
+		document.addEventListener("scroll", lazyload); window.addEventListener("resize", lazyload); window.addEventListener("orientationChange", lazyload);
+	}
 });

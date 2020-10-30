@@ -4,7 +4,7 @@
             $news['image'] = @(in_array(end(explode('/', $news['image'])), $noImage) ? $news['image'] : 'https://cdn.ulak.news/'.end(explode('/', $news['image'])));
     ?>
         <div class="item">
-            <article class="post-box" style="background-image: url(<?php echo $news['image']; ?>);">
+            <article class="post-box" style="background-image: url(<?php echo $news['image']; ?>?w=500&h=800);">
                 <div class="post-overlay">
                     <a href="#" class="post-category" title="<?php echo $news['title']; ?>" rel="tag"><?php echo $news['categories'][0]; ?></a>
                     <h3 class="post-title"><?php echo $news['title']; ?></h3>
