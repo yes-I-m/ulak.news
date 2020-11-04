@@ -26,7 +26,7 @@
                                 <div style="background-image: url('https://ulak.news/img/500.gif');" class="error-code">
                                     404
                                 </div>
-                                <h1>Aradığınız sayfaya <i>Ulak</i> yetişemedi.<br/>Silinmiş veya böyle bir sayfa olmayabilir.</h1>
+                                <h1>Aradığınız sayfaya <i>Ulak</i> yetişemedi.<br/>Sayfa silinmiş olabilir ya da böyle bir sayfa olmayabilir.</h1>
                                 <p>Ana sayfaya gitmeye ne dersin? <a class="go-home-link" href="index.php">Ana Sayfa</a>.</p>
                             </div>
 							</div>
