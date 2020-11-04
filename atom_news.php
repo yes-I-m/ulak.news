@@ -25,7 +25,7 @@ if(isset($_GET['cat'])){
             $cat = "Güncel";
             break;
         case 'sondakika':
-            $cat = "sondakika";
+            $cat = "Son Dakika";
             break;
         default:
             $cat = null;
