@@ -85,7 +85,7 @@
 									<li>Ulak News farklı haber kaynaklarından derlenen haberleri yayına girdikleri anda yayına sokulan şekliyle hiçbir editoryal müdahale yapmaksızın sizlere iletir. Haberlere özgürce yorum yapabilir, dilediğiniz platformda paylaşabilir ya da emojilerle kısa yoldan tepkinizi gösterebilirsiniz.</li>	<br/>
 									<li>Reklamsız, özgür ve tarafsız bir yayın akışı ile tüm bilgiye sürekli erişim sağlamanızı amaçlayan platformumuz, sürekli gelişimine Ulak haber takip sistemleri ve raporları ile devam etmektedir. Çok yakında sizlere kişisel ulağınız olarak ilave hizmetler sunacağımız platformumuzda yayınlarımız, haber kaynaklarından izin alınarak sizinle buluşturulmaktadır.</li>	<br/>
 									<li>Okurlarımızın verilerinin güvenliği bizler için birincil öneme sahiptir. Bu nedenle güvenilir olmayan hiçbir üçüncü taraf ile veri paylaşımı kesinlikle yapmamaktayız. </li><br/>
-									<li>Platformumuza katılım için haber ajansları ve merkezleri iletişim sayfamızdan bizimle hemen <a href="https://ulak.news/iletisim.html">buraya tıklayarak</a> iletişime geçebilir. Diğer sorular ve hukuki konular hakkında da bizimle şimdi iletişime geçebilirsiniz.</li>	
+									<li>Platformumuza katılım için haber ajansları ve merkezleri iletişim sayfamızdan bizimle hemen <a href="https://ulak.news/iletisim.html">buraya tıklayarak</a> iletişime geçebilirsiniz. Diğer sorular ve hukuki konular hakkında da bizimle elektronik posta adresimiz yoluyla bizimle iletişime geçebilirsiniz.</li>	
 								</ul>
 							</div>
 
