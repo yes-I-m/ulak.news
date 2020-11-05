@@ -82,8 +82,8 @@
 	<title>Ulak News | Haberler, Son Dakika Haberleri ve Güncel Haber</title>
 	<meta property="og:title" content="Ulak News | Haberler, Son Dakika Haberleri ve Güncel Haber" />
 	<meta name="keywords" content="ulak.news, ulak haber, ulak news, ulak, haber, haberler, son dakika, son dakika haber, haber oku, gazete haberleri,gazeteler" />
-	<meta property="og:description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
-	<meta name="description" content="Ulak news, Haberler, son dakika haberleri, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
+	<meta property="og:description" content="Ulak news, Haberler, son dakika haberleri, medya takip, haber takip, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
+	<meta name="description" content="Ulak news, Haberler, son dakika haberleri, medya takip, haber takip, yerel ve dünyadan en güncel gelişmeler, magazin, ekonomi, spor, gündem ve tüm haberleri ulak news'de!" />
 	<meta itemprop="isFamilyFriendly" content="true"/>
 	<meta name="robots" content="noindex, nofollow">
 	<?php
