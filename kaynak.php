@@ -32,11 +32,11 @@
 		if($agency_status){
 	?>
 
-	<title><?php echo $agency_data['title']; ?> ile ilgili haberler | Ulak.news</title>
-	<meta property="og:title" content="<?php echo $agency_data['title']; ?> ile ilgili haberler, Haberleri" />
-	<meta name="keywords" content="<?php echo $agency_data['title']; ?> ile ilgili haberler, son dakika haberler" />
-	<meta property="og:description" content="<?php echo $agency_data['title']; ?>, ile ilgili haberler, son dakika haberler" />
-	<meta name="description" content="<?php echo $agency_data['title']; ?> ile ilgili haberler, son dakika haberler" />
+	<title><?php echo $agency_data['title']; ?> yayınladığı haberler | Ulak.news</title>
+	<meta property="og:title" content="<?php echo $agency_data['title']; ?> yayınladığı haberler, ilgili haberler, Haberleri" />
+	<meta name="keywords" content="<?php echo $agency_data['title']; ?> yayınladığı haberler, ilgili haberler, son dakika haberler" />
+	<meta property="og:description" content="<?php echo $agency_data['title']; ?> yayınladığı haberler, son dakika haberler" />
+	<meta name="description" content="<?php echo $agency_data['title']; ?> yayınladığı haberler, ilgili haberler, son dakika haberler" />
 	<link rel="canonical" href="https://ulak.news/<?php echo $agency_data['seo_link']; ?>" />
 	<meta property="og:url" content="https://ulak.news/<?php echo $agency_data['seo_link']; ?>" />
 
