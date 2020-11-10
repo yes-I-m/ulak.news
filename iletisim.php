@@ -81,8 +81,8 @@
 								<script type="text/javascript">
                                     document.write('info@' + 'ulak.news');
                                 </script> <br/><br/>
-								Bir haberin doğrulundan şüphe ediyorsanız yada kaynağında ki güncellemeden dolayı sitemizde ki bir haberin güncelleşmesini istiyorsanız bizimle iletişime geçebilirsiniz.<br/>
-								Sitemizde ki bir içerik ile ilgili <i><strong>Hukuki</strong></i> bir durum söz konusu ise lütfen bizimle iletişime geçin. İlgili talebiniz ivediklikle yerine getirilecetir.</p>	
+								Bir haberin doğrulundan şüphe ediyorsanız yada kaynağındaki güncellemeden dolayı sitemizdeki bir haberin güncellenmesini istiyorsanız lütfen bizimle e-posta yoluyla iletişime geçin.<br/>
+								<p>Sitemizdeki bir içerikle ilgili <i><strong>hukuki</strong></i> bir durum söz konusu olduğunda da elektronik posta yoluyla bize bilgi iletmeniz halinde talebinize ivediklikle yanıt verilecektir ve işleminiz öncelikli olarak yapılacaktır.</p>	
 							</div>
 
 							<!--this is important for the left ad box or share box fixer -->
