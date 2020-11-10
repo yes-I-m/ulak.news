@@ -86,7 +86,7 @@
                                 		</script>
 									</p>
 									<p style="text-align: center;"><strong>Yer Sağlayıcı</strong><br/>Scaleway</p>
-									<p style="text-align: center;">Sitede yayınlanan yazılar ve yorumlardan yazarları sorumludur. Yayınlanan yorumlardan Ulak News sorumlu tutulamaz. Sitedeki tüm harici linkler ayrı bir sayfada açılır. Sitede farklı haber sitelerinden haberlere yer verilmekte olup resmi mail adreslerinden istenildiği taktirde ilgili haberler silinir.</p>
+									<p style="text-align: center;">Sitede yayınlanan yazılar ve yorumlarından yazarları ve ilgili yayım kuruluşları sorumludur. Yayınlanan yorumlardan Ulak News sorumluluk kabul etmez. Sitemizdeki tüm harici linkler ayrı bir sayfada açılır. Sitemizde farklı haber sitelerinden haberlere yer verilmekte olup resmi mail adreslerinden talep edilmesi halinde ilgili haber linkleri kaldırılır.</p>
 							</div>
 
 							<!--this is important for the left ad box or share box fixer -->
